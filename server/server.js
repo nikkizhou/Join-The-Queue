@@ -1,9 +1,8 @@
 import express from "express"
-import axios from "axios"
 import cors from "cors"
 import "dotenv/config"
-
-import { connectToDatabase } from "/mongodb";
+import router from './routes/index.js';
+import nodemailer from "nodemailer"
 
 const app = express()
 const PORT = process.env.PORT || 5001
@@ -11,7 +10,7 @@ const PORT = process.env.PORT || 5001
 app.use(cors())
 app.use(express.json({ extended: false }));
 
-
+app.use('/api', router);
 app.get('/', (req, res) => {
     res.send('Hellow world')
 })
@@ -20,11 +19,44 @@ app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`)
 })
 
+/*-------------------------------
+AUTHENTICATION
+---------------------------------*/
+// const contactEmail = nodemailer.createTransport({
+//     service: 'gmail',
+//     auth: {
+//       user: "apolloqueuemanager@gmail.com",
+//       pass: "Ap0ll0!!",
+//     },
+//   });
+  
+//   contactEmail.verify((error) => {
+//     if (error) {
+//       console.log(error, 'there has been a wee error');
+//     } else {
+//       console.log("Ready to Send");
+//     }
+//   });
 
-async function dbGetRes(request, response) {
-    const queryId = request.query.id;
-    const {database}  = await connectToDatabase();
-    const resturants = await database.collection('restaurants').find({productId:queryId}).toArray();
-    response.status(200).json(product);
-}
-
+// router.post("/contact", (req, res) => {
+//     const name = req.body.name;
+//     const email = req.body.email;
+//     const message = req.body.message; 
+//     const mail = {
+//       from: name,
+//       to: "apolloqueuemanager@gmail.com",
+//       subject: "Contact Form Submission",
+//       html: `<p>Name: ${name}</p>
+//             <p>Type: ${type}</p>
+//             <p>Address: ${address}</p>
+//              <p>Email: ${email}</p>
+//              <p>Message: ${message}</p>`,
+//     };
+//     contactEmail.sendMail(mail, (error) => {
+//       if (error) {
+//         res.json({ status: "ERROR" });
+//       } else {
+//         res.json({ status: "Message Sent" });
+//       }
+//     });
+//   });

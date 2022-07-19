@@ -1,5 +1,6 @@
 import { MongoClient } from "mongodb";
 
+
 const uri = process.env.PUBLIC_URI;
 const options = {
     useUnifiedTopology: true,
@@ -9,9 +10,9 @@ const options = {
 let mongoClient = null;
 let database = null;
 
-// if (!process.env.NEXT_ATLAS_URI) {
-//     throw new Error('Please add your Mongo URI to .env.local')
-// }
+if (!uri) {
+    throw new Error('Please add your Mongo URI to .env.local')
+}
 
 export async function connectToDatabase() {
     try {
@@ -29,6 +30,7 @@ export async function connectToDatabase() {
             mongoClient = await (new MongoClient(uri, options)).connect();
         }
         database = await mongoClient.db(process.env.PUBLIC_DATABASE);
+
         return { mongoClient, database };
     } catch (e) {
         console.error(e);
@@ -36,3 +38,5 @@ export async function connectToDatabase() {
 }
 
 connectToDatabase()
+
+
