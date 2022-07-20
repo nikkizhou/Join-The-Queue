@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+
+
+.login-page{
+   height: 100vh;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: flex-start;
+   margin-top: 3em;
+}
+
+.login-page__login {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   margin: 3rem;
+ }
+ 
+ .login-page__form {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: space-between;
+   font-family: 'Abel', sans-serif;
+   width: 100%;
+ }
+ 
+ .login-page__form__input {
+   border-radius: 10px;
+   padding: 10px;
+   font-size: 1.2em;
+   margin: 0.5rem;
+   width: 30%;
+ }
+ 
+ .login-page__title{
+     margin: 1rem;
+     font-size: 28px;
+ }
+ 
+ .login-page__form__btn{
+   width: 30%;
+   border-radius: 10px;
+   padding: 10px;
+   font-size: 1.2em;
+   margin: 1rem;
+   border: none;
+   color: white;
+   background-color: #296e8a;
+   font-family: 'Abel', sans-serif;
+ }
+
+ .login-page__form__btn:hover {
+   background-color: #89C2D9;
+   color: black;
+ }
+
+ .register__btn{
+   border: none;
+   width: 30%;
+   border-radius: 10px;
+   padding: 10px;
+   font-size: 1.2em;
+   margin: 1rem;
+   color: white;
+   background-color: #296e8a;
+   font-family: 'Abel', sans-serif;
+ }
+
+ .register__btn:hover{
+   background-color: #89C2D9;
+   color: black;
+ }
+ .register__title {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    font-size: 28px;
+    font-family: 'Abel', sans-serif;
+ }
+
+ @media only screen and (min-width: 601px) and (max-width: 900px){
+
+   .login-page__form__btn{
+      width: 25%;
+    }
+    .register__btn{
+      width: 25%;
+    }
+}
+
+@media only screen and (min-width: 901px) {
+   .login-page__form__btn{
+      width: 15%;
+   }
+   .register__btn{
+      width: 15%;
+   }
+}
