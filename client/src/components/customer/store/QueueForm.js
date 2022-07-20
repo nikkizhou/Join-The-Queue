@@ -12,7 +12,7 @@ function QueueForm() {
   const navigate = useNavigate();
  
   const createTicket =  async ()=>{
-    return  axios.post('http://localhost:5001/api/tickets', {
+    return  axios.post(`http://localhost:5001/api/tickets`, {
       resId: id,
       status:'waiting',
       customerId

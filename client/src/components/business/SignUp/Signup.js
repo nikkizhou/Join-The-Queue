@@ -1,8 +1,18 @@
 import {useState} from 'react'
 import './Signup.css';
+import {useNavigate} from 'react-router-dom';
+import axios from 'axios';
 
 const Signup = () => {
+    const navigate = useNavigate();
     const [status, setStatus] = useState("Submit");
+
+    const createBusinessInDb = async (details)=>{
+      //update local host to mongo DB
+      return await axios.post('http://localhost:5001/api/business', details)
+      .catch(error=> console.log(error));
+    }
+
     const handleSubmit = async (e) => {
       e.preventDefault();
       setStatus("Sending...");
@@ -14,38 +24,35 @@ const Signup = () => {
         email: email.value,
         message: message.value,
       };
-      //update local host to mongo DB
-      let response = await fetch("http://localhost:5001/api/business", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json;charset=utf-8",
-        },
-        body: JSON.stringify(details),
-      });
+      const business = await createBusinessInDb(details);
+      console.log(business,'business handleSubmit!!!');
       setStatus("Submit");
-      let result = await response.json();
-      alert(result.status);
+      navigate({ pathname: `/business/ticketList/${business.data.id}`})
     };
 
     return (
-      <form onSubmit={handleSubmit} className="signup">
-          <div className="signup__title">Register New Business</div>
-          <label className="signup__input-label" htmlFor="name">Business Name:</label>
-          <input className="signup__input-input" type="text" id="name" required />
-        
-          <label className="signup__input-label" htmlFor="type">Type of business:</label>
-          <input className="signup__input-input" type="text" id="type" required />
-        
-          <label className="signup__input-label" htmlFor="address">Business Address:</label>
-          <input className="signup__input-input" type="text" id="address" required />
-        
-          <label className="signup__input-label" htmlFor="email">Email:</label>
-          <input className="signup__input-input" type="email" id="email" required />
-        
-          <label className="signup__input-label" htmlFor="message">Message:</label>
-          <textarea className="signup__input-input" id="message" required />
-          <button className="signup__addButton" type="submit">{status}</button>
-      </form>
+      <>
+        <h3>You are logged in!</h3>
+        <h4>Register your business in our Queue System:</h4>
+        <form onSubmit={handleSubmit} className="signup">
+            <div className="signup__title">Add Your Business</div>
+            <label className="signup__input-label" htmlFor="name">Business Name:</label>
+            <input className="signup__input-input" type="text" id="name" required />
+          
+            <label className="signup__input-label" htmlFor="type">Type of business:</label>
+            <input className="signup__input-input" type="text" id="type" required />
+          
+            <label className="signup__input-label" htmlFor="address">Business Address:</label>
+            <input className="signup__input-input" type="text" id="address" required />
+          
+            <label className="signup__input-label" htmlFor="email">Email:</label>
+            <input className="signup__input-input" type="email" id="email" required />
+          
+            <label className="signup__input-label" htmlFor="message">Message:</label>
+            <textarea className="signup__input-input" id="message" required />
+            <button className="signup__addButton" type="submit">{status}</button>
+        </form>
+      </>
     );
   };
 

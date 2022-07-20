@@ -20,8 +20,6 @@ function Home() {
     fetchData();
   }, []);
 
-
-
   return (
     <>
         { restaurantList ?  <RestaurantList restaurantList={restaurantList} />  : null}

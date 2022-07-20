@@ -60,6 +60,8 @@ const deleteTicket = async (req,res)=>{
 const getBusiness = async (req,res) => {
     const business = await dbQuery()
     const businessDB = business.business
+    // await database.collection('restaurants').remove({})
+    // await database.collection('restaurants').insertMany(obj)
     if (business) return res.status(200).json(businessDB)
     return res.status(404).json({ success: false, msg: `Can't find business` });
 }
@@ -86,11 +88,9 @@ const addOneBusiness = async (req,res)=>{
     const {database}  = await connectToDatabase();
     const business = await dbQuery()
     const businessId = business.business.length+1
-    if (req.body) {
       const newBusiness = {...req.body, id:businessId}
-      database.collection('restaurants').insertOne(newBusiness);
+      if (req.body) await database.collection('restaurants').insertOne(newBusiness);
       res.status(200).json(newBusiness)
-    }
 }
 
 const updateTicketStatusInDB = async (id,status)=>{

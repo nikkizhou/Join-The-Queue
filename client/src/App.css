@@ -4,28 +4,24 @@
     margin: 0px;
     padding: 0px;
 }
-
 a:link {
     text-decoration: none;
 }
-  
 a:visited {
     text-decoration: none;
 }
-
 body {
-    background-color: rgb(235, 235, 235);
+    background-color: #EDEDED;
 }
-
 .list__container{
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 10px;
 }
-
-
-
+h1 {
+    margin: 10px;
+}
 .restaurant-card, .ticket {
     display: flex;
     flex-direction: column;
@@ -39,28 +35,23 @@ body {
     box-shadow: 5px 10px 5px rgb(215, 215, 215);
     cursor: pointer;
 }
-
 /* First in list (needs margin from header) */
 .list__container a:first-child {
     margin-top: 40px;
 }
-
 .restaurant-card__name {
     padding: 10px 10px;
     font-size: 20px;
 }
-
 .restaurant-card__description {
     padding: 10px 10px;
     font-size: large;
 }
-
 .restaurant-card__footer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 10px 10px;
-
 }
 .restaurant-card__queue {
     display: flex;
@@ -74,7 +65,6 @@ body {
     align-items: center;
     text-align: center;
 }
-
 .restaurant-card__queue__length{
     margin: 0px 10px;
     font-size: 20px;
@@ -85,23 +75,20 @@ body {
     width: 30px;
     height: 30px;
 }
-
-
 .restaurant-card__image{
     max-width: 400px;
     width: 100%;
     height: auto;
 }
-
 .card__header{
     width: 100%;
+    margin-top: 0;
     text-align: center;
-    background-color: #6b446d;
-    color: white;
+    background-color: #c0d9e4;
+    box-shadow: 0px 5px 10px rgba(67, 67, 67, 0.2);
     padding: 10px;
-    position: fixed;
+    position: sticky;
     border-radius: 0px 0px 10px 10px;
- 
 }
 /* It's the only thing I know!
 *relatively speaking. I still don't know shit about css */
@@ -114,12 +101,10 @@ body {
     border-radius: 2px;
     background-color: antiquewhite;
 }
-
 .formContainer > * {
     padding: 5px;
     width: 100%;
 }
-
 .detail--card{
     display: flex;
     flex-direction: column;
@@ -131,9 +116,7 @@ body {
     font-size: large;
     border: 1px;
     width: 300px;
-
 }
-
 /* .ticket{
     display: flex;
     flex-direction: column;
@@ -143,7 +126,6 @@ body {
     width: 100%;
     max-width: 400px;
 } */
-
 .tickets__container{
     display: flex;
     flex-direction: row;
@@ -153,7 +135,89 @@ body {
     justify-content: space-around;
     padding: 10px;
 }
-
-.single__ticket{
-    width: 20wv;
+.ticket{
+    width: 90%;
+    align-self: center;
+    justify-self: center;
+}
+.single__ticket {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    background-color: white;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+}
+.ticket__info, .ticket__number-info, .ticket__number, .button--cancel{
+    font-size: large;
+    padding: 20px;
+    margin: 20px;
+}
+.button{
+    background-color: rgb(68, 229, 73);
+    font-size: 15px;
+    width: 90%;
+    height: 50px;
+    color: white;
+    padding: 15px;
+    margin: 15px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 5px 4px 4px rgb(195, 195, 195);
+    cursor: pointer;
+}
+.button--cancel{
+    background-color: rgb(250, 98, 123);
+    width: 60%;
+}
+.ticket__number-container, .ticket__name-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+.ticket__number, .ticket__name{
+    background-color: blueviolet;
+    font-size: 50px;
+    padding: 10px;
+    margin:5px;
+    text-shadow: 2px 3px 5px grey;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    width: 50%;
+    height: 80px;
+    margin: 0 auto;
+}
+.ticket__name {
+    font-size: 30px;
+    background-color: white;
+    color: blueviolet;
+    border: 1px solid blueviolet;
+    text-shadow: none;
+}
+.single__ticket--info, .single__ticket--buttons{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.single__ticket--buttons{
+    justify-content: space-around;
+    align-items: center;
+}
+ .ticket__status{
+    margin-top:10px;
+    text-align: center;
+}
+.ticket__title{
+    text-align: center;
+}
+.button--cancel{
+    align-self:center;
+}
+.queue__header{
+    text-align: center;
 }

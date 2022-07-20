@@ -31,24 +31,20 @@ const Navbar = () => {
         </div>
         <div className='links-container' ref={linksContainerRef}>
           <ul className='links' ref={linksRef}>
-                <Link to="/">Business</Link>
-                <Link to="./Signup">Sign Up!</Link>
-                <Link to="./SignIn">Sign In!</Link>
-                <Link to="./About">About</Link>
-               
-            </ul>
+                <Link to="/business/signIn">Business</Link>
+                <Link to="about">About</Link>
+          </ul>
         </div>
         <ul className='social-icons'>
-          
-              <li>
-                <a href='www.facebook.com'><FaFacebook /></a>
-              </li>
-              <li>
-                <a href='www.twitter.com'><FaTwitter /></a>
-              </li>
-              <li>
-                <a href='www.linkedin.com/'><FaLinkedin /></a>
-              </li>
+          <li>
+            <a href='www.facebook.com'><FaFacebook /></a>
+          </li>
+          <li>
+            <a href='www.twitter.com'><FaTwitter /></a>
+          </li>
+          <li>
+            <a href='www.linkedin.com/'><FaLinkedin /></a>
+          </li>
           
         </ul>
       </div>

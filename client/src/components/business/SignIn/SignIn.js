@@ -4,28 +4,33 @@ import './SignIn.css'
 
 const SignIn = () => {
     const navigate = useNavigate()
-    const register = () => {navigate({ pathname: '/business/Signup'})}
+    const register = (e) => {
+      e.preventDefault()
+      navigate({ pathname: '/business/Signup'})
+    }
   return (
     <>
     <main className='login-page'>
       <div className="login-page__login">
-        <h3 className="login-page__title"> Login </h3>
-        <form  className='login-page__form'>
+        <h3 className="login-page__title">Business Login </h3>
+        <form  className='login-page__form'  onSubmit={register}>
           <input
             name="loginEmail"
             className="login-page__form__input"
             placeholder="Email..."
+            required
           />
           <input
             type="password"
             name="loginPassword"
             className="login-page__form__input"
             placeholder="Password..."
+            required 
           />
           <input className="login-page__form__btn" type="submit" value="Log in"/> 
         </form>
         <p className="register__title">No Account yet? Register here</p>
-        <button className="register__btn" onClick={register}> Register </button>
+        <button className="register__btn" > Register </button>
       </div>
       </main>
     </>
