@@ -1,9 +1,8 @@
-import '../home/customer.css';
+import './Feedback.css'
 import React, { useEffect,useState } from 'react'
 import axios from 'axios'
 // import { Router } from 'react-router'
 import { useSearchParams, useNavigate } from "react-router-dom";
-
 
 function Feedback() {
   console.log('running Feedback!');
@@ -55,7 +54,6 @@ function Feedback() {
                                    
   return (
     <div className='ticket'>
-
         {business ?  (<div className='ticket__name-container'>
                         <h4 className='ticket__info'>In the queue for:</h4><h4 className='ticket__name'> {business.name}</h4>
         </div>) : <h1>Business does not exist</h1>}

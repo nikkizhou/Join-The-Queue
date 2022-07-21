@@ -1,7 +1,9 @@
 import React,{useState,useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import './customer.css'
+import './customerHome.css'
+//import logo from './queue1.png';
+
 
 
 function RestaurantItem({ name,id,image,description,address}) {
@@ -33,7 +35,7 @@ function RestaurantItem({ name,id,image,description,address}) {
           <div className='restaurant-card__footer'>
             <p className='restaurant-card__text'>{name}</p>
             <p className='restaurant-card__text restaurant-card__text--address'>{address}</p>
-            
+            <img src={logo} className='logo' alt='logo' />
              {tickets ?  <div className='restaurant-card__queue'> 
              <p className='restaurant-card__text restaurant-card__text--q-info'>groups waiting:</p>
                 <p className="restaurant-card__text restaurant-card__text--queue">{tickets.length}</p></div> : null} 

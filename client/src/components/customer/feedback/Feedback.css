@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    /* border: 0.5px dashed blue; */
+    /* border: 0.2px dashed blue; */
     margin: 0px;
     padding: 0px;
 
@@ -25,7 +25,8 @@ body {
 h1 {
     margin: 10px;
 }
-.restaurant-card {
+
+.restaurant-card, .ticket {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -253,6 +254,8 @@ h1 {
     display: flex;
     flex-direction: column;
     height: 80vh;
+    background: linear-gradient(45deg, rgb(233, 233, 233) 65%, rgb(95, 36, 118) 50%);
+
 
 
 }
@@ -282,3 +285,4 @@ h1 {
 .customer-form__btn{
     width: 50%;
 }
+

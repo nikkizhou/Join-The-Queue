@@ -19,13 +19,21 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 10px;
-    background-color: blue;
+    background: linear-gradient(45deg, rgb(233, 233, 233) 92%, rgb(95, 36, 118) 50%);
     /* background: linear-gradient(to right, #f2fcfe, #d0d0d0);  */
 }
 h1 {
     margin: 10px;
 }
-.restaurant-card {
+
+.store-title{
+    color:white;
+    padding:30px;
+    margin: 20px;
+    font-size: 60px;
+}
+
+.restaurant-card, .ticket {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -253,8 +261,7 @@ h1 {
     display: flex;
     flex-direction: column;
     height: 80vh;
-
-
+    background-color: ;
 }
 
 .customer-form{

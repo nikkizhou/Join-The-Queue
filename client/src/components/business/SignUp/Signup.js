@@ -7,22 +7,25 @@ const Signup = ({updateBusinessId}) => {
     const navigate = useNavigate();
     const [status, setStatus] = useState("Submit");
 
+    // const formattedAddress = address.replace(' ','%20');
+    // fetchDataFromGoogle({name:'eat east', address:"Fleminggatan 11, 112 26 Stockholm, Sverige"})
+
     const createBusinessInDb = async (details)=>{
+      //fetch data from googlemap based on name and address
       //update local host to mongo DB
-      return await axios.post('http://localhost:5001/api/business', details)
+      
+      //const dataFromGoogle = await fetchDataFromGoogle(details);
+      return await axios.post('http://localhost:5001/api/business', dataFromGoogle)
       .catch(error=> console.log(error));
     }
 
     const handleSubmit = async (e) => {
       e.preventDefault();
       setStatus("Sending...");
-      const { name, type, address, email, message } = e.target.elements;
+      const { name, address} = e.target.elements;
       let details = {
         name: name.value,
-        type: type.value,
         address: address.value,
-        email: email.value,
-        message: message.value,
       };
 
       const business = await createBusinessInDb(details);

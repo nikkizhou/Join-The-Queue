@@ -2,7 +2,6 @@ import React,{useEffect,useState} from 'react'
 import RestaurantList from './RestaurantList'
 import axios from 'axios'
 import SearchForm from './SearchForm'
-import './customer.css'
  
 
 function Home() {

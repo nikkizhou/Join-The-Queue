@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 import RestaurantList from './RestaurantList';
-import './customer.css'
+import './customerHome.css'
 
 // eslint-disable-next-line no-unused-expressions
 

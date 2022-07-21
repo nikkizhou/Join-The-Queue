@@ -2,6 +2,8 @@
 import express from "express"
 import { connectToDatabase } from "../mongodb.js";
 // import runChangeStream from '../changeStream.js'
+import axios from 'axios'
+
 var router = express.Router();
 const {database}  = await connectToDatabase();
 
@@ -112,6 +114,19 @@ const updateTicketStatus = async (req,res)=>{
     return res.status(200).json(targetTicket);
 }
 
+
+const fetchDataFromGoogle = async (req,res)=>{
+    const {address} = req.params;
+    
+    const url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=formatted_address%2Cname%2Crating%2Copening_hours%2Cgeometry&input=${address}&inputtype=textquery&key=AIzaSyCWJ0GsY0BynFt81-H82ok6RqIsZilr768`
+
+    const data = await axios.get(url)
+  
+    //console.log(process.env.GOOGLE_API_KEY,'process.env.GOOGLE_API_KEY');
+    console.log(data.data,'data');
+    res.json(data.data)
+}
+
 router.get('/tickets', getTickets)
 router.get('/tickets/business/:id',getTicketsByBusinessId)
 router.get('/tickets/:id', getTicketsById)
@@ -124,5 +139,7 @@ router.get('/business/name/:name', getBusinessByName)
 router.get('/business/:id', getBusinessById)
 router.post('/business', addOneBusiness)
 //router.put('/tickets/:id', changeTicketStatus)
+
+router.get('/findPlace/:address', fetchDataFromGoogle)
 
 export default router

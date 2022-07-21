@@ -1,6 +1,6 @@
 import React from 'react'
 import RestaurantItem from './RestaurantItem'
-import './customer.css'
+import './customerHome.css'
 
 const RestaurantList = ({ restaurantList }) =>{
 
