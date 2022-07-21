@@ -4,11 +4,10 @@ import DetailCard from './DetailCard'
 
 const Store = () => {
   return (
-    <>
-      <div>Store</div>
+    <div className="store__container">
         <DetailCard/>
         <QueueForm/>
-    </>
+    </div>
   )
 }
 

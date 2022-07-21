@@ -1,9 +1,6 @@
-import './App.css';
 import Customer from './components/customer/Customer';
 import Business from './components/business/Business';
 import {BrowserRouter,Routes,Route} from "react-router-dom";
-import Navbar from './components/customer/Navbar/NavbarCustomer'
-import About from './components/About/About';
 
 function App() {
   // const [restaurantList, setRestaurantList] = useState(null)

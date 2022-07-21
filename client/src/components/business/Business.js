@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import TicketList from './ticketList/TicketList'
 import Signup from './SignUp/Signup'
 import SignIn from './SignIn/SignIn'
@@ -8,14 +8,21 @@ import NavbarBusiness from './Navbar/NavbarBusiness'
 
 
 function Business() {
-  const [businessData, setBusinessData] = useState({id:3});
+  console.log('This is Business component');
+  const [businessId, setBusinessId] = useState(0);
+  //const [registered, setRegistered] = useState(false)
+
+  const updateBusinessId = (id)=>{
+    setBusinessId(id)
+  }
+
   return (
     <>
-    <NavbarBusiness />
+    <NavbarBusiness businessId={businessId}/>
     <Routes>
-      <Route path='/signIn' element={<SignIn/>}/>
-      <Route path='/signUp' element={<Signup/>}/>
-      <Route path="ticketList/:businessId" element={<TicketList businessData= {businessData}/>} />
+      <Route path='/signIn' element={<SignIn businessId={businessId}/>}/>
+      <Route path='/signUp' element={<Signup updateBusinessId={updateBusinessId}/>}/>
+      <Route path="ticketList/:businessId" element={<TicketList/>} />
       <Route path='/about' element={<About/>}/>
     </Routes>
   </>

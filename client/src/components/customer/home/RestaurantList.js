@@ -1,13 +1,14 @@
 import React from 'react'
 import RestaurantItem from './RestaurantItem'
+import './customer.css'
 
 const RestaurantList = ({ restaurantList }) =>{
 
 return (
   <div >
-    <h3 className='card__header'>Restaurants in Stockholm</h3>
+    {/* <h3 className='card__header'>Restaurants in Stockholm</h3> */}
     <ul className='list__container'>
-      {restaurantList.map(restaurant => (
+      {restaurantList.map((restaurant, index) => (
         
         <RestaurantItem
             key = {restaurant.id}

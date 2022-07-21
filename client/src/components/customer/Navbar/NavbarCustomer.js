@@ -24,7 +24,8 @@ const Navbar = () => {
     <nav>
       <div className='nav-center'>
         <div className='nav-header'>
-          <img src={logo} className='logo' alt='logo' />
+          {/* <img src={logo} className='logo' alt='logo' /> */}
+          <h2 className='logo'>JoinTheQ</h2>
           <button className='nav-toggle' onClick={toggleLinks}>
             <FaBars />
           </button>
@@ -37,13 +38,13 @@ const Navbar = () => {
         </div>
         <ul className='social-icons'>
           <li>
-            <a href='www.facebook.com'><FaFacebook /></a>
+            <Link to='www.facebook.com/jointheq'><FaFacebook /></Link>
           </li>
           <li>
-            <a href='www.twitter.com'><FaTwitter /></a>
+            <Link to='www.twitter.com/jointheq'><FaTwitter /></Link>
           </li>
           <li>
-            <a href='www.linkedin.com/'><FaLinkedin /></a>
+            <Link to='www.linkedin.com/jointheq'><FaLinkedin /></Link>
           </li>
           
         </ul>

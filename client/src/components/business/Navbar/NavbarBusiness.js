@@ -6,6 +6,8 @@ import './Navbar.css';
 import logo from './logo.png';
 
 const Navbar = () => {
+  const businessId = localStorage.getItem('businessId')
+  console.log('local Storage businessId in Navbar: ', businessId);
   const [showLinks, setShowLinks] = useState(false);
   const linksContainerRef = useRef(null);
   const linksRef = useRef(null);
@@ -20,6 +22,7 @@ const Navbar = () => {
       linksContainerRef.current.style.height = '0px';
     }
   }, [showLinks]);
+  
   return (
     <nav>
       <div className='nav-center'>
@@ -35,7 +38,7 @@ const Navbar = () => {
                 <Link to="./Signup">Sign Up!</Link>
                 <Link to="./SignIn">Sign In!</Link>
                 <Link to="about">About</Link>
-                <Link to="ticketList/1">My Queue</Link>
+                <Link to={`ticketList/${businessId}`}>My Queue</Link>
           </ul>
         </div>
         <ul className='social-icons'>

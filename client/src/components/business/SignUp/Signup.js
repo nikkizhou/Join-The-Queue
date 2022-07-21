@@ -3,7 +3,7 @@ import './Signup.css';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 
-const Signup = () => {
+const Signup = ({updateBusinessId}) => {
     const navigate = useNavigate();
     const [status, setStatus] = useState("Submit");
 
@@ -24,10 +24,18 @@ const Signup = () => {
         email: email.value,
         message: message.value,
       };
+
       const business = await createBusinessInDb(details);
-      console.log(business,'business handleSubmit!!!');
+      console.log(business.data,'business handleSubmit!!!');
+
+      const businessId = business.data.id;
+      localStorage.setItem('businessId',`${businessId}`)
+      updateBusinessId(businessId)
+
       setStatus("Submit");
       navigate({ pathname: `/business/ticketList/${business.data.id}`})
+      //updateRegistered(true);
+      
     };
 
     return (

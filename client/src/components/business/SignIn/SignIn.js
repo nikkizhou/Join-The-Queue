@@ -4,16 +4,20 @@ import './SignIn.css'
 
 const SignIn = () => {
     const navigate = useNavigate()
-    const register = (e) => {
+    const businessId = localStorage.getItem('businessId')
+
+    const handleSignIn = (e) => {
       e.preventDefault()
-      navigate({ pathname: '/business/Signup'})
+
+      const pathname = businessId ? `/business/ticketList/${businessId}`: '/business/Signup'
+      navigate({ pathname})
     }
   return (
     <>
     <main className='login-page'>
       <div className="login-page__login">
         <h3 className="login-page__title">Business Login </h3>
-        <form  className='login-page__form'  onSubmit={register}>
+        <form  className='login-page__form'  onSubmit={handleSignIn}>
           <input
             name="loginEmail"
             className="login-page__form__input"
@@ -30,7 +34,7 @@ const SignIn = () => {
           <input className="login-page__form__btn" type="submit" value="Log in"/> 
         </form>
         <p className="register__title">No Account yet? Register here</p>
-        <button className="register__btn" > Register </button>
+        <button onClick={handleSignIn} className="register__btn" > Register </button>
       </div>
       </main>
     </>

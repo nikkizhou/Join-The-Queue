@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import {useParams} from "react-router-dom";
 import axios from 'axios'
 //businessId
-function TicketList({businessData}) {
+function TicketList() {
   let { businessId } = useParams();
   const [tickets, setTickets] = useState(null)
   const [calledTicketId, setcalledTicketId] = useState(null)
   const [ticketId, setTicketId] = useState(null)
-  console.log(tickets);
+  console.log(tickets,'tickets in TicketList component');
   const getTickets = async ()=>{
     const tickets = await axios.get(`http://localhost:5001/api/tickets/business/${businessId}`);
     console.log(tickets.data)
@@ -18,8 +18,10 @@ function TicketList({businessData}) {
   }
   useEffect(()=>{
     getTickets()
+   
     //setInterval(async()=> await getTickets(),1000)
   },[])
+
   // const toggleComplete = (id) => {
   //  todos.find((todo) => {
   //  if (todo.id === id) {
@@ -28,23 +30,20 @@ function TicketList({businessData}) {
   //  return setTodos([...todos]);
   //  });
   // };
+
   const handleClick =  async (event) => {
     const id = event.currentTarget.id
     const status= tickets.find(ticket => ticket.ticketId == id).status
     console.log(status)
     if(status === 'waiting'){
-    await axios.put(`http://localhost:5001/api/tickets/${id}`,{status:'called'})}
+      await axios.put(`http://localhost:5001/api/tickets/${id}`,{status:'called'})}
     else if(status === 'called'){
       await axios.put(`http://localhost:5001/api/tickets/${id}`,{status:'arrived'})}
-    // const status2 = await (await axios.get(`http://localhost:5001/api/tickets/${id}`)).data.status
-    // console.log(status)
-    // await axios.put(`http://localhost:5001/api/tickets/${id}`,{status:'called'})
-    // console.log(event.currentTarget.id, 'event.currentTarget.id');
   }
   const handleCancel =  async (event) => {
     const id = event.currentTarget.id
     const status= tickets.find(ticket => ticket.ticketId == id).status
-    console.log(status)
+    //console.log(status,'status in handle Canel')
     if(status === 'called'){
      await axios.put(`http://localhost:5001/api/tickets/${id}`,{status:'cancelled'})}
     else if(status === 'cancelled'){
@@ -54,6 +53,7 @@ function TicketList({businessData}) {
     // await axios.put(`http://localhost:5001/api/tickets/${id}`,{status:'called'})
     // console.log(event.currentTarget.id, 'event.currentTarget.id');
     }
+    
   return (
     <div>
       <h1 className='queue__header'> Your Queue: </h1>
@@ -69,7 +69,7 @@ function TicketList({businessData}) {
                 <button  className='button ' id={ticket.ticketId} status={ticket.status} onClick={handleClick}>
                   {ticket.status === 'waiting' ? 'Call' :  'Arrived' || ticket.status==='called' ? 'Confrim Arrival' : null}
                 </button>
-                {ticket.status === 'called' || ticket.status ==='cancelle' ?
+                {ticket.status === 'called' || ticket.status ==='cancelled' ?
                 <button className='button button--cancel'id={ticket.ticketId} onClick={handleCancel}>Cancel</button>
                 : null}
               </div>
