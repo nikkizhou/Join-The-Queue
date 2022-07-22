@@ -1,14 +1,38 @@
 import React from 'react'
 import RestaurantItem from './RestaurantItem'
+import { useState } from 'react';
 import './customerHome.css'
 
 const RestaurantList = ({ restaurantList }) =>{
 
+  const [search, setSearch] = useState("")
+
+
+
 return (
   <div >
+    <form  className="search-form">
+        <input
+          className="search-bar"
+          type="text"
+          value={search}
+          placeholder = "Meatballs..."
+          onChange={event => setSearch(event.target.value)}
+        />
+        <button className="button search-button" type="submit">
+          Search
+        </button>
+      </form>
     {/* <h3 className='card__header'>Restaurants in Stockholm</h3> */}
+
     <ul className='list__container'>
-      {restaurantList.map((restaurant, index) => (
+      {restaurantList.filter(res =>{
+       if(search ===""){
+        console.log(res.name)
+        return res
+       }
+
+      }).map((restaurant, index) => (
         
         <RestaurantItem
             key = {restaurant.id}

@@ -1,4 +1,5 @@
 import './Feedback.css'
+// import '../home/customerHome.css'
 import React, { useEffect,useState } from 'react'
 import axios from 'axios'
 // import { Router } from 'react-router'
@@ -49,23 +50,26 @@ function Feedback() {
     
   },[])
   
-  const showNext = peopleWaiting>0 ? `There are ${peopleWaiting} people in front of you`
-                                   : 'Your turn now!'
+  const showNext = peopleWaiting>0 ? <h4>There are <h2 className='queue-number'>{peopleWaiting}</h2> people in front of you</h4>
+                                   : <h4>Your ticket has been called. Go to the restaurant now.</h4>
                                    
   return (
     <div className='ticket'>
-        {business ?  (<div className='ticket__name-container'>
-                        <h4 className='ticket__info'>In the queue for:</h4><h4 className='ticket__name'> {business.name}</h4>
-        </div>) : <h1>Business does not exist</h1>}
         {ticketId ?  (<div className='ticket__number-container'>
-            <h4 className="ticket__number-info">Hi <h2>{ ticket.name }</h2>, Your ticket number is :</h4>
+            <h4 className="ticket__number-info">Hi <h4> { ticket.name }</h4>, your ticket number is :</h4>
             <h1 className='ticket__number'> {ticketId}</h1>
         </div>) : <h1>TicketId does not exist</h1>}
-        <h3>{showNext}</h3>
+        <h3 className='ticket__status'> Your status :</h3>
+        <h2 className='ticket__status status'> {ticket.status} </h2>
+        <div className='info-container'>
+        {business ?  (<div className='ticket__name-container'>
+                        <h4 className='ticket__info'>Restaurant name:</h4><h4 className='ticket__name'> {business.name}</h4>
+        </div>) : <h1>Business does not exist</h1>}
+        <div className='queue-info-container'>{showNext}</div>
         {/* {calledTicketId ?  <h4 className='ticket__info'>Next is: {nextIs}</h4> :  <h1>Available!</h1>} */}
+        </div>
         <div className='ticket__queue-info'>
         <button className='button button--cancel' onClick={cancelTicket}>Leave the queue</button>
-        <p className='ticket__status'> Your status : {ticket.status}</p>
         </div>
 
     </div>

@@ -22,11 +22,11 @@ function App() {
   return (
     <>
     <div className="App">
-      <header className="App-header"></header>
       <BrowserRouter>
         <Routes>
           <Route path="/customer/*" element={<Customer />}/>
           <Route path="/business/*" element={<Business />} />
+          <Route path="/*" element={<Customer />}/>
         </Routes>
       </BrowserRouter>
     </div>

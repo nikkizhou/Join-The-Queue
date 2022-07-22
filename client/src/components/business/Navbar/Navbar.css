@@ -15,7 +15,9 @@
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
       Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background: hsl(205, 100%, 96%);
+    /* background: linear-gradient(to right, #f2fcfe, #d0d0d0);  */
+    /*found the bugger*/
+    background: linear-gradient(85deg, rgb(233, 233, 233) 92%, rgb(159, 131, 171) 50%);
     color: hsl(205, 86%, 17%);
     line-height: 1.5;
     font-size: 0.875rem;
@@ -79,15 +81,8 @@
   
   /* section */
   .section {
-    width: 90vw;
-    margin: 0 auto;
-    max-width: 1170px;;
-  }
-  
-  @media screen and (min-width: 992px) {
-    .section {
-      width: 95vw;
-    }
+    width: 100%;
+    margin: 0px;
   }
   
   /*
@@ -95,7 +90,9 @@
   Navbar
   ===============
   */
-  nav {
+
+
+  .nav-center {
     background: #fff;
     box-shadow:  0 5px 15px rgba(0, 0, 0, 0.1);
   }
@@ -107,7 +104,7 @@
   }
   .nav-toggle {
     font-size: 1.5rem;
-    color: hsl(210, 22%, 49%);
+    color: rgb(85, 38, 129);
     background: transparent;
     border-color: transparent;
     transition:  all 0.3s linear;;
@@ -121,7 +118,7 @@
     height: 40px;
   }
   .links a {
-    color: hsl(205, 72%, 37%);
+    color: rgb(85, 38, 129);
     font-size: 1rem;
     text-transform: capitalize;
     letter-spacing: 0.1rem;
@@ -131,7 +128,7 @@
   }
   .links a:hover {
     background:hsl(210, 31%, 80%) ;
-    color: hsl(205, 78%, 60%);
+    color: hsl(205, 86%, 17%);
     padding-left: 1.5rem;
   }
   .social-icons {
@@ -145,10 +142,12 @@
   .show-container {
     height: 10rem;
   }
+
+
   @media screen and (min-width: 800px) {
     .nav-center {
-      max-width: 1170px;
-      margin: 0 auto;
+      /* position: fixed; */
+      margin: 0px 0px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -179,10 +178,10 @@
     }
     .social-icons a {
       margin: 0 0.5rem;
-      color: hsl(205, 78%, 60%);
+      color: rgb(85, 38, 129);
       transition: all 0.3s linear;
     }
     .social-icons a:hover {
-      color: hsl(205, 90%, 76%);
+      color: hsl(205, 86%, 17%);
     }
   }

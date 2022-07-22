@@ -3,7 +3,6 @@ import { FaBars } from 'react-icons/fa';
 import { FaFacebook, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { Link } from 'react-router-dom'
 import './Navbar.css';
-import logo from './logo.png';
 
 const Navbar = () => {
   const businessId = localStorage.getItem('businessId')
@@ -24,10 +23,11 @@ const Navbar = () => {
   }, [showLinks]);
   
   return (
-    <nav>
-      <div className='nav-center'>
+    <nav className='nav-center'>
+      
         <div className='nav-header'>
-          <img src={logo} className='logo' alt='logo' />
+          {/* <img src={logo} className='logo' alt='logo' /> */}
+          <h2 className='logo'>JoinTheQ</h2>
           <button className='nav-toggle' onClick={toggleLinks}>
             <FaBars />
           </button>
@@ -54,7 +54,6 @@ const Navbar = () => {
               </li>
           
         </ul>
-      </div>
     </nav>
   );
 };

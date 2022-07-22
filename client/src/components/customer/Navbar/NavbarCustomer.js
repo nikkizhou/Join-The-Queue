@@ -20,8 +20,7 @@ const Navbar = () => {
     }
   }, [showLinks]);
   return (
-    <nav>
-      <div className='nav-center'>
+    <nav className='nav-center'>
         <div className='nav-header'>
           {/* <img src={logo} className='logo' alt='logo' /> */}
           <h2 className='logo'>JoinTheQ</h2>
@@ -47,7 +46,6 @@ const Navbar = () => {
           </li>
           
         </ul>
-      </div>
     </nav>
   );
 };

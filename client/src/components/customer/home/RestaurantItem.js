@@ -1,9 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import './customerHome.css'
-//import logo from './queue1.png';
-
+import queue from './queue.png';
 
 
 function RestaurantItem({ name,id,image,description,address}) {
@@ -29,15 +27,18 @@ function RestaurantItem({ name,id,image,description,address}) {
   return (
     <Link to= {`/customer/store/${id}`} state={{name,id,image,description}}>
       <div className='restaurant-card'>
-          <img className='restaurant-card__image' src={image} alt= {`${name}`} />
-          <div className='restauant-card__header'>
+          <div className='restaurant-card__top'>
+            <img className='restaurant-card__image' src={image} alt= {`${name}`} />
+            <h6 className='restaurant-card__text restaurant-card__text--extra-info'> 20 mins</h6>
+            <h3 className='restaurant-card__text restaurant-card__text--name'>{name}</h3>
           </div>
           <div className='restaurant-card__footer'>
-            <p className='restaurant-card__text'>{name}</p>
-            <p className='restaurant-card__text restaurant-card__text--address'>{address}</p>
-            <img src={logo} className='logo' alt='logo' />
+              <div className='column'>
+                <p className='restaurant-card__text restaurant-card__text--address'>{address}</p>
+                <h6></h6>
+              </div>
              {tickets ?  <div className='restaurant-card__queue'> 
-             <p className='restaurant-card__text restaurant-card__text--q-info'>groups waiting:</p>
+            <img src={queue} className='queue-icon' alt='logo' />
                 <p className="restaurant-card__text restaurant-card__text--queue">{tickets.length}</p></div> : null} 
               {/* <p className='restaurant--price'>{restaurant.price}</p> */}
           </div>

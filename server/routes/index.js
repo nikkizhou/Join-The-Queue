@@ -117,9 +117,7 @@ const updateTicketStatus = async (req,res)=>{
 
 const fetchDataFromGoogle = async (req,res)=>{
     const {address} = req.params;
-    
     const url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=formatted_address%2Cname%2Crating%2Copening_hours%2Cgeometry&input=${address}&inputtype=textquery&key=AIzaSyCWJ0GsY0BynFt81-H82ok6RqIsZilr768`
-
     const data = await axios.get(url)
   
     //console.log(process.env.GOOGLE_API_KEY,'process.env.GOOGLE_API_KEY');

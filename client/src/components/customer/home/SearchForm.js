@@ -1,41 +1,35 @@
 import {useState, useEffect} from 'react'
-import RestaurantList from './RestaurantList';
 import './customerHome.css'
 
 // eslint-disable-next-line no-unused-expressions
 
-const SearchForm = ()=> {
-  const [search, setSearch] = useState(null)
-  const [query, setQuery] = useState(null)
-  const restaurantList = []
+const SearchForm = ({searchQuery,restaurantList})=> {
+  const [search, setSearch] = useState("")
 
-  const updateSearch = (e) => {
-    setSearch(e.target.value);
-    };
 
-  const getSearch = (e) => {
-    e.preventDefault();
-    setQuery(search);
-    setSearch("");
-  };
+
   
+  // res.name.contains(query)
+  const searcher = ()=>{
+    searchQuery(search)
+  }
+ searcher()
+
   
   return (
     <>
-    <form onSubmit={getSearch} className="search-form">
+    <form  className="search-form">
         <input
           className="search-bar"
           type="text"
           value={search}
-          onChange={updateSearch}
+          placeholder = "Meatballs..."
+          onChange={event => setSearch(event.target.value)}
         />
         <button className="search-button" type="submit">
           Search
         </button>
       </form>
-    <div >
-    {restaurantList ? <RestaurantList list={restaurantList} /> : null}
-    </div>
     </>
   );
 }

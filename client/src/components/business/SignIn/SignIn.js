@@ -31,10 +31,10 @@ const SignIn = () => {
             placeholder="Password..."
             required 
           />
-          <input className="login-page__form__btn" type="submit" value="Log in"/> 
+          <input className="button" type="submit" value="Log in"/> 
         </form>
         <p className="register__title">No Account yet? Register here</p>
-        <button onClick={handleSignIn} className="register__btn" > Register </button>
+        <button onClick={handleSignIn} className="button" > Register </button>
       </div>
       </main>
     </>

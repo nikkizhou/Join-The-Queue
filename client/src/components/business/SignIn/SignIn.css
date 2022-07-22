@@ -40,23 +40,6 @@
      margin: 1rem;
      font-size: 28px;
  }
- 
- .login-page__form__btn{
-   width: 30%;
-   border-radius: 10px;
-   padding: 10px;
-   font-size: 1.2em;
-   margin: 1rem;
-   border: none;
-   color: white;
-   background-color: #296e8a;
-   font-family: 'Abel', sans-serif;
- }
-
- .login-page__form__btn:hover {
-   background-color: #89C2D9;
-   color: black;
- }
 
  .register__btn{
    border: none;

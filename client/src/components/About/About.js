@@ -6,10 +6,10 @@ const About = () => {
   return (
     <>
     <section className='about-us'>
-        <h1 className='about-us__title'>Queue me </h1>
+        <h1 className='about-us__title'>JoinTheQ</h1>
         <div className='about__wrapper'>
           <div className='about__upperSection'>
-            Queue me Up was built in July 2022 as a graduation poject by a group of young developers in Stockholm, Sweden.<br />
+            JoinTheQ was built in July 2022 as a graduation poject by a group of young developers in Stockholm, Sweden.<br />
             The idea for the application is to help customers so they dont have to wait so long for their  turn and waiting in cold days .
             They can sit in home  or car and see the status for Queue.
           </div>
