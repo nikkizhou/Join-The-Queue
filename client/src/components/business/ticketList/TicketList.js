@@ -8,6 +8,7 @@ function TicketList() {
   const [calledTicketId, setcalledTicketId] = useState(null)
   const [ticketId, setTicketId] = useState(null)
   console.log(tickets,'tickets in TicketList component');
+
   const getTickets = async ()=>{
     const tickets = await axios.get(`http://localhost:5001/api/tickets/business/${businessId}`);
     console.log(tickets.data)
@@ -17,9 +18,8 @@ function TicketList() {
     calledTicketIndex>=0 && setcalledTicketId(calledTicket.ticketId)
   }
   useEffect(()=>{
-    getTickets()
-   
-    //setInterval(async()=> await getTickets(),1000)
+    //getTickets()
+    setInterval(async()=> await getTickets(),1000)
   },[])
 
   // const toggleComplete = (id) => {

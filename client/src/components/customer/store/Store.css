@@ -1,5 +1,5 @@
 .store-title{
-    font-size: 30px;
+    font-size: 20px;
 }
 .store__container{
     width: 100%;
@@ -10,7 +10,7 @@
     /* background: linear-gradient(60deg, rgb(246, 246, 246) 80%, rgb(159, 131, 171) 50%); */
 }
 
-.customer-form{
+.customer-form-container{
     padding: 20px;
     margin: 20px;
     display: flex;
@@ -22,7 +22,7 @@
     align-items: center;
 }
 
-.customer-form__name, .customer-form__number {
+.customer-form {
     height: 40px;
     padding:5px;
     margin: 8px;

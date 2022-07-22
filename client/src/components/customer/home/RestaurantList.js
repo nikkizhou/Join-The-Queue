@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import RestaurantItem from './RestaurantItem'
 import { useState } from 'react';
 import './customerHome.css'
@@ -6,29 +6,34 @@ import './customerHome.css'
 const RestaurantList = ({ restaurantList }) =>{
 
   const [search, setSearch] = useState("")
+  console.log(search)
 
 
+//  useEffect(()=>,[search])
 
 return (
   <div >
-    <form  className="search-form">
+    <form  className="customer-form__input">
         <input
-          className="search-bar"
+          className="customer-form"
           type="text"
           value={search}
-          placeholder = "Meatballs..."
+          placeholder = "Search"
           onChange={event => setSearch(event.target.value)}
         />
-        <button className="button search-button" type="submit">
+        {/* <button className="button search-button" type="submit">
           Search
-        </button>
+        </button> */}
       </form>
     {/* <h3 className='card__header'>Restaurants in Stockholm</h3> */}
 
     <ul className='list__container'>
       {restaurantList.filter(res =>{
+  
        if(search ===""){
-        console.log(res.name)
+        console.log(res.name,'resName');
+        return res
+       } else if(res.name?.toLowerCase().includes(search.toLowerCase())){
         return res
        }
 

@@ -32,11 +32,11 @@ function QueueForm() {
   }
 
   return (
-    <div className='customer-form'>
+    <div className='customer-form-container'>
       <form onSubmit={handleSubmit} >
         <div className='customer-form__input'>
-          <input className='customer-form__name' type="text" placeholder="Enter your name" onChange={setNameValue} required/>
-          <input className='customer-form__number' type="number" placeholder="Enter your phone number"  onChange={setNrValue} required/>
+          <input className='customer-form' type="text" placeholder="Enter your name" onChange={setNameValue} required/>
+          <input className='customer-form' type="number" placeholder="Enter your phone number"  onChange={setNrValue} required/>
         <button className='button customer-form__btn' type='submit'>Join the Queue</button>
         </div>
       </form >

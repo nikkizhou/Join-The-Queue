@@ -39,7 +39,8 @@ function RestaurantItem({ name,id,image,description,address}) {
               </div>
              {tickets ?  <div className='restaurant-card__queue'> 
             <img src={queue} className='queue-icon' alt='logo' />
-                <p className="restaurant-card__text restaurant-card__text--queue">{tickets.length}</p></div> : null} 
+                <p className="restaurant-card__text restaurant-card__text--queue">{tickets.length}</p></div> : null}
+                {console.log('tick info',tickets)}
               {/* <p className='restaurant--price'>{restaurant.price}</p> */}
           </div>
       </div>
