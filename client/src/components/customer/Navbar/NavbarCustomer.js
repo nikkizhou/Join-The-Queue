@@ -30,19 +30,19 @@ const Navbar = () => {
         </div>
         <div className='links-container' ref={linksContainerRef}>
           <ul className='links' ref={linksRef}>
-                <Link to="/business/signIn">Business</Link>
+                <Link to="/business/">Business</Link>
                 <Link to="about">About</Link>
           </ul>
         </div>
         <ul className='social-icons'>
           <li>
-            <Link to='www.facebook.com/jointheq'><FaFacebook /></Link>
+            <Link to='www.facebook.com/'><FaFacebook /></Link>
           </li>
           <li>
-            <Link to='www.twitter.com/jointheq'><FaTwitter /></Link>
+            <Link to='www.twitter.com/'><FaTwitter /></Link>
           </li>
           <li>
-            <Link to='www.linkedin.com/jointheq'><FaLinkedin /></Link>
+            <Link to='www.linkedin.com/'><FaLinkedin /></Link>
           </li>
           
         </ul>

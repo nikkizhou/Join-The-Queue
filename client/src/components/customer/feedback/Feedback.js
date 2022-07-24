@@ -18,12 +18,16 @@ function Feedback() {
 
   const getTickets = async ()=>{
     const tickets = await axios.get(`http://localhost:5001/api/tickets/business/${businessId}`);
-    const firstWaitingIndex = tickets.data.findIndex(ticket =>ticket.status =='waiting')
+
+    //const firstWaitingIndex = tickets.data.findIndex(ticket =>ticket.status =='waiting')
     const currentTicketIndex = tickets.data.findIndex(ticket =>ticket.ticketId == ticketId)
-    const ticket = tickets.data[currentTicketIndex];
+    const ticketsInFrontOfMe = tickets.data.slice(0,currentTicketIndex)
+    const peopleWaitingD = ticketsInFrontOfMe.filter(t=>t.status=='waiting').length
+    //console.log(peopleWaitingD,'peopleWaitingD');
+    //const ticket = tickets.data[currentTicketIndex];
 
     setTickets(tickets.data)
-    setPeopleWaiting(currentTicketIndex - firstWaitingIndex)
+    setPeopleWaiting(peopleWaitingD)
     setTicket(ticket)
     //console.log(tickets.data.length, currentTicketIndex, 'tickets');
   }
@@ -46,7 +50,6 @@ function Feedback() {
       //console.log('ticket in useEffect:',ticket);
     }
     getData();
-    
   },[])
   
   const showNext = peopleWaiting>0 ? <h4>There are <h2 className='queue-number'>{peopleWaiting}</h2> tables in front of you</h4>

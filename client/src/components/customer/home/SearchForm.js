@@ -6,9 +6,6 @@ import './customerHome.css'
 const SearchForm = ({searchQuery,restaurantList})=> {
   const [search, setSearch] = useState("")
 
-
-
-  
   // res.name.contains(query)
   const searcher = ()=>{
     searchQuery(search)

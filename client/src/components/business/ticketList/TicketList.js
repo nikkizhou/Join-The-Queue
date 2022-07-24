@@ -11,7 +11,7 @@ function TicketList() {
 
   const getTickets = async ()=>{
     const tickets = await axios.get(`http://localhost:5001/api/tickets/business/${businessId}`);
-    console.log(tickets.data)
+    //console.log(tickets.data)
     setTickets(tickets.data)
     const calledTicketIndex = tickets.data.findIndex(ticket =>ticket.status === 'called')
     const calledTicket = tickets.data[calledTicketIndex]

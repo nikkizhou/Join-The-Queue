@@ -1,23 +1,13 @@
 import Customer from './components/customer/Customer';
 import Business from './components/business/Business';
-import {BrowserRouter,Routes,Route} from "react-router-dom";
+import {BrowserRouter,Routes,Route,Navigate} from "react-router-dom";
+import Home from './components/customer/home/Home';
+import NavbarCustomer from './components/customer/Navbar/NavbarCustomer'
 
 function App() {
-  // const [restaurantList, setRestaurantList] = useState(null)
-  // const [query, setQuery] = useState("");
 
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const business = await axios.get(`http://localhost:5001/business/${query}`)
-  //       setRestaurantList(business.data)
-  //   } catch (e) {
-  //       console.error(e)
-  //     }
-  //   }
-  //   fetchData()
-  // }),[query]
+  
   
   return (
     <>
@@ -26,7 +16,7 @@ function App() {
         <Routes>
           <Route path="/customer/*" element={<Customer />}/>
           <Route path="/business/*" element={<Business />} />
-          <Route path="/*" element={<Customer />}/>
+          <Route path="*" element={<Navigate replace to='/customer/home' />}/>
         </Routes>
       </BrowserRouter>
     </div>

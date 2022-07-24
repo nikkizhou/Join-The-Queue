@@ -107,7 +107,7 @@ const updateTicketStatusInDB = async (id,status)=>{
     return database.collection('tickets').findOneAndUpdate(filter,updateDoc,{'returnNewDocument' : true })
     // database.collection('tickets').update({"ticketId": id},{$set: {"status": status}})
 }
-
+//
 const updateTicketStatus = async (req,res)=>{
     const { id } = req.params;
     const { status } = req.body;
@@ -118,10 +118,10 @@ const updateTicketStatus = async (req,res)=>{
     return res.status(200).json(targetTicket);
 }
 
-
 const fetchDataFromGoogle = async (req,res)=>{
-    const {address} = req.params;
-    const url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=formatted_address%2Cname%2Crating%2Copening_hours%2Cgeometry&input=${address}&inputtype=textquery&key=AIzaSyCWJ0GsY0BynFt81-H82ok6RqIsZilr768`
+    let {address} = req.params;
+    address
+    const url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=formatted_address%2Cname%2Crating%2Copening_hours%2Cgeometry%2Cphotos&input=${address}&inputtype=textquery&key=AIzaSyCWJ0GsY0BynFt81-H82ok6RqIsZilr768`
     const data = await axios.get(url)
   
     //console.log(process.env.GOOGLE_API_KEY,'process.env.GOOGLE_API_KEY');
@@ -169,7 +169,7 @@ router.get('/business', getBusiness)
 router.get('/business/name/:name', getBusinessByName)
 router.get('/business/:id', getBusinessById)
 router.post('/business', addOneBusiness)
-router.get('/getGoogleData',fetchDataFromGoogle)
+router.get('/getGoogleData/:address',fetchDataFromGoogle)
 //router.put('/tickets/:id', changeTicketStatus)
 router.get('/setToWaiting', setToWaiting)
 
