@@ -17,9 +17,12 @@ const Profile = ({user, businessId}) => {
         <h3>My Account:</h3>
         <h3>{user.name}</h3>
         {businessId
-        ?<button onClick = {()=>navigate({ pathname: `/business/ticketList/${businessId}`})}>Check My Queue</button>
+        ?<>
+          <h2>My Business: </h2>
+          <button onClick = {() => navigate({ pathname: `/business/ticketList/${businessId}`})}>Check My Queue</button>
+        </>
         :<><h3>Click here to register your business</h3>
-          <button onClick = {()=>navigate({ pathname: `/business/Signup`})}>Register</button></>}
+          <button onClick = {() => navigate({ pathname: `/business/Signup`})}>Register</button></>}
       </div>
     )
   );

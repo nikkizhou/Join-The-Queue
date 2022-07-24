@@ -118,15 +118,43 @@ const updateTicketStatus = async (req,res)=>{
     return res.status(200).json(targetTicket);
 }
 
+const getGooglePhotoSrc = async (googlePhotoRef)=>{
+    const url = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${googlePhotoRef}&key=AIzaSyCWJ0GsY0BynFt81-H82ok6RqIsZilr768`
+    const raw = await axios
+      .get(url, {
+        responseType: 'arraybuffer'
+      })
+    let base64 = Buffer.from(raw.data, "binary").toString("base64");
+    let imgSrc = `data:${raw.headers["content-type"]};base64,${base64}`;
+      
+    return imgSrc
+}
+
+
 const fetchDataFromGoogle = async (req,res)=>{
+    //console.log(process.env.GOOGLE_API_KEY,'process.env.GOOGLE_API_KEY');
     let {address} = req.params;
-    address
+
     const url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=formatted_address%2Cname%2Crating%2Copening_hours%2Cgeometry%2Cphotos&input=${address}&inputtype=textquery&key=AIzaSyCWJ0GsY0BynFt81-H82ok6RqIsZilr768`
     const data = await axios.get(url)
-  
-    //console.log(process.env.GOOGLE_API_KEY,'process.env.GOOGLE_API_KEY');
-    console.log(data.data,'data');
-    res.json(data.data);
+    const candidates = data.data.candidates;
+
+    const getData = async () => {
+      return Promise.all(candidates.map(biz => {
+        if (biz.photos) {
+            return getGooglePhotoSrc(biz.photos[0].photo_reference)
+                .then(imgSrc=> {
+                    biz.photos = imgSrc
+                    return biz
+                })
+                .then(biz=> biz)
+                .catch(e=>console.log(e))
+                }
+        //console.log(('imgSrc in map: ',imgSrc));
+      }))
+    }
+    const newData = await getData();
+    res.json(newData);
 }
 
 const setToWaiting = async (req, res) => {

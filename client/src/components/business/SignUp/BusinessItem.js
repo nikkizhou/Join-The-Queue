@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect, useState} from 'react'
 import axios from 'axios';
 
 function BusinessItem({googleBizData,updateBusinessId,userInfo,businessInput}) {
@@ -15,19 +15,15 @@ function BusinessItem({googleBizData,updateBusinessId,userInfo,businessInput}) {
     alert('Your business is now registered in our system! ')
   };
 
-  const photos = googleBizData.photos
-
   return (
     <>
       <div>Name: {googleBizData.name}</div>
       <div>Address: {googleBizData.formatted_address}</div>
-      <div>location lat : {googleBizData.geometry.location.lat}</div>
+      <div>Rating: {googleBizData.rating}</div>
+      <img className='business-card__image' src={googleBizData.photos} alt= {`photo for ${googleBizData.name}`} />
       <button onClick={addToDB}>This is my business</button>
-      
     </>
   )
 }
-
-// <img className='business-card__image' src={} alt= {`alt`} />
 
 export default BusinessItem

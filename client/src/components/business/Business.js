@@ -18,6 +18,7 @@ function Business() {
   
   console.log(user,'user in Business');
   console.log(businessId,'businessId in Business outside');
+  
   //console.log(user.email,'user.email in Business')
 
   const getInitializedBizId = async ()=>{
@@ -37,7 +38,6 @@ function Business() {
   const updateBusinessId = (id)=>{
     setBusinessId(id)
   }
-  //df
 
   return (
     <>
@@ -62,3 +62,5 @@ function Business() {
 }
 
 export default Business
+
+//

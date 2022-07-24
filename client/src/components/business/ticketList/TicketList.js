@@ -53,12 +53,15 @@ function TicketList() {
     // await axios.put(`http://localhost:5001/api/tickets/${id}`,{status:'called'})
     // console.log(event.currentTarget.id, 'event.currentTarget.id');
     }
-    
+
+  if(!tickets||tickets.length==0) return (<h1>No Queue Yet</h1>) 
+
   return (
     <div>
       <h1 className='queue__header'> Your Queue: </h1>
       <div className="tickets__container">
-        {tickets && tickets.map(ticket => {
+        
+        {tickets.map(ticket => {
           return (
             <div  className="single__ticket" key={ticket.ticketId}>
               <div className='single__ticket--info'>

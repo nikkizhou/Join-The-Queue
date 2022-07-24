@@ -6,15 +6,14 @@ import axios from 'axios'
 function AllBusiness({updateBusinessId,businessId,userInfo,businessInput,test}) {
     //const navigate = useNavigate();
     const [allBusiness, setAllBusiness] = useState([]) 
-    //
     const fetchDataFromGoogle = async (address)=>{
         
       console.log(address,'-address in fetchDataFromGoogle');
       const formattedAddress = address?.replace(' ','%20').replace(',','%2C');
       const data = await axios.get(`http://localhost:5001/api/getGoogleData/${formattedAddress}`)
         .catch(err=>console.log(err));
-      console.log(data.data.candidates,'-data.candidates in fetchDataFromGoogle');
-      setAllBusiness(data.data.candidates)
+      console.log(data.data,'-data.candidates in fetchDataFromGoogle');
+      setAllBusiness(data.data)
     }
     //fetchDataFromGoogle("Fleminggatan 11, 112 26 Stockholm, Sverige")
 
@@ -23,6 +22,7 @@ function AllBusiness({updateBusinessId,businessId,userInfo,businessInput,test}) 
         fetchDataFromGoogle(address);
     },[businessInput])
     //
+    console.log('allBusiness in businessList',allBusiness);
     console.log('allBusiness addresses. - ',allBusiness.map(b=>b.formatted_address));
 
     return (

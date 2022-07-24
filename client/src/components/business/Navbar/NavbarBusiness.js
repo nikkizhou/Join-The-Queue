@@ -2,14 +2,12 @@ import React, { useState, useRef, useEffect } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { FaFacebook, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { Link } from 'react-router-dom'
-import { useAuth0 } from '@auth0/auth0-react';
 import './Navbar.css';
 import logo from './logo.png';
+import { useAuth0 } from '@auth0/auth0-react';
 
-const Navbar = () => {
-  const { isAuthenticated } = useAuth0();
-  const businessId = localStorage.getItem('businessId')
-  console.log('local Storage businessId in Navbar: ', businessId);
+const NavbarBusiness = ({businessId}) => {
+  const { isAuthenticated} = useAuth0();
   const [showLinks, setShowLinks] = useState(false);
   const linksContainerRef = useRef(null);
   const linksRef = useRef(null);
@@ -70,4 +68,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavbarBusiness;
