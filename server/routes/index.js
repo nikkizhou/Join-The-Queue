@@ -11,7 +11,8 @@ const dbQuery = async ()=>{
   const {database}  = await connectToDatabase();
   const business = await database.collection('restaurants').find({}).toArray();
   const tickets = await database.collection('tickets').find({}).toArray();
-  return {business,tickets}
+  const users = await database.collection('users').find({}).toArray();
+  return {business,tickets,users}
 }
 
 // runChangeStream(database,mongoClient).catch(console.dir);
@@ -169,21 +170,17 @@ const updateUserInfo = async (req, res) => {
     //console.log(filter)
     const updateDoc = {$set: {businessId}};
     res.status(200).send(`BusinessId ${businessId} set to user ${email}`)
-    return database.collection('restaurants').findOneAndUpdate(filter,updateDoc,{'returnNewDocument' : true })
+    return database.collection('users').findOneAndUpdate(filter,updateDoc,{'returnNewDocument' : true })
     // database.collection('tickets').update({"ticketId": id},{$set: {"status": status}})
 }
 
 const getUserInfo = async (req,res) => {
-  const {business} = await dbQuery()
+  const {users} = await dbQuery()
   const {email} = req.params
-  const singleUser = email => business.find(business => business.email == email);
+  const singleUser = email => users.find(user => user.email == email);
   if (singleUser(email))  return res.status(200).json(singleUser(email));
   return res.status(404).json({ success: false, msg: `No User with email:${email}` });
 }
-
-
-
-
 
 router.get('/tickets', getTickets)
 router.get('/tickets/business/:id',getTicketsByBusinessId)

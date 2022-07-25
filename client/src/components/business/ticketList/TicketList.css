@@ -1,0 +1,65 @@
+/* ticketList */
+/* * {border: 1px dashed blue} */
+
+.queue-info-card{
+    cursor: auto;
+    border: none;
+}
+
+.colored-text-box--green{
+    font-size: 20px;
+    width: 100%;
+    background-color: rgb(40, 203, 89);
+}
+
+.colored-text-box--grey{
+    font-size: 20px;
+    width: 100%;
+    background-color: rgb(238, 208, 12);
+}
+
+.column--your-queue-status{
+    width: 40%;
+    margin:10px;
+}
+
+.column-your-queue-ticket-number{
+    justify-content: center;
+}
+
+.single__ticket {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.ticketlist--display{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+    margin: 2em 0;
+    
+}
+
+
+.queue__header{
+    text-align: center;
+}
+.ticket__title{
+    text-align: center;
+}
+
+.your-queue-number-text{
+    font-size: 30px;
+}
+
+@media (hover: hover) {
+    
+    .queue-info-card:hover {
+      border: none;
+    }
+}

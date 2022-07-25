@@ -34,16 +34,16 @@ const NavbarBusiness = ({businessId}) => {
         </div>
         <div className='links-container' ref={linksContainerRef}>
           <ul className='links' ref={linksRef}>
-          <Link to="/customer/home">customer</Link>
-          <Link to="about">About</Link>
+            <Link to="/customer/home">customer</Link>
+            <Link to="about">About</Link>
           {!isAuthenticated ? 
             <Link to="./SignIn">Login!</Link> 
             :
             (<>
             <Link to="./Signup">Add your Business</Link>
-              <Link to="./Logout">Logout!</Link>
-              <Link to={`ticketList/${businessId}`}>My Queue</Link>
-              <Link to="./profile">My Profile</Link>
+            <Link to="./Logout">Logout!</Link>
+            <Link to={`ticketList/${businessId}`}>My Queue</Link>
+            <Link to="./profile">My Profile</Link>
             </>)
       }
                

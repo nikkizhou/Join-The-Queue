@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    /* border: 0.5px dashed red; */
+    
     margin: 0px;
     padding: 0px;
 
@@ -20,14 +20,23 @@ a:visited {
 
 .column {
     display: flex;
+    width: 100%;
+    justify-content: space-between;
     flex-direction: column;
 }
 
+.row {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
 .button{
-    background-color: rgb(85, 38, 129);;
+    background-color: rgb(85, 38, 129);
     font-size: 15px;
     width: 130px;
-    height: 50px;
+    height: auto;
     color: white;
     padding: 15px;
     margin: 15px;
@@ -38,12 +47,12 @@ a:visited {
 }
 
 .button:active{
-    background-color: rgb(92, 54, 127);;
+    background-color: rgb(126, 114, 137);;
 }
 
 .button--cancel{
     background-color: rgb(250, 98, 123);
-    width: 60%;
+    border: 1px solid rgb(250, 98, 123)
 }
 
 h1 {
@@ -69,23 +78,27 @@ h1 {
     flex-direction: column;
     align-items: center;
     padding: 5px;
-    /* background: white; */
-    /* background: linear-gradient(to right, #f2fcfe, #d0d0d0);  */
 }
 
-.restaurant-card {
+.card {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     margin: 10px 0;
-    border-radius: 20px;
+    border-radius: 10px;
     background-color: rgb(255, 255, 255);
     color: rgb(108, 108, 108);
     width: 100%;
     max-width: 350px;
     align-self: center;
     cursor: pointer;
+    border: 1px solid rgb(252, 252, 252);
 }
+
+.detail-card{
+    cursor: auto;
+}
+
 .restaurant-card__top{
     display: grid;
     grid-template-columns: 1fr 3fr 2fr 1fr 1fr;
@@ -110,7 +123,7 @@ h1 {
     padding: 5px 5px;
 }
 
-.restaurant-card__text{
+.text{
     padding: 5px 5px;
     font-size: 15px;
     color: rgb(85, 38, 129);
@@ -119,13 +132,25 @@ h1 {
     height: fit-content;
 }
 
-.restaurant-card__text--extra-info{
+.no-padding{
+    padding: 0px
+}
+.large-text{
+    font-size: 25px;
+}
+
+.grey-text{
+    color: grey;
+    font-size: 10px;
+}
+
+.waiting-time{
     grid-column: 3 / 5;
     grid-row: 3 / 5;
     background-color: rgb(255, 255, 255);
     box-shadow: 1px 1px 2px rgb(203, 203, 203);
     border-radius: 20px;
-    padding: 10px;
+    padding: 2px;
     margin: 0px;
 }
 .restaurant-card__text--name{
@@ -181,20 +206,28 @@ h1 {
         margin: 0px;
         }
 
-    .restaurant-card {
+    .card {
         margin: 10px 30px;
     }
 }
 
 @media (hover: hover) {
     
-    .restaurant-card:hover {
+    .card:hover {
       border: 1px solid rgb(85, 38, 129);
+    }
+    .detail-card:hover{
+        border: none;
     }
 
     .button:hover {
-        background-color: rgb(85, 38, 129);
+        background-color: rgb(127, 71, 179);
       }
+    .button--cancel:hover{
+        background-color: rgb(255, 255, 255);
+        color: rgb(250, 98, 123);
+        border: 1px solid rgb(250, 98, 123)
+    }
     
   }
 

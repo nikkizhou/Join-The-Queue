@@ -6,10 +6,26 @@ import './customerHome.css'
 const RestaurantList = ({ restaurantList }) =>{
 
   const [search, setSearch] = useState("")
-  console.log(search)
+  const [customerLocation, setcustomerLocation] = useState(null)
+
+const getcustomerLocation = () => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      console.log(pos,'pos in getcustomerLocation')
+      setcustomerLocation(pos)
+    });
+  } else {
+    console.log("Geolocation is not supported by this browser.");
+  }
+}
 
 
-//  useEffect(()=>,[search])
+
+useEffect(()=> getcustomerLocation(),[])
 
 return (
   <div >
@@ -18,14 +34,11 @@ return (
           className="customer-form"
           type="text"
           value={search}
-          placeholder = "Search"
+          placeholder = "Search for a restaurant..."
           onChange={event => setSearch(event.target.value)}
         />
-        {/* <button className="button search-button" type="submit">
-          Search
-        </button> */}
+       
       </form>
-    {/* <h3 className='card__header'>Restaurants in Stockholm</h3> */}
 
     <ul className='list__container'>
       {restaurantList.filter(res =>{
@@ -41,14 +54,8 @@ return (
         
         <RestaurantItem
             key = {restaurant.id}
-            id = {restaurant.id}
-            name = {restaurant.name}
-            image = {restaurant.imge}
-            description={restaurant.description}
-            address = {restaurant.address}
-            // price = {restaurant.price}
-            // rating = {restaurant.rating}
-            // location = {restaurant.location}
+            restaurantInfo = {restaurant}
+            customerLocation = {customerLocation}
         />
       ))}
     </ul>

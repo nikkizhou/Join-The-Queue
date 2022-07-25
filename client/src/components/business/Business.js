@@ -7,15 +7,15 @@ import {Routes,Route} from "react-router-dom";
 import NavbarBusiness from './Navbar/NavbarBusiness'
 import { useAuth0 } from '@auth0/auth0-react';
 import Logout from './Logout';
-import Profile from './Profile'
+import Profile from './Profile/Profile.js'
 import axios from 'axios'
 
 
 function Business() {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [businessId, setBusinessId] = useState(0);
+  const [biz, setBizInfo] = useState({});
   //const [userInfo, setUserInfo] = useState(user);
-  
   console.log(user,'user in Business');
   console.log(businessId,'businessId in Business outside');
   
@@ -25,16 +25,20 @@ function Business() {
    //console.log('userinfo in getInitializedBizId: ', user.email);
    const userFromDB = await axios.get(`http://localhost:5001/api/user/${user.email}`)
    const bizId = userFromDB.data.businessId;
+
+   const bizInfo = await axios.get(`http://localhost:5001/api/business/${bizId}`)
    //console.log('bizId in getInitializedBizId: ',bizId );
    setBusinessId(bizId)
   }
+
+  
 
   useEffect(()=> {
     //setInterval(async()=> await getInitializedBizId(),1000)
     getInitializedBizId()
   }
   ,[isAuthenticated])
-//dsaadfsf
+
   const updateBusinessId = (id)=>{
     setBusinessId(id)
   }

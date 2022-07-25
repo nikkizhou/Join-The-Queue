@@ -21,6 +21,7 @@ const Signup = ({updateBusinessId,businessId,userInfo}) => {
       };
       setBusinessInput(details)
       setStatus("Submit");
+      console.log(businessInput,'businessInput');
   };
     
   

@@ -5,7 +5,6 @@
     padding: 0px;
 
 }
-
 .ticket{
     margin-top: 15px;
     display: flex;
@@ -15,21 +14,7 @@
     align-self: center;
     justify-self: center;
 }
-.tickets__container{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 90%;
-    justify-content: space-around;
-}
 
-.single__ticket {
-    display: flex;
-    flex-direction: row;
-    width: 90%;
-    background-color: white;
-    border-radius: 10px;
-}
 .ticket__info, .ticket__number{
     font-size: large;
     padding: 5px;
@@ -49,7 +34,7 @@
     margin: 5px;
 }
 
-.ticket__number, .ticket__name{
+.colored-text-box{
     background-color: rgb(85, 38, 129);
     padding: 10px;
     font-size: 50px;
@@ -59,6 +44,7 @@
     color: white;
     width: 50%;
 }
+
 .ticket__name {
     font-size: 30px;
     width: fit-content;
@@ -77,35 +63,19 @@
     color:rgb(85, 38, 129);
     margin: 0px;
 }
-.single__ticket--info, .single__ticket--buttons{
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    flex-direction: column;
-}
-.single__ticket--buttons{
-    justify-content: space-around;
-    align-items: center;
-}
+
  .ticket__status{
     margin-top:10px;
     text-align: center;
 }
+
 .status{
-    /* color: white; */
     margin: 0px;
     padding: 2px;
-    /* background-color: rgb(85, 38, 129); */
 }
 
-.ticket__title{
-    text-align: center;
-}
 .button--cancel{
     align-self:center;
-}
-.queue__header{
-    text-align: center;
 }
 
 .info-container{
@@ -114,4 +84,8 @@
     justify-content: space-around;
     align-items: center;
     width: 100%;
+}
+
+.business-name{
+    background-color: white;
 }

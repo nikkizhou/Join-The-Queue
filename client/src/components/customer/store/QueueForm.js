@@ -28,11 +28,14 @@ function QueueForm() {
     const data = await createTicket();
     //console.log(data.data,'data.data in handleSubmit!');
     const ticketId = data.data.ticketId
+    localStorage.removeItem('cancelled')
+
     navigate(`/customer/feedback/?ticketId=${ticketId}&businessId=${id}`);
   }
 
   return (
-    <div className='customer-form-container'>
+    <div className='list-container'>
+      <p className="text">Enter your name and number:</p>
       <form onSubmit={handleSubmit} >
         <div className='customer-form__input'>
           <input className='customer-form' type="text" placeholder="Enter your name" onChange={setNameValue} required/>

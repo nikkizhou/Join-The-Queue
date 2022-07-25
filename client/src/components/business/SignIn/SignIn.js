@@ -5,9 +5,10 @@ import './SignIn.css'
 const SignIn = () => {
   const { loginWithRedirect } = useAuth0();
   return (
-    <>
-    { loginWithRedirect()}
-    </>
+    <div className='login-page'>
+    <h2 className='login-page__title'> Welcome to  Our Login Page</h2>
+   <button  className='login__btn' onClick={loginWithRedirect}>Log in</button>
+    </div>
   )
 };
 
