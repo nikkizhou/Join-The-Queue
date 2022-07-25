@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 })
 
 app.listen(PORT, () => {
-    console.log(`Server is listening on port ${PORT}`)
+    
 })
 
 /*-------------------------------
@@ -32,9 +32,9 @@ AUTHENTICATION
   
 //   contactEmail.verify((error) => {
 //     if (error) {
-//       console.log(error, 'there has been a wee error');
+//       
 //     } else {
-//       console.log("Ready to Send");
+//       
 //     }
 //   });
 

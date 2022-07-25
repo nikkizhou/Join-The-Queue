@@ -12,7 +12,7 @@ export default async function runChangeStream(database,mongoClient) {
     changeStream = ticketsCollection.watch();
     // set up a listener when change events are emitted
     changeStream.on("change", next => {
-      console.log("received a change to the tickets collection: \t", next.fullDocument);
+      
     });
 
     await simulateAsyncPause();
@@ -25,7 +25,7 @@ export default async function runChangeStream(database,mongoClient) {
     await simulateAsyncPause();
 
     await changeStream.close();
-    console.log("closed the change stream");
+    
     
   } 
   finally {

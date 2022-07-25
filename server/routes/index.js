@@ -57,7 +57,7 @@ const addOneTicket = async (req,res)=>{
 const deleteTicket = async (req,res)=>{
     const {database}  = await connectToDatabase();
     const {id}  = req.params;
-    //console.log(id,'id in deleteTicket');
+    //
     await database.collection('tickets').deleteOne({ticketId:Number(id)})
     res.status(200).json({message:`ticket with id ${id} document deleted`})
 }
@@ -99,7 +99,7 @@ const addOneBusiness = async (req,res)=>{
 const updateTicketStatusInDB = async (id,status)=>{
     const {database}  = await connectToDatabase();
     const filter = {ticketId:id}
-    //console.log(filter)
+    //
     const updateDoc = {$set: {status: status}};
     return database.collection('tickets').findOneAndUpdate(filter,updateDoc,{'returnNewDocument' : true })
     // database.collection('tickets').update({"ticketId": id},{$set: {"status": status}})
@@ -129,30 +129,30 @@ const getGooglePhotoSrc = async (googlePhotoRef)=>{
 
 
 const fetchDataFromGoogle = async (req,res)=>{
-    //console.log(process.env.GOOGLE_API_KEY,'process.env.GOOGLE_API_KEY');
+    //
     let {name} = req.params;
 
     const url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=formatted_address%2Cname%2Crating%2Copening_hours%2Cgeometry%2Cphotos&input=${name}&inputtype=textquery&key=AIzaSyCWJ0GsY0BynFt81-H82ok6RqIsZilr768`
     const data = await axios.get(url)
     const candidates = data.data.candidates;
-    console.log(candidates,'-candidates in fetchDataFromGoogle');
+    
 
-    const getData = async () => {
-      return Promise.all(candidates.map(biz => {
-        if (biz.photos) {
-            return getGooglePhotoSrc(biz.photos[0].photo_reference)
-                .then(imgSrc=> {
-                    biz.photos = imgSrc
-                    return biz
-                })
-                .then(biz=> biz)
-                .catch(e=>console.log(e))
-                }
-        //console.log(('imgSrc in map: ',imgSrc));
-      }))
-    }
-    const newData = await getData();
-    res.json(newData);
+    // const getData = async () => {
+    //   return Promise.all(candidates.map(biz => {
+    //     if (biz.photos) {
+    //         return getGooglePhotoSrc(biz.photos[0].photo_reference)
+    //             .then(imgSrc=> {
+    //                 biz.photos = imgSrc
+    //                 return biz
+    //             })
+    //             .then(biz=> biz)
+    //             .catch(e=>
+    //             }
+    //     //
+    //   }))
+    // }
+    
+    res.json(candidates);
 }
 
 const setToWaiting = async (req, res) => {
@@ -167,7 +167,7 @@ const updateUserInfo = async (req, res) => {
     const {email} = req.params
     const {businessId} = req.body
     const filter = {email}
-    //console.log(filter)
+    //
     const updateDoc = {$set: {businessId}};
     res.status(200).send(`BusinessId ${businessId} set to user ${email}`)
     return database.collection('users').findOneAndUpdate(filter,updateDoc,{'returnNewDocument' : true })
