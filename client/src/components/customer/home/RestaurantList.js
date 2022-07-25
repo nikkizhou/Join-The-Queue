@@ -4,6 +4,7 @@ import { useState } from 'react';
 import './customerHome.css'
 
 const RestaurantList = ({ restaurantList }) =>{
+  
 
   const [search, setSearch] = useState("")
   const [customerLocation, setcustomerLocation] = useState(null)
@@ -15,23 +16,22 @@ const getcustomerLocation = () => {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
-      console.log(pos,'pos in getcustomerLocation')
+      
       setcustomerLocation(pos)
     });
   } else {
-    console.log("Geolocation is not supported by this browser.");
+    
   }
 }
 
-
-
 useEffect(()=> getcustomerLocation(),[])
+//console.log(customerLocation,'customerLocation in RestaurantList');
 
 return (
   <div >
-    <form  className="customer-form__input">
+    <form  className="form">
         <input
-          className="customer-form"
+          className="form-input"
           type="text"
           value={search}
           placeholder = "Search for a restaurant..."
@@ -44,7 +44,7 @@ return (
       {restaurantList.filter(res =>{
   
        if(search ===""){
-        console.log(res.name,'resName');
+       
         return res
        } else if(res.name?.toLowerCase().includes(search.toLowerCase())){
         return res
@@ -56,6 +56,7 @@ return (
             key = {restaurant.id}
             restaurantInfo = {restaurant}
             customerLocation = {customerLocation}
+            
         />
       ))}
     </ul>

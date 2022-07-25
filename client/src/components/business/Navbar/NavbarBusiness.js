@@ -27,7 +27,7 @@ const NavbarBusiness = ({businessId}) => {
     <nav>
       <div className='nav-center'>
         <div className='nav-header'>
-          <img src={logo} className='logo' alt='logo' />
+        <h2 className='logo'>JoinTheQ</h2>
           <button className='nav-toggle' onClick={toggleLinks}>
             <FaBars />
           </button>
@@ -35,15 +35,15 @@ const NavbarBusiness = ({businessId}) => {
         <div className='links-container' ref={linksContainerRef}>
           <ul className='links' ref={linksRef}>
             <Link to="/customer/home">customer</Link>
-            <Link to="about">About</Link>
+            <Link to="/about">About</Link>
           {!isAuthenticated ? 
-            <Link to="./SignIn">Login!</Link> 
+            <Link to="/SignIn">Login!</Link> 
             :
             (<>
-            <Link to="./Signup">Add your Business</Link>
-            <Link to="./Logout">Logout!</Link>
+            <Link to="/Signup">Add your Business</Link>
+            <Link to="/Logout">Logout!</Link>
             <Link to={`ticketList/${businessId}`}>My Queue</Link>
-            <Link to="./profile">My Profile</Link>
+            <Link to="/profile">My Profile</Link>
             </>)
       }
                

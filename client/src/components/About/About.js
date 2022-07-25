@@ -9,9 +9,10 @@ const About = () => {
         <h1 className='about-us__title'>JoinTheQ</h1>
         <div className='about__wrapper'>
           <div className='about__upperSection'>
+            <br />
             JoinTheQ was built in July 2022 as a graduation poject by a group of young developers in Stockholm, Sweden.<br />
-            The idea for the application is to help customers so they dont have to wait so long for their  turn and waiting in cold days .
-            They can sit in home  or car and see the status for Queue.
+            <br />
+             Main idea behind the project was to provide a solution to tedious experience of standing in queue. With JoinTheQ you can easily relax
           </div>
           <div className='about__lowerSection'>
             <div className='about__apollo'>

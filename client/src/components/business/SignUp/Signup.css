@@ -11,47 +11,10 @@ h4{
   text-align: center;
 }
 
-  .signup{
-    width: 50%;
-    margin: 30px auto ;
-    padding:  40px;
-    background-color:#296e8a;
-    border-radius: 10px;
-    position: relative;
-  }
-   .signup__input{
-   display: block;
-   margin-bottom: 10px;
-  }
-   .signup__input-label{
-    display: block;
-    width: 100%;
-  }
-  .signup__input-input{
-    display: block;
-    width: 100%;
-  }
-  
-  .signup__title{
-    position: absolute;
-    top: -11px;
-    left: 10px;
-    font-size: 18px;
-    padding: 2px 4px;
-    font-weight: bold;
-    background-color: #fff;
-    border-radius: 10px;
-    border: 3px solid #4cadca;
-  }
-  .signup__addButton{
-    position: absolute;
-    right: 20px;
-    bottom: 5px;
-    background-color: #000;
-    color:#fff;
-    border:0 none;
-    border-radius: 10px;
-    padding: 2px 4px;
-    font-size: 18px;
-  }
+.form-label{
+  color: grey;
+}
+
+
+
   

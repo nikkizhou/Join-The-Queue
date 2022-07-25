@@ -8,7 +8,7 @@ import ClockLoader from "react-spinners/ClockLoader";
 
 
 function Feedback() {
-  console.log('running Feedback!');
+  
   let [searchParams, setSearchParams] = useSearchParams();
   const ticketId = searchParams.get('ticketId');
   const businessId =searchParams.get('businessId');
@@ -31,10 +31,8 @@ function Feedback() {
     borderColor: "red",
   };
 
-
   const getTickets = async ()=>{
     const tickets = await axios.get(`http://localhost:5001/api/tickets/business/${businessId}`);
-
     const currentTicketIndex = tickets.data.findIndex(ticket =>ticket.ticketId == ticketId)
     const ticketsInFrontOfMe = tickets.data.slice(0,currentTicketIndex)
     const peopleWaitingD = ticketsInFrontOfMe.filter(t=>t.status=='waiting').length
@@ -49,7 +47,6 @@ function Feedback() {
     setPeopleWaiting(peopleWaitingD)
     setTicket(ticket)
     isLoading(false)
-
   }
   const getBusiness = async ()=>{
     const business = await axios.get(`http://localhost:5001/api/business/${businessId}`)
@@ -58,7 +55,7 @@ function Feedback() {
   
   const cancelTicket = async ()=>{
     await axios.put(`http://localhost:5001/api/tickets/${ticketId}`, {status:'cancelled'})
-    console.log('clicked: ', ticket.status, 'ticketID:', ticket.ticketId)
+    
     localStorage.setItem('cancelled', true)
     setCancelled(true)
   }
@@ -71,89 +68,70 @@ function Feedback() {
     getData();
   },[])
   
-  const showNext = peopleWaiting>0 ? <h4>There are <h2 className='queue-number'>{peopleWaiting}</h2> tables in front of you</h4>
-                                   : null                  
-  // return (
-  //   <div className='ticket'>
-  //       {ticketId ?  (<div className='ticket__number-container'>
-  //           <h4 className="ticket__number-info">Hi <h4> { ticket.name }</h4>, your ticket number is :</h4>
-  //           <h1 className='ticket__number'> {ticketId}</h1>
-  //       </div>) : <h1></h1>}
-  //       <h3 className='ticket__status'> Your status :</h3>
-  //       <h2 className='ticket__status status'> {ticket.status} </h2>
-  //       {ticket.status == 'called' ?  (<div className='ticket__status'>
-  //           <h4 className="called">Head to the restaurant! <h4> { ticket.name }</h4></h4>
-  //       </div>) : <h4>hold your horses</h4>}
-  //       <div className='info-container'>
-        
-  //       {business ?  (<div className='ticket__name-container'>
-  //                       <h4 className='ticket__info'>Restaurant name:</h4><h4 className='ticket__name'> {business.name}</h4>
-  //       </div>) : <h1>Business does not exist</h1>}
-  //       <div className='queue-info-container'>{showNext}</div>
-  //       {/* {calledTicketId ?  <h4 className='ticket__info'>Next is: {nextIs}</h4> :  <h1>Available!</h1>} */}
-  //       </div>
-  //       <div className='ticket__queue-info'>
-  //       <button className='button button--cancel' onClick={cancelTicket}>Leave the queue</button>
-  //       </div>
-
-  //   </div>
-  // )
- 
-// }
-// export default Feedback
-
+  const showNext = peopleWaiting>0 ? <h4>People In Front<h2 className='queue-number'>{peopleWaiting}</h2></h4>: null                  
+  const waitingTime = business?.waitingTime;
+  console.log('business in SignUp!!', business);
 
 return (
   <div className='list__container'>
 
-<div className='card column'>
-  
-          {loading ?  <ClockLoader color={'#4A90E2'} loading={loading} size={100} cssOverride={override}/>:
-          <div>
-            
-            {done ? <h1> Seems like everything went smoothly! See you next time {ticket.name} </h1>  :
-            <>
-  
+  <div className='card column'>
+    
+            {loading ?  <ClockLoader color={'#4A90E2'} loading={loading} size={100} cssOverride={override}/>:
+            <div>
+              
+              {done ? <h1 className='finish-msg'> Seems like everything went smoothly! See you next time {ticket.name} </h1>  :
+              <>
+    {ticket.status== 'cancelled' ? <h1  className='finish-msg'> Restaurant decided to cancel your ticket. Most likely due to no show</h1> : 
+    <>
+
   {!cancelled ?  
-          <div className="">
-            {ticketId ?  (<div className='ticket__number-container'>
-                <h4 className="ticket__number-info">Hi <h4> { ticket.name }</h4>, your ticket number is :</h4>
-                <h1 className='text text-large'> {ticketId}</h1>
-            </div>) : <h1></h1>}
+      <div className="">
+        {ticketId ?  (<div className='ticket__number-container'>
+            <h4 className="text text-box">Hi <h4 className="text"> { ticket.name }</h4>your ticket number is:</h4>
+            <h1 className='text large-text'> {ticketId}</h1>
+        </div>) : null}
+
+        <div className='row top-margin'>
+          <h2 className={`colored-text-box small-margin ${ticket.status == 'called' ? "colored-text-box--green small-margin" : "colored-text-box--yellow"}`}> {ticket.status} </h2>
+        </div>
+
+        {ticket.status == 'called' ?  (<div className='ticket__status'>
+            <h4 className="called"><h4> { ticket.name }</h4>Head to the restaurant! </h4>
+        </div>) : ''}
+
+        <div className='list__container top-margin'>
+          
+            {business ?  (
+            <div className='ticket__name-container'>
+                <h4>You're in the queue for</h4><h4 className='text large-text'> {business.name}</h4>
+            </div>) 
+          : <h1>Business does not exist</h1>}
+
+        <div className='queue-info-container top-margin'>{showNext}</div>
+        <p>Estimated Waiting Time: <span className='waitingTime'>{peopleWaiting*waitingTime}</span>min</p>
+        </div>
+        <div className='ticket__queue-info'>
+        <button className='button button--cancel' onClick={cancelTicket}>Leave the queue</button>
+        </div>
+      </div>
+      : 
+      <div>
+        <h1>Your ticket has been cancelled</h1>
+        <button className="button" onClick={() =>{navigate(`/customer/home`)}}>Queue again?</button>
+      </div>}
+    </>
+    }
   
-  
-            <h3 className='text'> Your status :</h3>
-            <h2 className='colored-text-box'> {ticket.status} </h2>
-            {ticket.status == 'called' ?  (<div className='ticket__status'>
-                <h4 className="called">Head to the restaurant! <h4> { ticket.name }</h4></h4>
-            </div>) : <h4>Hold your horses. Your number will be called soon</h4>}
-  
-            <div className='info-container'>
-              
-              {business ?  (
-              <div className='ticket__name-container'>
-                   <h4 className='ticket__info'>You're in the queue for</h4><h4 className='text large-text'> {business.name}</h4>
-              
-              </div>) 
-              : <h1>Business does not exist</h1>}
-              <div className='queue-info-container'>{showNext}</div>
-            </div>
-            <div className='ticket__queue-info'>
-            <button className='button button--cancel' onClick={cancelTicket}>Leave the queue</button>
-            </div>
-          </div>
-  
-          : 
-          <div>
-            <h1>Your ticket has been cancelled</h1>
-            <button onClick={() =>{navigate(`/customer/home`)}}>Queue again?</button>
-          </div>}
-            </>}
-        </div>}
-</div>
-</div>
+        </>}
+    </div>}
+  </div>
+  </div>
 
     )
     
   }
   export default Feedback
+
+
+  

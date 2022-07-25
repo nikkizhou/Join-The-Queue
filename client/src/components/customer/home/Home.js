@@ -3,7 +3,6 @@ import RestaurantList from './RestaurantList'
 import axios from 'axios'
 import SearchForm from './SearchForm'
  
-
 function Home() {
   const [restaurantList, setRestaurantList] = useState([])
   // const [matchedRestaurantList, setMatchedRestaurantList] = useState(null)
@@ -14,7 +13,6 @@ function Home() {
     try {
       const business = await axios.get(`http://localhost:5001/api/business`)
       setRestaurantList(business.data)
-      
   } catch (e) {
       console.error(e)
     }

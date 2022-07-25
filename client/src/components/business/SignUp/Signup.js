@@ -1,9 +1,6 @@
 import {useState} from 'react'
 import './Signup.css';
-import {useNavigate,Route,Routes} from 'react-router-dom';
-import axios from 'axios';
 import BusinessList from './Businesslist.js';
-import Business from './BusinessItem';
 
 const Signup = ({updateBusinessId,businessId,userInfo}) => {
     const [status, setStatus] = useState("Pending");
@@ -16,35 +13,48 @@ const Signup = ({updateBusinessId,businessId,userInfo}) => {
       const { name, address, waitingTime} = e.target.elements;
       let details = {
         name: name.value,
+        description: description.value,
         address: address.value,
-        waitingTime: waitingTime.value
+        waitingTime: waitingTime.value,
+        imgLink: imgLink.value
       };
       setBusinessInput(details)
       setStatus("Submit");
-      console.log(businessInput,'businessInput');
   };
     
-  
-    return (
-      <>
-        <h4>Register your business in our Queue System:</h4>
-        <form onSubmit={handleSubmit} className="signup">
-            <div className="signup__title">Add Your Business</div>
-            <label className="signup__input-label" htmlFor="name">Business Name:</label>
-            <input className="signup__input-input" type="text" id="name" required />
-          
-            <label className="signup__input-label" htmlFor="waitingTime">Estimated Waiting Minutes Each Ticket:</label>
-            <input className="signup__input-input" type="text" id="waitingTime" required />
-          
-            <label className="signup__input-label" htmlFor="address">Business Address:</label>
-            <input className="signup__input-input" type="text" id="address" required />
+  return (
+    <>
+      <form onSubmit={handleSubmit} className="form top-margin">
+          <label className="form-label" htmlFor="name">Business Name:</label>
+          <input className="form-input wide-form-input" type="text" id="name" required />
 
-            <button type='submit'>Submit</button>
+          <label className="form-label" htmlFor="description">Description :</label>
+          <input className="form-input wide-form-input" type="text" id="description" required />
+        
+          <label className="form-label" htmlFor="waitingTime">Average waiting time (in minutes):</label>
+          <input className="form-input wide-form-input" type="number" id="waitingTime" required />
+        
+          <label className="form-label" htmlFor="address">Business Address:</label>
+          <input className="form-input wide-form-input" type="text" id="address" required />
           
-        </form>
-        {businessInput && <BusinessList businessId={businessId} updateBusinessId={updateBusinessId} userInfo={userInfo} businessInput={businessInput} test='testing!!'/>}
-      </>
-    );
-  };
+          <label className="form-label" htmlFor="imgLink">Image Link :</label>
+          <input className="form-input wide-form-input" type="text" id="imgLink" required />
+    
+
+          <button className='button' type='submit'>Submit</button>
+        
+      </form>
+      {status=='Submit'&& <h3>Results for {businessInput.name} from Google Map:</h3>}
+      {businessInput && <BusinessList businessId={businessId}
+        updateBusinessId={updateBusinessId}
+        userInfo={userInfo}
+        businessInput={businessInput}
+      />}
+      {status=='Submit'&&<button className='button button--cancel'>Not my business? Contact us here!</button>}
+    </>
+  );
+};
 
 export default Signup
+
+

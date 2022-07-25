@@ -27,23 +27,11 @@
 }
 
 .ticket__number-container, .ticket__name-container{
-    display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 5px;
 }
 
-.colored-text-box{
-    background-color: rgb(85, 38, 129);
-    padding: 10px;
-    font-size: 50px;
-    text-shadow: 2px 3px 5px grey;
-    border-radius: 10px;
-    text-align: center;
-    color: white;
-    width: 50%;
-}
 
 .ticket__name {
     font-size: 30px;
@@ -89,3 +77,8 @@
 .business-name{
     background-color: white;
 }
+.finish-msg{
+font-size: 15px;
+padding: 15px;
+}
+

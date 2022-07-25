@@ -11,7 +11,7 @@ const Profile = ({user, businessId}) => {
 
   // const getBiz = async () => {
   //   const bizData = businessId && await axios.get('/api/businesses/'+businessId)
-  //   console.log(bizData.data)
+  //   
   //   setBiz(bizData.data)
   // }
   

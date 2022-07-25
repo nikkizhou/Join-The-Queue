@@ -10,7 +10,7 @@ function TicketList() {
   const [tickets, setTickets] = useState(null)
   const [calledTicketId, setcalledTicketId] = useState(null)
   const [ticketId, setTicketId] = useState(null)
-  console.log(tickets,'tickets in TicketList component');
+  
 
 
   const [waiting, setWaitingTickets] = useState(0)
@@ -55,7 +55,7 @@ function TicketList() {
   const handleClick =  async (event) => {
     const id = event.currentTarget.id
     const status= tickets.find(ticket => ticket.ticketId == id).status
-    console.log(status)
+    
     if(status === 'waiting'){
       await axios.put(`http://localhost:5001/api/tickets/${id}`,{status:'called'})}
     else if(status === 'called'){
@@ -77,21 +77,16 @@ function TicketList() {
   
   return (
     <div>
-        
-        {loading ? <ClockLoader color={'#4A90E2'} loading={loading} size={100} cssOverride={override}/> : 
-        
+       {loading ? <ClockLoader color={'#4A90E2'} loading={loading} size={100} cssOverride={override}/> : 
         <>
-          {!tickets||tickets.length==0 ? <h1>No Queue Yet</h1> : 
-          
-          
-          <>
-          
-          <h1 className='queue__header'> Your Queue: </h1>
-        <header className='ticketlist--display'>
-          <p className='ticketlist--display_sticky'> waiting :  {waiting}</p>
-          <p className='ticketlist--display_sticky'> done : {done}</p>
-          <p className='ticketlist--display_sticky'> cancelled : {cancelled}</p>
-        </header>
+          {!tickets||tickets.length==0 ? <h3>No Queue Yet</h3> : 
+           <>
+           <div className="ticketlist--display">
+              <h3 > Your Queue: </h3>
+              <h5 > waiting :  {waiting}</h5>
+              <h5 > done : {done}</h5>
+              <h5 > cancelled : {cancelled}</h5>
+          </div>
         <div className="list__container">
           {tickets && tickets.filter(ticket =>{
             return ticket.status === 'waiting' || ticket.status === 'called'
@@ -100,11 +95,12 @@ function TicketList() {
               <div  className="card queue-info-card" key={ticket.ticketId}>
                 <div className='row'>
                   <div className='column column-your-queue-ticket-number'>
-                    <h3 className='text'> Ticket number :</h3> <h3 className='text your-queue-number-text'> {ticket.ticketId}</h3>
+                    <h4 className='text'> Ticket number :</h4> <h4 className='text your-queue-number-text'> {ticket.ticketId}</h4>
                   </div>
                   <div className="column column--your-queue-status">
                     <p className='text'> Status : </p>
-                    <p className={`colored-text-box ${ticket.status == 'called' ? "colored-text-box--green" : "colored-text-box--grey"}`}>{ticket.status}</p>
+                    <p className={`colored-text-box ${ticket.status == 'called' ? "colored-text-box--green" : "colored-text-box--yellow"}`}>
+                        {ticket.status}</p>
                   </div>
                 </div>
                 <div className='row'>

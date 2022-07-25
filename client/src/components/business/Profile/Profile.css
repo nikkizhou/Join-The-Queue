@@ -15,7 +15,7 @@
  
   .btn{
     border: none;
-    width: 15%;
+    width: 25%;
     border-radius: 10px;
     padding: 10px;
     font-size: 1.2em;
@@ -33,7 +33,7 @@
   @media only screen and (min-width: 601px) and (max-width: 900px){
 
     .btn{
-       width: 30%;
+       width: 15%;
      }
      .profile-title{
         margin: 1rem;
@@ -44,7 +44,7 @@
  
  @media only screen and (min-width: 901px) {
     .btn{
-       width: 30%;
+       width: 15%;
     }
     .profile-title{
         margin: 1rem;

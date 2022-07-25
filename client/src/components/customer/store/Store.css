@@ -16,19 +16,25 @@
     display: flex;
     flex-direction: column;
 }
-.customer-form__input{
+.form{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.customer-form {
+.form-input {
     height: 40px;
     padding:5px;
     margin: 8px;
     border: none;
     max-width: 450px;
+    
 
     box-shadow: 2px 2px 1px inset rgb(192, 192, 192);
     border-radius: 3px;
 }
+
+.wide-form-input {
+    width: 90%;
+    max-width: 1200px;
+  }

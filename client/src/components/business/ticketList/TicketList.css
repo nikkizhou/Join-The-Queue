@@ -1,21 +1,12 @@
 /* ticketList */
 /* * {border: 1px dashed blue} */
+h3{
+    text-align: center;
+}
 
 .queue-info-card{
     cursor: auto;
     border: none;
-}
-
-.colored-text-box--green{
-    font-size: 20px;
-    width: 100%;
-    background-color: rgb(40, 203, 89);
-}
-
-.colored-text-box--grey{
-    font-size: 20px;
-    width: 100%;
-    background-color: rgb(238, 208, 12);
 }
 
 .column--your-queue-status{
@@ -39,9 +30,12 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    background-color: white;
+    color: rgb(100,100,100);
+    font-size: 20px;
+    padding: 5px;
     width: 100%;
-    height: 100%;
-    margin: 2em 0;
+    margin-top: -15px;
     
 }
 

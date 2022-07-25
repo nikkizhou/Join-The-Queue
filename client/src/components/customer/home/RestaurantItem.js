@@ -2,21 +2,20 @@ import React,{useState,useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import queue from './queue.png';
+import clock from './stopwatch.png';
+import { getDistance,convertDistance } from 'geolib';
 
 
 function RestaurantItem({restaurantInfo,customerLocation}) {
- // /tickets/business/:id
- console.log(restaurantInfo,'this is restaurantInfo in RestaurantItem');
+
  const { name,id,description,address,waitingTime} = restaurantInfo;
- const location = restaurantInfo.geometry?.location
- const image = restaurantInfo.photos
- console.log(location,'location restaurantInfo');
-
-
- console.log('this is customerLocation in RestaurantItem',customerLocation);
-
+ const businessLocation = restaurantInfo.geometry?.location
+ const image = restaurantInfo.imgLink
+ 
  const [tickets, setTickets] = useState(null)
  const [distance, setDistance] = useState(null)
+
+
  
  const fetchTicket = async (id) => {
    try {
@@ -27,39 +26,48 @@ function RestaurantItem({restaurantInfo,customerLocation}) {
    }
  }
 
+//  const getDistance = ()=>{
+//    const distanceLoc = getDistance(businessLocation,customerLocation);
+//    console.log(distanceLoc,'distanceLoc');
+  
+//    setDistance(distanceLoc / 1000);
+//    console.log(distance,'distance');
+//  }
+
  useEffect(() => {
    fetchTicket(id);
- }, []);
+   const distanceLoc = businessLocation && customerLocation && getDistance(businessLocation,customerLocation)
+   setDistance((distanceLoc / 1000).toFixed(1))
+ }, [tickets]);
+ 
 
 
   const peopleWaiting = tickets?.filter(t=>t.status == 'waiting').length;
+  const minDisplay = peopleWaiting  ? waitingTime * peopleWaiting +' mins' : 'No Q!'
+  
   return (
     <Link to= {`/customer/store/${id}`} state={{name,id,image,description}}>
       <div className='card'>
           <div className='restaurant-card__top'>
             <img className='restaurant-card__image' src={image} alt= {`${name}`} />
-            <h6 className='text grey-text waiting-time'> waiting time: <p className='text no-padding'> {waitingTime*peopleWaiting}min</p></h6>
+            <h6 className='text grey-text waiting-time'> <p className='text no-padding'> <img src={clock} className='queue-icon' alt='logo' /> {minDisplay}</p></h6>
             <h3 className='text restaurant-card__text--name'>{name}</h3>
           </div>
           <div className='restaurant-card__footer'>
               <div className='column'>
                 <p className='text restaurant-card__text--address'>{address}</p>
+                {distance>0 && <h6 className='text restaurant-card__text--distance'>{distance}km From You</h6>}
                 <h6></h6>
               </div>
              {tickets ?  <div className='restaurant-card__queue'> 
             <img src={queue} className='queue-icon' alt='logo' />
-                <p className="text restaurant-card__text--queue">{peopleWaiting} Waiting</p></div> : null}
-                {console.log('tick info',tickets)}
+                <p className="text restaurant-card__text--queue"><p className="text grey-text no-padding">Q length:</p> {peopleWaiting}</p></div> : null}
+                
               {/* <p className='restaurant--price'>{restaurant.price}</p> */}
           </div>
       </div>
     </Link>
   )
 }
-
-// key = {restaurant.id}
-// name = {restaurant.name}
-// image = {restaurant.image}
-// queue= {restaurant.queue}
 
 export default RestaurantItem
