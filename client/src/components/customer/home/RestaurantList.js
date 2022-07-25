@@ -9,20 +9,20 @@ const RestaurantList = ({ restaurantList }) =>{
   const [search, setSearch] = useState("")
   const [customerLocation, setcustomerLocation] = useState(null)
 
-const getcustomerLocation = () => {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      var pos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
+  const getcustomerLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        
+        setcustomerLocation(pos)
+      });
+    } else {
       
-      setcustomerLocation(pos)
-    });
-  } else {
-    
+    }
   }
-}
 
 useEffect(()=> getcustomerLocation(),[])
 //console.log(customerLocation,'customerLocation in RestaurantList');

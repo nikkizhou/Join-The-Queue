@@ -40,8 +40,6 @@ function RestaurantItem({restaurantInfo,customerLocation}) {
    setDistance((distanceLoc / 1000).toFixed(1))
  }, [tickets]);
  
-
-
   const peopleWaiting = tickets?.filter(t=>t.status == 'waiting').length;
   const minDisplay = peopleWaiting  ? waitingTime * peopleWaiting +' mins' : 'No Q!'
   
@@ -62,7 +60,6 @@ function RestaurantItem({restaurantInfo,customerLocation}) {
              {tickets ?  <div className='restaurant-card__queue'> 
             <img src={queue} className='queue-icon' alt='logo' />
                 <p className="text restaurant-card__text--queue"><p className="text grey-text no-padding">Q length:</p> {peopleWaiting}</p></div> : null}
-                
               {/* <p className='restaurant--price'>{restaurant.price}</p> */}
           </div>
       </div>

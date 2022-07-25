@@ -124,13 +124,23 @@ return (
     }
   
         </>}
-    </div>}
-  </div>
+      </div>}
+      <iframe
+        width="350"
+        height="200"
+        frameBorder="0" style={{border:0}}
+        referrerpolicy="no-referrer-when-downgrade"
+        src={`https://www.google.com/maps/embed/v1/directions?key=AIzaSyCWJ0GsY0BynFt81-H82ok6RqIsZilr768&origin=Oslo+Norway&destination=Telemark+Norway&mode=walking`}>
+      </iframe>
+    </div>
+  
+
   </div>
 
-    )
+
+  )
     
-  }
+}
   export default Feedback
 
 
