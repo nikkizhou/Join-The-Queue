@@ -11,7 +11,6 @@ const dbQuery = async ()=>{
   const {database}  = await connectToDatabase();
   const business = await database.collection('restaurants').find({}).toArray();
   const tickets = await database.collection('tickets').find({}).toArray();
-  
   return {business,tickets}
 }
 
@@ -19,8 +18,7 @@ const dbQuery = async ()=>{
 const getTickets = async (req,res) => {
     const tickets = await dbQuery()
     const ticketsDB = tickets.tickets
-    // await database.collection('tickets').remove({})
-    // await database.collection('tickets').insertMany(ticketObj)
+    
     if (tickets) return res.status(200).send(ticketsDB)
     return res.status(404).json({ success: false, msg: `Can't find tickets` });
 }
@@ -66,8 +64,6 @@ const deleteTicket = async (req,res)=>{
 const getBusiness = async (req,res) => {
     const business = await dbQuery()
     const businessDB = business.business
-    // await database.collection('restaurants').remove({})
-    // await database.collection('restaurants').insertMany(resObj)
     if (business) return res.status(200).json(businessDB)
     return res.status(404).json({ success: false, msg: `Can't find business` });
 }
@@ -133,11 +129,12 @@ const getGooglePhotoSrc = async (googlePhotoRef)=>{
 
 const fetchDataFromGoogle = async (req,res)=>{
     //console.log(process.env.GOOGLE_API_KEY,'process.env.GOOGLE_API_KEY');
-    let {address} = req.params;
+    let {name} = req.params;
 
-    const url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=formatted_address%2Cname%2Crating%2Copening_hours%2Cgeometry%2Cphotos&input=${address}&inputtype=textquery&key=AIzaSyCWJ0GsY0BynFt81-H82ok6RqIsZilr768`
+    const url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=formatted_address%2Cname%2Crating%2Copening_hours%2Cgeometry%2Cphotos&input=${name}&inputtype=textquery&key=AIzaSyCWJ0GsY0BynFt81-H82ok6RqIsZilr768`
     const data = await axios.get(url)
     const candidates = data.data.candidates;
+    console.log(candidates,'-candidates in fetchDataFromGoogle');
 
     const getData = async () => {
       return Promise.all(candidates.map(biz => {
@@ -186,6 +183,8 @@ const getUserInfo = async (req,res) => {
 
 
 
+
+
 router.get('/tickets', getTickets)
 router.get('/tickets/business/:id',getTicketsByBusinessId)
 router.get('/tickets/:id', getTicketsById)
@@ -197,7 +196,7 @@ router.get('/business', getBusiness)
 router.get('/business/name/:name', getBusinessByName)
 router.get('/business/:id', getBusinessById)
 router.post('/business', addOneBusiness)
-router.get('/getGoogleData/:address',fetchDataFromGoogle)
+router.get('/getGoogleData/:name',fetchDataFromGoogle)
 //router.put('/tickets/:id', changeTicketStatus)
 router.get('/setToWaiting', setToWaiting)
 
@@ -412,3 +411,11 @@ const ticketObj = [
     "customerId": "6918df07-3e91-429b-99c4-02001e504cb0",
     "ticketId": 26
     }]
+
+
+
+    // await database.collection('tickets').remove({})
+    // await database.collection('tickets').insertMany(ticketObj)
+
+    //await database.collection('restaurants').remove({})
+    // await database.collection('restaurants').insertMany(resObj)
