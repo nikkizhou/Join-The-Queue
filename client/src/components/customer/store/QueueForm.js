@@ -8,6 +8,10 @@ import {useNavigate} from 'react-router-dom';
 function QueueForm() {
   const location = useLocation()
   const { id } = location.state
+  const {businessLocation } = location.state
+  console.log(businessLocation,'biz location in queueform');
+
+
   const navigate = useNavigate();
   const [cusInfo, setCusInfo] = useState({name:'', number:''})
   const setNameValue = (e)=> setCusInfo({...cusInfo, name:e.target.value})
@@ -30,7 +34,7 @@ function QueueForm() {
     const ticketId = data.data.ticketId
     localStorage.removeItem('cancelled')
 
-    navigate(`/customer/feedback/?ticketId=${ticketId}&businessId=${id}`);
+    navigate(`/customer/feedback/?ticketId=${ticketId}&businessId=${id}`,{state:{businessLocation}});
   }
 
   return (

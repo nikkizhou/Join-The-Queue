@@ -116,11 +116,8 @@ function TicketList() {
           })}
         </div>
         </>
-        
       }
-          
           </>}
-
       </div>
     )
   }

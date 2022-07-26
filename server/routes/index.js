@@ -411,8 +411,8 @@ const ticketObj = [
 
 
 
-    // await database.collection('tickets').remove({})
-    // await database.collection('tickets').insertMany(ticketObj)
+   //await database.collection('tickets').remove({})
+    //await database.collection('tickets').insertMany(ticketObj)
 
     //await database.collection('restaurants').remove({})
     // await database.collection('restaurants').insertMany(resObj)

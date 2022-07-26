@@ -9,22 +9,27 @@ const RestaurantList = ({ restaurantList }) =>{
   const [search, setSearch] = useState("")
   const [customerLocation, setcustomerLocation] = useState(null)
 
+console.log(restaurantList,'dddd');
+//{lat: 59.3372327, lng: 18.0117258}
+
   const getcustomerLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
-        var pos = {
+        let pos = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
         
-        setcustomerLocation(pos)
+         setcustomerLocation(pos)
+        
       });
     } else {
       
     }
   }
 
-useEffect(()=> getcustomerLocation(),[])
+useEffect(()=> getcustomerLocation()
+,[])
 //console.log(customerLocation,'customerLocation in RestaurantList');
 
 return (

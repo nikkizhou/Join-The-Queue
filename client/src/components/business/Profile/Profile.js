@@ -29,10 +29,10 @@ const Profile = ({user, businessId}) => {
         <h3  className='profile-title'>{user.name}</h3>
         {businessId
         ?<>
-          <h2 profile-title>My Business: </h2>
+          <h2 className='profile-title'>My Business: </h2>
           <button className='btn' onClick = {() => navigate({ pathname: `/business/ticketList/${businessId}`})}>Check My Queue</button>
         </>
-        :<><h3 profile-title>Click here to register your business</h3>
+        :<><h3 className='profile-title'>Click here to register your business</h3>
           <button className='btn' onClick = {() => navigate({ pathname: `/business/Signup`})}>Register</button></>}
       </div>
     )

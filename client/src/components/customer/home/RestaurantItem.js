@@ -10,6 +10,7 @@ function RestaurantItem({restaurantInfo,customerLocation}) {
 
  const { name,id,description,address,waitingTime} = restaurantInfo;
  const businessLocation = restaurantInfo.geometry?.location
+//  console.log(businessLocation,'gowno')
  const image = restaurantInfo.imgLink
  
  const [tickets, setTickets] = useState(null)
@@ -44,7 +45,7 @@ function RestaurantItem({restaurantInfo,customerLocation}) {
   const minDisplay = peopleWaiting  ? waitingTime * peopleWaiting +' mins' : 'No Q!'
   
   return (
-    <Link to= {`/customer/store/${id}`} state={{name,id,image,description}}>
+    <Link to= {`/customer/store/${id}`} state={{name,id,image,description,businessLocation}}>
       <div className='card'>
           <div className='restaurant-card__top'>
             <img className='restaurant-card__image' src={image} alt= {`${name}`} />
@@ -54,12 +55,13 @@ function RestaurantItem({restaurantInfo,customerLocation}) {
           <div className='restaurant-card__footer'>
               <div className='column'>
                 <p className='text restaurant-card__text--address'>{address}</p>
-                {distance>0 && <h6 className='text restaurant-card__text--distance'>{distance}km From You</h6>}
+                {distance && distance>0 ? <h6 className='text restaurant-card__text--distance'>{distance}km From You</h6>
+                : <h6 className='text restaurant-card__text--distance' >Calculating distance...</h6>}
                 <h6></h6>
               </div>
              {tickets ?  <div className='restaurant-card__queue'> 
             <img src={queue} className='queue-icon' alt='logo' />
-                <p className="text restaurant-card__text--queue"><p className="text grey-text no-padding">Q length:</p> {peopleWaiting}</p></div> : null}
+                <p className="text restaurant-card__text--queue">{peopleWaiting}</p></div> : null}
               {/* <p className='restaurant--price'>{restaurant.price}</p> */}
           </div>
       </div>

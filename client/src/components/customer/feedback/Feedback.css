@@ -82,3 +82,13 @@ font-size: 15px;
 padding: 15px;
 }
 
+.colored-text-box--queue{
+    width: 90%;
+    background-color: rgb(217, 217, 217);
+    align-self: center;
+    justify-self: center;
+}
+
+.green{
+    background-color: rgb(55, 134, 55);
+}
