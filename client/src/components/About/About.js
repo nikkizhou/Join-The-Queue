@@ -31,7 +31,7 @@ const About = () => {
             <p className='apollo-name'>Yakub</p>
             <div className="apollo-links">
               <a className='apollo__icon' href='https://github.com/JakubRaczkowski' target='blank'><FaGithubSquare /></a>
-              <a className='apollo__icon' href='https://www.linkedin.com/in/nikki-zhou-b456ba152/' target='blank'><FaLinkedin/></a>
+              <a className='apollo__icon' href='https://www.linkedin.com/in/jakub-raczkowski-a3787a246/' target='blank'><FaLinkedin/></a>
             </div>
 
             </div>
