@@ -5,7 +5,6 @@ import path from "path"
 import router from './routes/index.js';
 import { fileURLToPath } from 'url';
 
-
 const app = express()
 const PORT = process.env.PORT || 5001
 

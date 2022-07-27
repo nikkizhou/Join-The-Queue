@@ -1,5 +1,8 @@
 import React from 'react'
 import { FaLinkedin, FaGithubSquare } from "react-icons/fa";
+import chris from './chris.jpg';
+import shoaib from './shoaib.jpeg';
+import yakub from './yakub.jpeg';
 import './About.css';
 
 const About = () => {
@@ -24,7 +27,7 @@ const About = () => {
               </div>
             </div>
             <div className='about__apollo'>
-            <img className='apollo-img' src='https://media-exp2.licdn.com/dms/image/C4E03AQHAgJYPs8EYiA/profile-displayphoto-shrink_400_400/0/1656610356494?e=1663804800&v=beta&t=Fpc7iG2sx1ljfASKL8lFlcxgNQ7pEXYKGYewpDAR09k' alt="Yakub" />
+            <img className='apollo-img' src={yakub} alt="Jakub" />
             <p className='apollo-name'>Yakub</p>
             <div className="apollo-links">
               <a className='apollo__icon' href='https://github.com/JakubRaczkowski' target='blank'><FaGithubSquare /></a>
@@ -33,7 +36,7 @@ const About = () => {
 
             </div>
             <div className='about__apollo'>
-            <img className='apollo-img' src='https://media-exp2.licdn.com/dms/image/D4D35AQGeAbmzi87yOg/profile-framedphoto-shrink_400_400/0/1655733510970?e=1658844000&v=beta&t=OcLNZ4GfM4jAE18kcc-kVrJek-PCpVwgvX_Ehc5VgNc' alt="Chris" />
+            <img className='apollo-img' src={chris}  alt="Chris" />
             <p className='apollo-name'>Chris</p>
             <div className="apollo-links">
               <a className='apollo__icon' href='https://github.com/chrisobrien88' target='blank'><FaGithubSquare /></a>
@@ -43,7 +46,7 @@ const About = () => {
 
             </div>
             <div className='about__apollo'>
-            <img className='apollo-img' src='https://media-exp2.licdn.com/dms/image/C4D03AQGHm3Untqb13A/profile-displayphoto-shrink_400_400/0/1614243225811?e=1663804800&v=beta&t=T9Kp_Obd6iHcgpUkHuaGbTHWspPzW3l80TEFCNb9Y9s' alt="Shoaib" />
+            <img className='apollo-img' src={shoaib} alt="Shoaib" />
             <p className='apollo-name'>Shoaib</p>
 
             <div className="sapollo-links">
