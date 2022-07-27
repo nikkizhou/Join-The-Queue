@@ -146,6 +146,7 @@
   .links-container {
     height: 0;
     overflow: hidden;
+    
     transition: rgb(47, 21, 71);
   }
   .show-container {

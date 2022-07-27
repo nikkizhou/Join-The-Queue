@@ -1,7 +1,6 @@
 import React,{useEffect,useState} from 'react'
 import RestaurantList from './RestaurantList'
 import axios from 'axios'
-import SearchForm from './SearchForm'
  
 function Home() {
   const [restaurantList, setRestaurantList] = useState([])
@@ -18,9 +17,9 @@ function Home() {
     }
   }
 
-  const searchQuery = (search)=>{
-    setQuery(search)
-  }
+  // const searchQuery = (search)=>{
+  //   setQuery(search)
+  // }
 
   useEffect(() => {
     fetchData();

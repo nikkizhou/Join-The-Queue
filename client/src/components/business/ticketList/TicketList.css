@@ -27,7 +27,7 @@ h3{
 }
 
 .ticketlist--display{
-    display: flex;
+    display: block;
     align-items: center;
     justify-content: space-around;
     background-color: white;
@@ -35,10 +35,43 @@ h3{
     font-size: 20px;
     padding: 5px;
     width: 100%;
-    margin-top: -15px;
+    margin-top: 0;
     
 }
+.ticketList--Heading{
+    margin: 12px 0 10px;
+    padding: 0;
+    font-size: 26px;
+    display: block;
+}
+.stat-wrapper{
+    width: 100%;
+    display: flex;
+}
+.ticketList--stat{
+    width: 33%;
+    margin: 6px 0;
+    text-align: center;
+    text-shadow: 0px 1px 0px rgb(0 0 0 / 34%);
+}
+.ticketlist-waiting{
+    color:#eed00c;
+}
+.ticketlist-done{
+    color:#28cb59;
+}
+.ticketlist-cancelled{
+    color:#d90000;
+}
 
+.colored-text-box {
+    padding: 6px;
+    text-shadow: 0px 1px 2px #848484;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    margin-top: 22px;
+}
 
 .queue__header{
     text-align: center;
@@ -56,4 +89,9 @@ h3{
     .queue-info-card:hover {
       border: none;
     }
+}
+
+.clear{
+    clear:both;
+    display:block;
 }

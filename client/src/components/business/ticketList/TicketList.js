@@ -82,10 +82,12 @@ function TicketList() {
           {!tickets||tickets.length==0 ? <h3>No Queue Yet</h3> : 
            <>
            <div className="ticketlist--display">
-              <h3 > Your Queue: </h3>
-              <h5 > waiting :  {waiting}</h5>
-              <h5 > done : {done}</h5>
-              <h5 > cancelled : {cancelled}</h5>
+              <h3 className="ticketList--Heading"> Your Queue </h3>
+              <div className='stat-wrapper'>
+                <div className="ticketList--stat ticketlist-waiting"> <strong>Waiting :</strong>  {waiting}</div>
+                <div className="ticketList--stat ticketlist-done"> <strong> Done : </strong> {done}</div>
+                <div className="ticketList--stat ticketlist-cancelled"> <strong> Cancelled : </strong> {cancelled}</div>
+              </div>
           </div>
         <div className="list__container">
           {tickets && tickets.filter(ticket =>{

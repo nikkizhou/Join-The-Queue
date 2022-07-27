@@ -1,5 +1,6 @@
 .store-title{
-    font-size: 20px;
+    font-size: 20px; 
+    text-align: center;
 }
 .store__container{
     width: 100%;

@@ -7,9 +7,7 @@ import {useNavigate} from 'react-router-dom';
 
 function QueueForm() {
   const location = useLocation()
-  const { id } = location.state
-  const {businessLocation } = location.state
-  console.log(businessLocation,'biz location in queueform');
+  const { id,businessLocation } = location.state
 
 
   const navigate = useNavigate();

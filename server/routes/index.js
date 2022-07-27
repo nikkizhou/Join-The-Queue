@@ -129,7 +129,6 @@ const getGooglePhotoSrc = async (googlePhotoRef)=>{
 
 
 const fetchDataFromGoogle = async (req,res)=>{
-    //
     let {name} = req.params;
 
     const url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=formatted_address%2Cname%2Crating%2Copening_hours%2Cgeometry%2Cphotos&input=${name}&inputtype=textquery&key=AIzaSyCWJ0GsY0BynFt81-H82ok6RqIsZilr768`
@@ -411,8 +410,8 @@ const ticketObj = [
 
 
 
-   //await database.collection('tickets').remove({})
-    //await database.collection('tickets').insertMany(ticketObj)
+//    await database.collection('tickets').remove({})
+//await database.collection('tickets').insertMany(ticketObj)
 
     //await database.collection('restaurants').remove({})
     // await database.collection('restaurants').insertMany(resObj)

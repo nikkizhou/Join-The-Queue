@@ -8,7 +8,7 @@ import { getDistance,convertDistance } from 'geolib';
 
 function RestaurantItem({restaurantInfo,customerLocation}) {
 
- const { name,id,description,address,waitingTime} = restaurantInfo;
+ const { name,id,description,formatted_address,waitingTime} = restaurantInfo;
  const businessLocation = restaurantInfo.geometry?.location
 //  console.log(businessLocation,'gowno')
  const image = restaurantInfo.imgLink
@@ -17,7 +17,6 @@ function RestaurantItem({restaurantInfo,customerLocation}) {
  const [distance, setDistance] = useState(null)
 
 
- 
  const fetchTicket = async (id) => {
    try {
      const tickets = await axios.get(`http://localhost:5001/api/tickets/business/${id}`)
@@ -26,14 +25,6 @@ function RestaurantItem({restaurantInfo,customerLocation}) {
      console.error(e)
    }
  }
-
-//  const getDistance = ()=>{
-//    const distanceLoc = getDistance(businessLocation,customerLocation);
-//    console.log(distanceLoc,'distanceLoc');
-  
-//    setDistance(distanceLoc / 1000);
-//    console.log(distance,'distance');
-//  }
 
  useEffect(() => {
    fetchTicket(id);
@@ -45,16 +36,16 @@ function RestaurantItem({restaurantInfo,customerLocation}) {
   const minDisplay = peopleWaiting  ? waitingTime * peopleWaiting +' mins' : 'No Q!'
   
   return (
-    <Link to= {`/customer/store/${id}`} state={{name,id,image,description,businessLocation}}>
+    <Link to= {`/customer/store/${id}`} state={{name,id,image,description,businessLocation,formatted_address}}>
       <div className='card'>
           <div className='restaurant-card__top'>
             <img className='restaurant-card__image' src={image} alt= {`${name}`} />
             <h6 className='text grey-text waiting-time'> <p className='text no-padding'> <img src={clock} className='queue-icon' alt='logo' /> {minDisplay}</p></h6>
-            <h3 className='text restaurant-card__text--name'>{name}</h3>
+            <h3 className='text restaurant-card__text--name small-padding'>{name}</h3>
           </div>
           <div className='restaurant-card__footer'>
               <div className='column'>
-                <p className='text restaurant-card__text--address'>{address}</p>
+                <p className='text restaurant-card__text--address 10px'>{formatted_address}</p>
                 {distance && distance>0 ? <h6 className='text restaurant-card__text--distance'>{distance}km From You</h6>
                 : <h6 className='text restaurant-card__text--distance' >Calculating distance...</h6>}
                 <h6></h6>

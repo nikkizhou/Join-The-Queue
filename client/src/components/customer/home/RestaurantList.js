@@ -10,7 +10,7 @@ const RestaurantList = ({ restaurantList }) =>{
   const [customerLocation, setcustomerLocation] = useState(null)
 
 console.log(restaurantList,'dddd');
-//{lat: 59.3372327, lng: 18.0117258}
+
 
   const getcustomerLocation = () => {
     if (navigator.geolocation) {
@@ -30,7 +30,7 @@ console.log(restaurantList,'dddd');
 
 useEffect(()=> getcustomerLocation()
 ,[])
-//console.log(customerLocation,'customerLocation in RestaurantList');
+
 
 return (
   <div >
@@ -61,7 +61,6 @@ return (
             key = {restaurant.id}
             restaurantInfo = {restaurant}
             customerLocation = {customerLocation}
-            
         />
       ))}
     </ul>

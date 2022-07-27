@@ -1,7 +1,7 @@
 import React,{useEffect, useState} from 'react'
 import axios from 'axios';
 
-function BusinessItem({googleBizData,updateBusinessId,userInfo,businessInput}) {
+function BusinessItem({googleBizData,updateBusinessId,userInfo,businessInput,status}) {
   
   
 
@@ -18,8 +18,6 @@ function BusinessItem({googleBizData,updateBusinessId,userInfo,businessInput}) {
     alert('Your business is now registered in our system! ')
   };
 
-  
-
   return (
     <div className='list__container'>
           <div className='card'>
@@ -31,8 +29,11 @@ function BusinessItem({googleBizData,updateBusinessId,userInfo,businessInput}) {
         </div>
         <p className='text grey-text'>Rating: {googleBizData.rating}</p>
       </div>
-      <button className="button" onClick={addToDB}>This is my business</button>
-    </div>
+      <div className='restaurant-card__buttons'>
+        <button className="button" onClick={addToDB}>This is my business</button>
+        <button className='button'>Not my business</button>
+      </div>
+      </div>
     </div>
   )
 }
