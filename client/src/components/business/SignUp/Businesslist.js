@@ -10,7 +10,7 @@ function AllBusiness({updateBusinessId,businessId,userInfo,businessInput,test}) 
       
 
       const formattednName = name?.replace(' ','%20').replace(',','%2C');
-      const data = await axios.get(`http://localhost:5001/api/getGoogleData/${formattednName}`)
+      const data = await axios.get(`/api/getGoogleData/${formattednName}`)
         .catch(err=> console.log(err))
       
       setAllBusiness(data.data)

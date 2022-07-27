@@ -16,7 +16,7 @@ function Business() {
   const [businessId, setBusinessId] = useState(0);
 
   const getInitializedBizId = async ()=>{
-    const userFromDB = await axios.get(`http://localhost:5001/api/user/${user.email}`)
+    const userFromDB = await axios.get(`/api/user/${user.email}`)
     const bizId = userFromDB.data.businessId;
     setBusinessId(bizId)
   }

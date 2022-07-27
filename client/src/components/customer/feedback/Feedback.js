@@ -64,7 +64,7 @@ function Feedback() {
   };
 
   const getTickets = async ()=>{
-    const tickets = await axios.get(`http://localhost:5001/api/tickets/business/${businessId}`);
+    const tickets = await axios.get(`/api/tickets/business/${businessId}`);
     const currentTicketIndex = tickets.data.findIndex(ticket =>ticket.ticketId == ticketId)
     const ticketsInFrontOfMe = tickets.data.slice(0,currentTicketIndex)
     const peopleWaitingD = ticketsInFrontOfMe.filter(t=>t.status=='waiting').length
@@ -82,12 +82,12 @@ function Feedback() {
   }
   
   const getBusiness = async ()=>{
-    const business = await axios.get(`http://localhost:5001/api/business/${businessId}`)
+    const business = await axios.get(`/api/business/${businessId}`)
     setBusiness(business.data);
   }
   
   const cancelTicket = async ()=>{
-    await axios.put(`http://localhost:5001/api/tickets/${ticketId}`, {status:'cancelled'})
+    await axios.put(`/api/tickets/${ticketId}`, {status:'cancelled'})
     
     localStorage.setItem('cancelled', true)
     setCancelled(true)

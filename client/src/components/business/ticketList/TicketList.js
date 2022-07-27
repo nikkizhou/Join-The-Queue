@@ -27,7 +27,7 @@ function TicketList() {
   };
 
   const getTickets = async ()=>{
-    const tickets = await axios.get(`http://localhost:5001/api/tickets/business/${businessId}`);
+    const tickets = await axios.get(`/api/tickets/business/${businessId}`);
    
     setTickets(tickets.data)
 
@@ -57,17 +57,17 @@ function TicketList() {
     const status= tickets.find(ticket => ticket.ticketId == id).status
     
     if(status === 'waiting'){
-      await axios.put(`http://localhost:5001/api/tickets/${id}`,{status:'called'})}
+      await axios.put(`/api/tickets/${id}`,{status:'called'})}
     else if(status === 'called'){
-      await axios.put(`http://localhost:5001/api/tickets/${id}`,{status:'done'})}
+      await axios.put(`/api/tickets/${id}`,{status:'done'})}
   }
   const handleCancel =  async (event) => {
     const id = event.currentTarget.id
     const status= tickets.find(ticket => ticket.ticketId == id).status
     if(status === 'called'){
-     await axios.put(`http://localhost:5001/api/tickets/${id}`,{status:'cancelled'})}
+     await axios.put(`/api/tickets/${id}`,{status:'cancelled'})}
     // else if(status === 'cancelled'){
-    //   await axios.put(`http://localhost:5001/api/tickets/${id}`,{status:'called'})}
+    //   await axios.put(`/api/tickets/${id}`,{status:'called'})}
     
     }
 

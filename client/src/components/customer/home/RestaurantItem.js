@@ -19,7 +19,7 @@ function RestaurantItem({restaurantInfo,customerLocation}) {
 
  const fetchTicket = async (id) => {
    try {
-     const tickets = await axios.get(`http://localhost:5001/api/tickets/business/${id}`)
+     const tickets = await axios.get(`/api/tickets/business/${id}`)
      setTickets(tickets.data)
  } catch (e) {
      console.error(e)

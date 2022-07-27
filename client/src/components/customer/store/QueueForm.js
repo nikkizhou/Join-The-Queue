@@ -17,7 +17,7 @@ function QueueForm() {
 
   const createTicket =  async ()=>{
     
-    return  axios.post(`http://localhost:5001/api/tickets`, {
+    return  axios.post(`/api/tickets`, {
       ...cusInfo,
       resId: id,
       status:'waiting',

@@ -8,13 +8,13 @@ function BusinessItem({googleBizData,updateBusinessId,userInfo,businessInput,sta
   const addToDB = async () => {
     const {waitingTime, imgLink} = businessInput
     
-    const businessDB = await axios.post('http://localhost:5001/api/business', {...googleBizData,waitingTime,imgLink})
+    const businessDB = await axios.post('/api/business', {...googleBizData,waitingTime,imgLink})
       .catch(error=> console.log(error))
 
     const createdBusinessId = businessDB.data.id;
     updateBusinessId(createdBusinessId)
 
-    await axios.put(`http://localhost:5001/api/user/${userInfo.email}`,{businessId: createdBusinessId})
+    await axios.put(`/api/user/${userInfo.email}`,{businessId: createdBusinessId})
     alert('Your business is now registered in our system! ')
   };
 

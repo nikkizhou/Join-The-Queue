@@ -192,10 +192,15 @@ h1 {
     text-align: left;
 }
 
-.restaurant-card__text--address{
+.restaurant-card__text--address, .restaurant-card__text--distance{
     color: rgb(146, 146, 146);
     margin:0px;
-    padding: 5px;
+    padding: 1px;
+    text-align: left;
+}
+
+.restaurant-card__text--distance{
+    color: rgb(85, 38, 129);
 }
 
 .restaurant-card__description{

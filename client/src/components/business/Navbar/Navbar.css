@@ -175,6 +175,8 @@
     }
     .social-icons {
       display: flex;
+      width: 250px;
+      align-items: right;
     }
     .social-icons a {
       margin: 0 0.5rem;

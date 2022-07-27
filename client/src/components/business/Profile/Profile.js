@@ -10,7 +10,7 @@ const Profile = ({user, businessId}) => {
   const [biz, setBiz] = useState(null)
 
   const getBiz = async () => {
-    const data = await axios.get(`http://localhost:5001/api/business/${businessId}`)
+    const data = await axios.get(`/api/business/${businessId}`)
     // const bizData = businessId && await axios.get('/api/business/'+businessId)
     console.log(data.data);
      setBiz(data.data)
