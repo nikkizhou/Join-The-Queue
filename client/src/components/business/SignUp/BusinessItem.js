@@ -18,7 +18,7 @@ function BusinessItem({googleBizData,updateBusinessId,userInfo,businessInput,sta
     alert('Your business is now registered in our system! ')
   };
 
-  if(!googleBizData.name.contains('Undefined')) return (
+   return (
     <div className='list__container'>
           <div className='card'>
       <img className='restaurant-card__image' src={businessInput.imgLink} alt= {`photo for ${googleBizData.name}`} />

@@ -37,9 +37,15 @@
 }
 
 .about__upperSection {
-    width: 100%;
-    font-size: 22px;
-    /* background-color: blue; */
+       
+    margin: 10px 0;
+   
+}
+.about__upperSection p{
+    color:rgb(46, 46, 46);
+    font-size: 28px;
+    margin-bottom:4px;  
+
 }
 
 .about__lowerSection {
@@ -55,15 +61,15 @@
 }
 
 .about__apollo{
-    /* background-color: red; */
-    margin: 2em;
-    /* width: 10%; */
-    height: 100%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 10px;
     display: flex;
     align-items: center;
     justify-content: start;
     flex-direction: column;
-    /* height: 10%; */
+    width: 22%;
+    margin: 1%;
     
 }
 .apollo__icon {
@@ -72,13 +78,14 @@
 }
 
 .apollo-img {
-    height: 100%;
-    width: 25%;
+    height: 170px;
+    border-radius: 50%;
+    width: 65%;
 }
 
 .apollo-name {
     font-size: 20px;
-
+    color: rgb(85, 38, 129);
 }
 
 
@@ -105,7 +112,8 @@
 @media only screen and (min-width: 901px) {
 
     .about__apollo {
-        margin: 1em;
+       
+        margin: 1%;
        
     }
     
@@ -113,6 +121,31 @@
         font-size: 28px;   
     }
     
+    .apollo-name {
+        font-size: 28px;
+    
+    }
+}
+
+@media only screen and (max-width: 860px) {
+
+    .about__apollo {
+        width: 100%;
+        margin: 10px 0;
+       
+    }
+    
+    .about__upperSection {
+       
+        margin: 10px 0;
+       
+    }
+    .about__upperSection p{
+        color:rgb(50, 50, 50);
+        font-size: 28px;
+        margin-bottom:4px;  
+
+    }
     .apollo-name {
         font-size: 28px;
     

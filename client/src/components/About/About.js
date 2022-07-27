@@ -12,9 +12,9 @@ const About = () => {
         <h1 className='about-us__title'>JoinTheQ</h1>
         <div className='about__wrapper'>
           <div className='about__upperSection'>
-            <br />
+            <p>
             JoinTheQ was built in July 2022 as a graduation poject by a group of young developers in Stockholm, Sweden.<br />
-            <br />
+            </p>
              The idea behind the project was to provide a solution to the tedious experience of standing in a queue, all that wasted time! With JoinTheQ you can easily relax.
           </div>
           <div className='about__lowerSection'>

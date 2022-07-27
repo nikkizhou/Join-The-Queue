@@ -7,7 +7,7 @@ const SignIn = () => {
   return (
     <div className='login-page'>
     <h2 className='login-page__title'> Welcome to  Our Login Page</h2>
-   <button  className='login__btn' onClick={loginWithRedirect}>Log in</button>
+   <button  className='login__btn' onClick={loginWithRedirect}>Log In/Sign Up</button>
     </div>
   )
 };
