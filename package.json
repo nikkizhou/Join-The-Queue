@@ -1,1 +1,29 @@
-{}
+{
+    "name": "server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "type": "module",
+    "scripts": {
+      "build": "cd client && npm run build && cp -r build/. ../server/static/.",
+      "start": "cd server && npm start"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "axios": "^0.27.2",
+      "cors": "^2.8.5",
+      "express": "^4.18.1",
+      "firebase": "^9.9.0",
+      "firebase-admin": "^11.0.0",
+      "mongodb": "^4.8.0",
+      "nodemailer": "^6.7.7"
+    },
+    "devDependencies": {
+      "concurrently": "^7.2.2",
+      "dotenv": "^16.0.1",
+      "nodemon": "^2.0.19"
+    }
+  }
+  

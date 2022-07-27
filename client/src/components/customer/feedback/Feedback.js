@@ -101,7 +101,16 @@ function Feedback() {
     getData();
   },[])
   
-  const showNext = peopleWaiting>0 ? <h4 classname="text grey-text"><img src={queue} className='queue-icon' alt='logo' /><h2 className='text large-text'>{peopleWaiting}</h2><p className="text queue-grey-text">groups in front</p></h4>: null                  
+  const showNext = peopleWaiting>0 ? 
+        
+        <div classname="column">
+            <div className="row">
+              <img src={queue} className='queue-icon' alt='logo' />
+              <h2 className='text large-text'>{peopleWaiting} </h2>
+            </div>
+            <p className='text grey-text'>groups in front</p>
+
+        </div> : null                  
   const waitingTime = business?.waitingTime;
   console.log('business in SignUp!!', business);
 
@@ -128,9 +137,9 @@ return (
           <div className='list__container'>
               <h4 className="text queue-grey-text small-padding ">You're in the queue for<h4 className='text large-text'> {business.name}</h4></h4>
       <div className="container">
-      <div className='queue-info-container'>{showNext}</div>
-      <p className="text queue-grey-text"><img src={clock} className='queue-icon' alt='logo' />
-      <span className='text large-text'>{peopleWaiting*waitingTime}</span>mins</p>
+        <div className=''>{showNext}</div>
+        <p className="text queue-grey-text"><img src={clock} className='queue-icon' alt='logo' />
+        <span className='text large-text'>{peopleWaiting*waitingTime}</span>mins</p>
       </div>
     </div>) }
 

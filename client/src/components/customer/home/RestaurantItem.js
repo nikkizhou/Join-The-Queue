@@ -40,7 +40,9 @@ function RestaurantItem({restaurantInfo,customerLocation}) {
       <div className='card'>
           <div className='restaurant-card__top'>
             <img className='restaurant-card__image' src={image} alt= {`${name}`} />
-            <h6 className='text grey-text waiting-time'> <p className='text no-padding'> <img src={clock} className='queue-icon' alt='logo' /> {minDisplay}</p></h6>
+
+            <h6 className='text grey-text waiting-time row'> <img src={clock} className='queue-icon' alt='logo' /> <p className='text no-padding'>{minDisplay}</p></h6>
+            
             <h3 className='text restaurant-card__text--name small-padding'>{name}</h3>
           </div>
           <div className='restaurant-card__footer'>
