@@ -1,62 +1,30 @@
 import express from "express"
 import cors from "cors"
 import "dotenv/config"
+import path from "path"
 import router from './routes/index.js';
-import nodemailer from "nodemailer"
+import { fileURLToPath } from 'url';
+
 
 const app = express()
 const PORT = process.env.PORT || 5001
 
-app.use(cors());
+// app.use(cors());
 app.use(express.json({ extended: false }));
-
 app.use('/api', router);
-app.get('/', (req, res) => {
-    res.send('Hellow world')
-})
 
+
+// Serving the Front End
+if (process.env.NODE_ENV == 'production') {
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    app.use(express.static(path.join(__dirname, "../client/build")));
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+    });
+}
+
+// Serve the server
 app.listen(PORT, () => {
-    
+  console.log('Listening to ' + PORT)
 })
-
-/*-------------------------------
-AUTHENTICATION
----------------------------------*/
-// const contactEmail = nodemailer.createTransport({
-//     service: 'gmail',
-//     auth: {
-//       user: "apolloqueuemanager@gmail.com",
-//       pass: "Ap0ll0!!",
-//     },
-//   });
-  
-//   contactEmail.verify((error) => {
-//     if (error) {
-//       
-//     } else {
-//       
-//     }
-//   });
-
-// router.post("/contact", (req, res) => {
-//     const name = req.body.name;
-//     const email = req.body.email;
-//     const message = req.body.message; 
-//     const mail = {
-//       from: name,
-//       to: "apolloqueuemanager@gmail.com",
-//       subject: "Contact Form Submission",
-//       html: `<p>Name: ${name}</p>
-//             <p>Type: ${type}</p>
-//             <p>Address: ${address}</p>
-//              <p>Email: ${email}</p>
-//              <p>Message: ${message}</p>`,
-//     };
-//     contactEmail.sendMail(mail, (error) => {
-//       if (error) {
-//         res.json({ status: "ERROR" });
-//       } else {
-//         res.json({ status: "Message Sent" });
-//       }
-//     });
-//   });

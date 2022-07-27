@@ -10,7 +10,7 @@ const Signup = ({updateBusinessId,businessId,userInfo}) => {
     const handleSubmit = async (e) => {
       e.preventDefault();
       setStatus("Sending...");
-      const { name, address, waitingTime,description} = e.target.elements;
+      const { name, address, waitingTime,description,imgLink} = e.target.elements;
       let details = {
         name: name.value,
         description: description.value,
