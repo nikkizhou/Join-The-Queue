@@ -15,7 +15,7 @@ const About = () => {
             <br />
             JoinTheQ was built in July 2022 as a graduation poject by a group of young developers in Stockholm, Sweden.<br />
             <br />
-             Main idea behind the project was to provide a solution to tedious experience of standing in queue. With JoinTheQ you can easily relax
+             The idea behind the project was to provide a solution to the tedious experience of standing in a queue, all that wasted time! With JoinTheQ you can easily relax.
           </div>
           <div className='about__lowerSection'>
             <div className='about__apollo'>

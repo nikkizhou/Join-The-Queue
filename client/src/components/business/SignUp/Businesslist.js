@@ -3,7 +3,7 @@ import BusinessItem from './BusinessItem';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios'
 
-function AllBusiness({updateBusinessId,userInfo,businessInput}) {
+function AllBusiness({updateBusinessId,userInfo,businessInput,status}) {
     //const navigate = useNavigate();
     const [allBusiness, setAllBusiness] = useState([]) 
     const fetchDataFromGoogle = async (name)=>{
@@ -27,13 +27,12 @@ function AllBusiness({updateBusinessId,userInfo,businessInput}) {
 
     return (
         <>
-            
-            {allBusiness && allBusiness.map((googleBizData,index) => 
-              <BusinessItem key={index} 
-                            googleBizData={googleBizData} 
-                            updateBusinessId={updateBusinessId} 
-                            userInfo={userInfo} 
-                            businessInput={businessInput}/>
+          {status=='Submit' && allBusiness && allBusiness.map((googleBizData,index) => 
+            <BusinessItem key={index} 
+                          googleBizData={googleBizData} 
+                          updateBusinessId={updateBusinessId} 
+                          userInfo={userInfo} 
+                          businessInput={businessInput}/>
             )}
             
         </>
