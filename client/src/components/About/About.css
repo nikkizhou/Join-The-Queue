@@ -95,7 +95,11 @@
 .about__upperSection {
     font-size: 28px;    /* changed */
 }
-
+.apollo-img {
+    height: 140px;
+    border-radius: 50%;
+    width: 40%;
+}
 
 
 .apollo__icon {
@@ -112,10 +116,9 @@
 @media only screen and (min-width: 901px) {
 
     .about__apollo {
-       
-        margin: 1%;
-       
+       margin: 1%;   
     }
+
     
     .about__upperSection {
         font-size: 28px;   
@@ -130,9 +133,13 @@
 @media only screen and (max-width: 860px) {
 
     .about__apollo {
-        width: 100%;
-        margin: 10px 0;
-       
+        width: 70%;
+        margin: 20px 0;
+    }
+    .apollo-img {
+        height: 140px;
+        border-radius: 50%;
+        width: 40%;
     }
     
     .about__upperSection {
