@@ -92,3 +92,7 @@ padding: 15px;
 .green{
     background-color: rgb(55, 134, 55);
 }
+
+.ap {
+    cursor: auto;
+}

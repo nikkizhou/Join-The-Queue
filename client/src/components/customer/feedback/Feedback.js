@@ -108,7 +108,7 @@ function Feedback() {
               <img src={queue} className='queue-icon' alt='logo' />
               <h2 className='text large-text'>{peopleWaiting} </h2>
             </div>
-            <p className='text grey-text'>groups in front</p>
+            <p className='text grey-text no-margin no-padding'>groups in front</p>
 
         </div> : null                  
   const waitingTime = business?.waitingTime;
@@ -124,7 +124,7 @@ return (
     {ticket.status== 'cancelled' ? <h1 className='finish-msg'> Your ticket has been cancelled. <p  className='text grey-text'> (If this was not you the business has cancelled your ticket.)</p> </h1> : <>
 
   {!cancelled ?  
-    <div className="card">
+    <div className="card ap">
       <div className=''>
           <h4 className="text text-box">Welcome { ticket.name }</h4>
       </div>

@@ -146,6 +146,10 @@ h1 {
     padding: 0px
 }
 
+.no-margin{
+    margin: 0px
+}
+
 .small-margin{
     margin: 5px;
     width: 90%;

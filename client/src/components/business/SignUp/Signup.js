@@ -8,18 +8,18 @@ const Signup = ({updateBusinessId,businessId,userInfo}) => {
     //fetchDataFromGoogle("Fleminggatan 11, 112 26 Stockholm, Sverige")//
 
     const handleSubmit = async (e) => {
-      e.preventDefault();
-      setStatus("Sending...");
-      const { name, address, waitingTime,description,imgLink} = e.target.elements;
-      let details = {
-        name: name.value,
-        description: description.value,
-        address: address.value,
-        waitingTime: waitingTime.value,
-        imgLink: imgLink.value
-      };
-      setBusinessInput(details)
-      setStatus("Submit");
+    e.preventDefault();
+    setStatus("Sending...");
+    const { name, address, waitingTime,description,imgLink} = e.target.elements;
+    let details = {
+      name: name.value,
+      description: description.value,
+      address: address.value,
+      waitingTime: waitingTime.value,
+      imgLink: imgLink.value
+    };
+    setBusinessInput(details)
+    setStatus("Submit");
   };
     
   return (
@@ -47,7 +47,6 @@ const Signup = ({updateBusinessId,businessId,userInfo}) => {
               <input className="form-input wide-form-input" type="text" id="imgLink" required />
             </div>
             <div className="form-element text-center">
-            
               <button className='button' type='submit'>Submit</button>
             </div>
           </div>
@@ -60,7 +59,6 @@ const Signup = ({updateBusinessId,businessId,userInfo}) => {
         status = {status}
       />
       }
-     
     </>
   );
 };
