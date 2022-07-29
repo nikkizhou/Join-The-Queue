@@ -3,11 +3,10 @@ import './Signup.css';
 import BusinessList from './Businesslist.js';
 
 const Signup = ({updateBusinessId,businessId,userInfo}) => {
-    const [status, setStatus] = useState("Pending");
-    const [businessInput,setBusinessInput] = useState({});
-    //fetchDataFromGoogle("Fleminggatan 11, 112 26 Stockholm, Sverige")//
+  const [status, setStatus] = useState("Pending");
+  const [businessInput,setBusinessInput] = useState({});
 
-    const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus("Sending...");
     const { name, address, waitingTime,description,imgLink} = e.target.elements;

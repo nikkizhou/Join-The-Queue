@@ -12,5 +12,4 @@ const SignIn = () => {
   )
 };
 
-//3.
 export default SignIn;

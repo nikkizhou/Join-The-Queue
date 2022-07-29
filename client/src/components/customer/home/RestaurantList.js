@@ -4,13 +4,8 @@ import { useState } from 'react';
 import './customerHome.css'
 
 const RestaurantList = ({ restaurantList }) =>{
-  
-
   const [search, setSearch] = useState("")
   const [customerLocation, setcustomerLocation] = useState(null)
-
-console.log(restaurantList,'dddd');
-
 
   const getcustomerLocation = () => {
     if (navigator.geolocation) {
@@ -19,15 +14,10 @@ console.log(restaurantList,'dddd');
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
-        
-         setcustomerLocation(pos)
-        
-      });
-    } else {
-      
-    }
-  }
-
+      setcustomerLocation(pos)
+    });
+  } 
+}
 useEffect(()=> getcustomerLocation()
 ,[])
 
@@ -35,36 +25,26 @@ useEffect(()=> getcustomerLocation()
 return (
   <div >
     <form  className="form">
-        <input
-          className="form-input"
-          type="text"
-          value={search}
-          placeholder = "Search for a restaurant..."
-          onChange={event => setSearch(event.target.value)}
-        />
-       
-      </form>
-
+      <input
+        className="form-input"
+        type="text"
+        value={search}
+        placeholder = "Search for a restaurant..."
+        onChange={event => setSearch(event.target.value)}
+      />
+    </form>
     <ul className='list__container'>
       {restaurantList.filter(res =>{
-  
-       if(search ===""){
-       
-        return res
-       } else if(res.name?.toLowerCase().includes(search.toLowerCase())){
-        return res
-       }
-
+       if(search ==="" || res.name?.toLowerCase().includes(search.toLowerCase())){return res}
       }).map((restaurant, index) => (
-        
         <RestaurantItem
-            key = {restaurant.id}
-            restaurantInfo = {restaurant}
-            customerLocation = {customerLocation}
+          key = {restaurant.id}
+          restaurantInfo = {restaurant}
+          customerLocation = {customerLocation}
         />
       ))}
     </ul>
   </div>
-  )};
+)};
 
 export default RestaurantList;

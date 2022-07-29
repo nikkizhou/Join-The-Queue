@@ -10,23 +10,16 @@ function Home() {
 
   const fetchData = async () => {
     try {
-      const business = await axios.get(`/api/business`)
+      const business = await axios.get(`http://localhost:5001/api/business`)
       setRestaurantList(business.data)
   } catch (e) {
       console.error(e)
     }
   }
 
-  // const searchQuery = (search)=>{
-  //   setQuery(search)
-  // }
-
   useEffect(() => {
     fetchData();
   }, []);
-
-  // const resToRender = matchedRestaurantList ? matchedRestaurantList : restaurantList
-  // restaurantList={resToRender} 
 
   return (
     <>

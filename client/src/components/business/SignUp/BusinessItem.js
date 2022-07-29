@@ -1,16 +1,11 @@
 import React,{useEffect, useState} from 'react'
 import axios from 'axios';
 
-function BusinessItem({googleBizData,updateBusinessId,userInfo,businessInput,status}) {
-  
-  
+function BusinessItem({googleBizData,updateBusinessId,userInfo,businessInput}) {
 
   const addToDB = async () => {
     const {waitingTime, imgLink} = businessInput
-    
-    const businessDB = await axios.post('/api/business', {...googleBizData,waitingTime,imgLink})
-      .catch(error=> console.log(error))
-
+    const businessDB = await axios.post('/api/business', {...googleBizData,waitingTime,imgLink}).catch(error=> console.log(error))
     const createdBusinessId = businessDB.data.id;
     updateBusinessId(createdBusinessId)
 
@@ -20,7 +15,7 @@ function BusinessItem({googleBizData,updateBusinessId,userInfo,businessInput,sta
 
   if(googleBizData && !googleBizData.name.includes('Undefined')) return (
     <div className='list__container'>
-          <div className='card'>
+      <div className='card'>
       <img className='restaurant-card__image' src={businessInput.imgLink} alt= {`photo for ${googleBizData.name}`} />
       <div className='restaurant-card__footer'>
         <div className="column">
@@ -35,7 +30,6 @@ function BusinessItem({googleBizData,updateBusinessId,userInfo,businessInput,sta
       </div>
       </div>
     </div>
-  )
-}
+)}
 
 export default BusinessItem
