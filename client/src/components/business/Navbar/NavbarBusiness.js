@@ -3,7 +3,6 @@ import { FaBars } from 'react-icons/fa';
 import { FaFacebook, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { Link } from 'react-router-dom'
 import './Navbar.css';
-import logo from './logo.png';
 import { useAuth0 } from '@auth0/auth0-react';
 
 const NavbarBusiness = ({businessId}) => {

@@ -1,14 +1,9 @@
 import Customer from './components/customer/Customer';
 import Business from './components/business/Business';
 import {BrowserRouter,Routes,Route,Navigate} from "react-router-dom";
-import Home from './components/customer/home/Home';
-import NavbarCustomer from './components/customer/Navbar/NavbarCustomer'
+
 
 function App() {
-
-
-  
-  
   return (
     <>
     <div className="App">

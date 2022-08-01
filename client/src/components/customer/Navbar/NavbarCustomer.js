@@ -21,6 +21,10 @@ const Navbar = () => {
       linksContainerRef.current.style.height = '0px';
     }
   }, [showLinks]);
+
+
+
+  
   return (
     <nav className='nav-center'>
         <div className='nav-header'>
@@ -36,22 +40,15 @@ const Navbar = () => {
             <Link to="/business/SignIn">Business</Link>
             :
            <Link to="/business/profile">Business</Link>     
-      } 
+          } 
           <Link to="/home">Home</Link>
           <Link to="about">About</Link>
           </ul>
         </div>
         <ul className='social-icons'>
-          <li>
-            <Link to='www.facebook.com/'><FaFacebook /></Link>
-          </li>
-          <li>
-            <Link to='www.twitter.com/'><FaTwitter /></Link>
-          </li>
-          <li>
-            <Link to='www.linkedin.com/'><FaLinkedin /></Link>
-          </li>
-          
+          <li><Link to='www.facebook.com/'><FaFacebook /></Link></li>
+          <li><Link to='www.twitter.com/'><FaTwitter /></Link></li>
+          <li><Link to='www.linkedin.com/'><FaLinkedin /></Link></li>
         </ul>
     </nav>
   );
