@@ -4,17 +4,20 @@ import { FaFacebook, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { Link } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react';
 import './Navbar.css';
+import NavBizPart from './NavBizPart';
+import NavCusPart from './NavCusPart';
 
-const Navbar = () => {
-  const { isAuthenticated} = useAuth0();
+const Navbar = ({ customerPage, businessId}) => {
+  let { isAuthenticated} = useAuth0();
   const [showLinks, setShowLinks] = useState(false);
   const linksContainerRef = useRef(null);
   const linksRef = useRef(null);
   const toggleLinks = () => {
     setShowLinks(!showLinks);
   };
+
   useEffect(() => {
-    const linksHeight = linksRef.current.getBoundingClientRect().height;
+    let linksHeight = linksRef.current.getBoundingClientRect().height;
     if (showLinks) {
       linksContainerRef.current.style.height = `${linksHeight}px`;
     } else {
@@ -23,8 +26,6 @@ const Navbar = () => {
   }, [showLinks]);
 
 
-
-  
   return (
     <nav className='nav-center'>
         <div className='nav-header'>
@@ -36,13 +37,10 @@ const Navbar = () => {
         </div>
         <div className='links-container' ref={linksContainerRef}>
           <ul className='links' ref={linksRef}>
-          {!isAuthenticated ? 
-            <Link to="/business/SignIn">Business</Link>
-            :
-           <Link to="/business/profile">Business</Link>     
-          } 
-          <Link to="/home">Home</Link>
-          <Link to="about">About</Link>
+          {customerPage
+            ? NavCusPart(isAuthenticated = { isAuthenticated })
+            : NavBizPart(isAuthenticated = { isAuthenticated }, businessId = { businessId })
+          }
           </ul>
         </div>
         <ul className='social-icons'>

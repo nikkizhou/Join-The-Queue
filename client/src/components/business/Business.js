@@ -4,7 +4,7 @@ import Signup from './SignUp/Signup'
 import SignIn from './SignIn/SignIn'
 import About from '../About/About'
 import {Routes,Route} from "react-router-dom";
-import NavbarBusiness from './Navbar/NavbarBusiness'
+import Navbar from '../Navbar/Navbar.js'
 import { useAuth0 } from '@auth0/auth0-react';
 import Logout from './Logout/Logout';
 import Profile from './Profile/Profile.js'
@@ -33,12 +33,12 @@ function Business() {
 
   return (
     <>
-    <NavbarBusiness businessId={businessId}/>
+    <Navbar businessId={businessId} customerPage={false}/>
     <Routes>
     {!isAuthenticated ? (
       <React.Fragment>
-          Please Login.
-          <Route path='/signIn' element={<SignIn businessId={businessId}/>}/>
+        Please Login.
+        <Route path='/signIn' element={<SignIn businessId={businessId}/>}/>
       </React.Fragment>
       ) :
       <React.Fragment>
