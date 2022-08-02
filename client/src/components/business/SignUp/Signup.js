@@ -2,7 +2,7 @@ import {useState} from 'react'
 import './Signup.css';
 import BusinessList from './Businesslist.js';
 
-const Signup = ({updateBusinessId,businessId,userInfo}) => {
+const Signup = ({userInfo}) => {
   const [status, setStatus] = useState("Pending");
   const [businessInput,setBusinessInput] = useState({});
 
@@ -51,8 +51,7 @@ const Signup = ({updateBusinessId,businessId,userInfo}) => {
           </div>
       </form>
       {status=='Submit'&& <h3>Results for {businessInput.name} from Google Map:</h3>}
-      {businessInput && <BusinessList businessId={businessId}
-        updateBusinessId={updateBusinessId}
+      {businessInput && <BusinessList
         userInfo={userInfo}
         businessInput={businessInput}
         status = {status}
@@ -63,5 +62,3 @@ const Signup = ({updateBusinessId,businessId,userInfo}) => {
 };
 
 export default Signup
-
-

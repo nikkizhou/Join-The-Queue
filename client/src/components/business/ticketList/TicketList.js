@@ -9,14 +9,12 @@ function TicketList() {
   let { businessId } = useParams();
   const [tickets, setTickets] = useState(null)
   const [calledTicketId, setcalledTicketId] = useState(null)
-  const [ticketId, setTicketId] = useState(null)
   
-
-
   const [waiting, setWaitingTickets] = useState(0)
   const [done, setDoneTickets] = useState(0)
   const [cancelled, setCancelledTickets] = useState(0)
   const [loading, isLoading] = useState(true)
+  
   const override =  {
     display: "block",
     position: "absolute",

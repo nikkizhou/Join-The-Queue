@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import BusinessItem from './BusinessItem';
 import axios from 'axios'
 
-function AllBusiness({updateBusinessId,userInfo,businessInput,status}) {
+function BuisnessList({userInfo,businessInput,status}) {
   const [allBusiness, setAllBusiness] = useState([]) 
 
   const fetchDataFromGoogle = async (name)=>{
@@ -21,7 +21,6 @@ function AllBusiness({updateBusinessId,userInfo,businessInput,status}) {
       {status=='Submit' && allBusiness && allBusiness.map((googleBizData,index) => 
         <BusinessItem key={index} 
                       googleBizData={googleBizData} 
-                      updateBusinessId={updateBusinessId} 
                       userInfo={userInfo} 
                       businessInput={businessInput}/>
         )}
@@ -29,4 +28,4 @@ function AllBusiness({updateBusinessId,userInfo,businessInput,status}) {
   )
 }
 
-export default AllBusiness
+export default BuisnessList

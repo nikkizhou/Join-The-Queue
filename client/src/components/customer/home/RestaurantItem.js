@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import queue from './queue.png';
 import clock from './stopwatch.png';
-import { getDistance,convertDistance } from 'geolib';
+import { getDistance } from 'geolib';
 
 function RestaurantItem({restaurantInfo,customerLocation}) {
  const { name,id,description,formatted_address,waitingTime} = restaurantInfo;

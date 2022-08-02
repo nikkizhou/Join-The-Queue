@@ -6,24 +6,29 @@ import Feedback from './feedback/Feedback';
 import Navbar from '../Navbar/Navbar.js'
 import About from '../About/About'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchData, ticketsAreLoading } from '../../slices/ticketsSlice'
+import { fetchTickets, getTicketById, getTicketsForOneBiz, updateCalledTicketId } from '../../slices/ticketsSlice'
 
 function Customer() {
   const dispatch = useDispatch();
-  const { areLoading, hasError, tickets } = useSelector((store) => store.ticketsReducer);
+  const { areLoading, allTickets, calledTicketId } = useSelector((store) => store.ticketsReducer);
+  const ticketsForOneBiz = useSelector(store => getTicketsForOneBiz(store, 1))
+  const ticket = useSelector(store => getTicketById(store, 1))
+  console.log('ticket in Customer:',ticket);
 
   useEffect(() => {
-    const fetchTickets = async () => {
-      dispatch(fetchData());
+    const fetchTicketsWrapper = async () => {
+      dispatch(fetchTickets());
     } 
 
-    fetchTickets();
-    dispatch(ticketsAreLoading('false'))
-
+    fetchTicketsWrapper();
+    dispatch(updateCalledTicketId(66))
   }, []);
+
+  console.log(ticket,'ticket with id 1');
 
   return (
     <>
+      <div>test:{allTickets.length} {ticketsForOneBiz.length} calledTicketId:{calledTicketId}</div>
     <Navbar customerPage={true} />
     <Routes>
       <Route path="home" element={<Home />} />

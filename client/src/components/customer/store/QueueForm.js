@@ -1,22 +1,18 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useLocation } from 'react-router'
-import {v4 as uuidv4} from 'uuid';
 import {useNavigate} from 'react-router-dom';
 
 
 function QueueForm() {
   const location = useLocation()
   const { id,businessLocation } = location.state
-
-
   const navigate = useNavigate();
   const [cusInfo, setCusInfo] = useState({name:'', number:''})
   const setNameValue = (e)=> setCusInfo({...cusInfo, name:e.target.value})
   const setNrValue = (e)=> setCusInfo({...cusInfo, number:e.target.value})
 
   const createTicket =  async ()=>{
-    
     return  axios.post(`/api/tickets`, {
       ...cusInfo,
       resId: id,
@@ -28,10 +24,8 @@ function QueueForm() {
   const handleSubmit = async (e)=>{
     e.preventDefault();
     const data = await createTicket();
-    //
     const ticketId = data.data.ticketId
     localStorage.removeItem('cancelled')
-
     navigate(`/customer/feedback/?ticketId=${ticketId}&businessId=${id}`,{state:{businessLocation}});
   }
 
@@ -50,4 +44,3 @@ function QueueForm() {
 }
 
 export default QueueForm
-

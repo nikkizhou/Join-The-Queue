@@ -1,19 +1,24 @@
-import React,{useEffect, useState} from 'react'
 import axios from 'axios';
+import { useDispatch } from 'react-redux'
+import { updateBusinessId } from '../../../slices/businessSlice'
 
-function BusinessItem({googleBizData,updateBusinessId,userInfo,businessInput}) {
+function BusinessItem({ googleBizData, userInfo, businessInput }) {
+  const dispatch = useDispatch();
+  //const {businessId } = useSelector((store) => store.businessReducer);
 
   const addToDB = async () => {
     const {waitingTime, imgLink} = businessInput
-    const businessDB = await axios.post('/api/business', {...googleBizData,waitingTime,imgLink}).catch(error=> console.log(error))
+    const businessDB = await axios.post('/api/business', { ...googleBizData, waitingTime, imgLink })
+      .catch(error => console.log(error))
     const createdBusinessId = businessDB.data.id;
-    updateBusinessId(createdBusinessId)
 
+    dispatch(updateBusinessId(createdBusinessId));
     await axios.put(`/api/user/${userInfo.email}`,{businessId: createdBusinessId})
     alert('Your business is now registered in our system! ')
   };
 
-  if(googleBizData && !googleBizData.name.includes('Undefined')) return (
+  if (googleBizData && !googleBizData.name.includes('Undefined')) return (
+    
     <div className='list__container'>
       <div className='card'>
       <img className='restaurant-card__image' src={businessInput.imgLink} alt= {`photo for ${googleBizData.name}`} />
