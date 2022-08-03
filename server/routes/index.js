@@ -158,7 +158,7 @@ const setToWaiting = async (req, res) => {
    // await axios.put()
    const {database}  = await connectToDatabase();
    res.status(200).send(`All status set to waiting!`)
-   return database.collection('tickets').updateMany({status:{$in: ['called','arrived','cancelled']}},{$set: {status:'waiting'}})
+   return database.collection('tickets').updateMany({status:{$in: ['called','arrived','cancelled','done']}},{$set: {status:'waiting'}})
 }  
 
 const updateUserInfo = async (req, res) => {

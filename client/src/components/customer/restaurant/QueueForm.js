@@ -1,32 +1,28 @@
 import React, { useState } from 'react'
-import axios from 'axios'
-import { useLocation } from 'react-router'
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import {createTicket} from '../../../slices/ticketsSlice'
 
-
-function QueueForm() {
-  const location = useLocation()
-  const { id,businessLocation } = location.state
+function QueueForm({ restaurantInfo }) {
+  const dispatch = useDispatch()
   const navigate = useNavigate();
+  if (restaurantInfo) var { id, geometry: { location } } =  restaurantInfo 
   const [cusInfo, setCusInfo] = useState({name:'', number:''})
   const setNameValue = (e)=> setCusInfo({...cusInfo, name:e.target.value})
   const setNrValue = (e)=> setCusInfo({...cusInfo, number:e.target.value})
 
-  const createTicket =  async ()=>{
-    return  axios.post(`/api/tickets`, {
-      ...cusInfo,
-      resId: id,
-      status:'waiting',
-      customerId: cusInfo.number,
-    }).catch(error=> console.log(error))
+  const createTicketId = async () => {
+    const createTicketWrapper = async (detail) => dispatch(createTicket(detail));
+    const detail = { ...cusInfo, resId: id, status: 'waiting', customerId: cusInfo.number, }
+    const newTicket = await createTicketWrapper(detail);
+    return newTicket.payload.ticketId
   }
-
+    
   const handleSubmit = async (e)=>{
     e.preventDefault();
-    const data = await createTicket();
-    const ticketId = data.data.ticketId
     localStorage.removeItem('cancelled')
-    navigate(`/customer/feedback/?ticketId=${ticketId}&businessId=${id}`,{state:{businessLocation}});
+    const ticketId = await createTicketId();
+    navigate(`/customer/feedback/?ticketId=${ticketId}&businessId=${id}`, { state: { location }});
   }
 
   return (

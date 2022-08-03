@@ -2,29 +2,30 @@ import React, { useState, useEffect } from "react";
 import BusinessItem from './BusinessItem';
 import axios from 'axios'
 
-function BuisnessList({userInfo,businessInput,status}) {
-  const [allBusiness, setAllBusiness] = useState([]) 
+function BuisnessList({ businessInput }) {
+  const [matchedBusiness, setMatchedBusiness] = useState(null)
 
-  const fetchDataFromGoogle = async (name)=>{
-    const formattednName = name?.replace(' ','%20').replace(',','%2C');
-    const data = await axios.get(`/api/getGoogleData/${formattednName}`).catch(err=> console.log(err))
-    setAllBusiness(data.data)
+  const fetchDataFromGoogle = async (name) => {
+    const formattednName = encodeURIComponent(name);
+    if (name) {
+      const data = await axios.get(`/api/getGoogleData/${formattednName}`)
+        .catch(err => console.log(err))
+      setMatchedBusiness(data.data)
+    }
   }
 
-  useEffect (() => {
-      const name = businessInput.name
-      fetchDataFromGoogle(name);
-  },[businessInput])
+  useEffect(() => { fetchDataFromGoogle(businessInput.name) }, [businessInput.name])
 
+  if (matchedBusiness?.length === 0) return <h3>No Matched result from Google Map. Please contact Customer Service.</h3>
+  
   return (
     <>
-      {status=='Submit' && allBusiness && allBusiness.map((googleBizData,index) => 
-        <BusinessItem key={index} 
-                      googleBizData={googleBizData} 
-                      userInfo={userInfo} 
-                      businessInput={businessInput}/>
-        )}
-    </>
+    {matchedBusiness && <h4>Results for <span className="highlight">{businessInput.name}</span> from Google Map:</h4>}
+    {matchedBusiness?.map((googleBizData, index) =>
+      <BusinessItem key={index}
+        googleBizData={googleBizData}
+        businessInput={businessInput} />)
+    }</>
   )
 }
 

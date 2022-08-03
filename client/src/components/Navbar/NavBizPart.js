@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function NavBizPart({ isAuthenticated, businessId}) {
+function NavBizPart({ isAuthenticated, businessId }) {
+
   return (
     <>
       <Link to="/customer/home">customer</Link>

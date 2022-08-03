@@ -1,30 +1,21 @@
 import React,{useEffect,useState} from 'react'
 import RestaurantList from './RestaurantList'
-import axios from 'axios'
+
  
 function Home() {
-  const [restaurantList, setRestaurantList] = useState([])
-  // const [matchedRestaurantList, setMatchedRestaurantList] = useState(null)
-  const [query,setQuery] = useState(null)
-  
-
-  const fetchData = async () => {
-    try {
-      const business = await axios.get(`http://localhost:5001/api/business`)
-      setRestaurantList(business.data)
-  } catch (e) {
-      console.error(e)
-    }
-  }
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
+  const [search, setSearch] = useState("")
   return (
     <>
-      {/* <SearchForm searchQuery={searchQuery} />  */}
-      { restaurantList ? <RestaurantList query={query} restaurantList={restaurantList} /> : '' }
+      <form className="form">
+        <input
+          className="form-input"
+          type="text"
+          value={search}
+          placeholder="Search for a restaurant..."
+          onChange={event => setSearch(event.target.value)}
+        />
+      </form>
+      {<RestaurantList search={search} />}
     </>
   )
 }

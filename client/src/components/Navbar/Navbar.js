@@ -7,29 +7,21 @@ import './Navbar.css';
 import NavBizPart from './NavBizPart';
 import NavCusPart from './NavCusPart';
 
-const Navbar = ({ customerPage, businessId}) => {
+const Navbar = ({ customerPage, businessId }) => {
   let { isAuthenticated} = useAuth0();
   const [showLinks, setShowLinks] = useState(false);
   const linksContainerRef = useRef(null);
   const linksRef = useRef(null);
-  const toggleLinks = () => {
-    setShowLinks(!showLinks);
-  };
+  const toggleLinks = () => setShowLinks(!showLinks);
 
   useEffect(() => {
     let linksHeight = linksRef.current.getBoundingClientRect().height;
-    if (showLinks) {
-      linksContainerRef.current.style.height = `${linksHeight}px`;
-    } else {
-      linksContainerRef.current.style.height = '0px';
-    }
+    linksContainerRef.current.style.height = showLinks ? `${linksHeight}px` : '0px'
   }, [showLinks]);
-
 
   return (
     <nav className='nav-center'>
         <div className='nav-header'>
-          {/* <img src={logo} className='logo' alt='logo' /> */}
           <h2 className='logo'>JoinTheQ</h2>
           <button className='nav-toggle' onClick={toggleLinks}>
             <FaBars />
@@ -38,8 +30,8 @@ const Navbar = ({ customerPage, businessId}) => {
         <div className='links-container' ref={linksContainerRef}>
           <ul className='links' ref={linksRef}>
           {customerPage
-            ? NavCusPart(isAuthenticated = { isAuthenticated })
-            : NavBizPart(isAuthenticated = { isAuthenticated }, businessId = { businessId })
+          ? <NavCusPart isAuthenticated = {isAuthenticated}/>
+          : <NavBizPart businessId = {businessId} isAuthenticated={isAuthenticated} />
           }
           </ul>
         </div>
