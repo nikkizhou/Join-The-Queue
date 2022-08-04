@@ -24,6 +24,7 @@
     "react-scripts": "5.0.1",
     "react-spinners": "^0.13.3",
     "redux": "^4.2.0",
+    "socket.io-client": "^4.5.1",
     "uuid": "^8.3.2",
     "web-vitals": "^2.1.4"
   },
@@ -42,7 +43,11 @@
       "react-app/jest"
     ]
   },
-  "proxy": "http://localhost:5001/",
+  "proxy": {
+    "/auth/google": {
+      "target": "localhost:5001"
+    }
+  },
   "browserslist": {
     "production": [
       ">0.2%",

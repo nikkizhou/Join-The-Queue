@@ -1,7 +1,6 @@
 
 import express from "express"
 import { connectToDatabase } from "../mongodb.js";
-// import runChangeStream from '../changeStream.js'
 import axios from 'axios'
 
 var router = express.Router();
@@ -127,10 +126,8 @@ const getGooglePhotoSrc = async (googlePhotoRef)=>{
     return imgSrc
 }
 
-
 const fetchDataFromGoogle = async (req,res)=>{
     let {name} = req.params;
-
     const url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=formatted_address%2Cname%2Crating%2Copening_hours%2Cgeometry%2Cphotos&input=${name}&inputtype=textquery&key=${process.env.GOOGLEMAP_API}`
     const data = await axios.get(url)
     const candidates = data.data.candidates;

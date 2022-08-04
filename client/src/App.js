@@ -6,20 +6,23 @@ import { fetchBusiness} from './slices/businessSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import React, { useEffect } from 'react'
 import NotFound from './components/NotFound'
-
+import {io} from 'socket.io-client'
 
 function App() {
   const dispatch = useDispatch()
   const { ticketsUpdateFlag,tickets } = useSelector((store) => store.ticketsReducer);
-  
+  const socket = io("ws://localhost:5001");
+
   useEffect(() => {
     const fetchTicketsWrapper = async () => dispatch(fetchTickets());
     const fetchBusinessWrapper = async () => dispatch(fetchBusiness());
-    setInterval(() => fetchTicketsWrapper(), 2000);
-    // socket.on('ticketsUpdatedInDb', data => {
-    //   fetchTicketsWrapper()
-    //   console.log(data,'data');
-    // });
+    //setInterval(() => fetchTicketsWrapper(), 2000);
+    
+    socket.on('ticketsUpdatedInDb', data => {
+      fetchTicketsWrapper()
+      console.log(data,'data in socket in App');
+    });
+
     fetchTicketsWrapper()
     fetchBusinessWrapper();
     console.log('fetchTickets and fetchBusiness in App is working');
