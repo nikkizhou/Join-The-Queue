@@ -2,7 +2,7 @@ import React,{useEffect,useState} from 'react'
 import RestaurantList from './RestaurantList'
 
  
-function Home() {
+function Home({ cusLocation }) {
   const [search, setSearch] = useState("")
   return (
     <>
@@ -15,7 +15,7 @@ function Home() {
           onChange={event => setSearch(event.target.value)}
         />
       </form>
-      {<RestaurantList search={search} />}
+      {<RestaurantList search={search} cusLocation={cusLocation} />}
     </>
   )
 }

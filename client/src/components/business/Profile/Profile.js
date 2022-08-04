@@ -11,7 +11,7 @@ const Profile = ({user, businessId}) => {
   const biz = useSelector(store => getBusinessById(store, businessId))
   //console.log(biz, 'biz in Profile');
 
-  if (isLoading) { return <div>Loading ...</div>;}
+  if (isLoading) { return <div>Loading ...</div>}
   return (
     isAuthenticated &&  (
       <div className='profile-page'>

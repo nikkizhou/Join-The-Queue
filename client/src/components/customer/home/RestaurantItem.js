@@ -6,11 +6,11 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { getTicketsForOneBiz } from '../../../slices/ticketsSlice'
 
-function RestaurantItem({restaurantInfo,customerLocation}) {
+function RestaurantItem({ restaurantInfo, cusLocation }) {
   const { name, id, formatted_address, waitingTime, imgLink,geometry:{location}} = restaurantInfo;
   const tickets = useSelector(store => getTicketsForOneBiz(store, id))
   
-  const distanceLoc = location && customerLocation && getDistance(location, customerLocation)
+  const distanceLoc = location && cusLocation && getDistance(location, cusLocation)
   const distance =  (distanceLoc / 1000).toFixed(1)
  
   const peopleWaiting = tickets?.filter(t=>t.status == 'waiting').length;

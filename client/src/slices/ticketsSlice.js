@@ -4,7 +4,6 @@ const initialState = {
     areLoading: true,
     error: null,
     allTickets: [],
-    calledTicketId: 0,
     ticketsUpdateFlag: true
 };
 
@@ -44,7 +43,6 @@ export const ticketsSlice = createSlice({
     initialState,
     reducers: {
         ticketsAreLoading: (state, action) => { state.areLoading = action.payload },
-        updateCalledTicketId: (state, action) => { state.calledTicketId = action.payload },
         updateTickets: (state) => { state.ticketsUpdateFlag = !state.ticketsUpdateFlag }
     },
     extraReducers: (builder) => {
@@ -55,14 +53,12 @@ export const ticketsSlice = createSlice({
         builder.addCase(fetchTickets.rejected, (state,action) => {
             state.error = action.error;
         });
-
         builder.addCase(changeStatus.fulfilled, (state) => {
             state.ticketsUpdateFlag = !state.ticketsUpdateFlag
         });
         builder.addCase(changeStatus.rejected, (state, action) => {
             state.error = action.error;
         });
-
         builder.addCase(createTicket.fulfilled, (state, action) => {
             state.ticketsUpdateFlag = !state.ticketsUpdateFlag
             state.allTickets.push(action.payload) 
@@ -70,6 +66,7 @@ export const ticketsSlice = createSlice({
         builder.addCase(createTicket.rejected, (state, action) => {
             state.error = action.error;
         });
+
     },
 });
 
@@ -83,5 +80,5 @@ export const getTicketById = (store, id) =>{
     store.ticketsReducer.allTickets.find(t => t.ticketId == id);
 }
     
-export const { ticketsAreLoading, updateCalledTicketId, updateTickets } = ticketsSlice.actions;
+export const { ticketsAreLoading, updateTickets } = ticketsSlice.actions;
 export default ticketsSlice.reducer;

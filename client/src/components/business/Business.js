@@ -7,7 +7,7 @@ import Profile from './Profile/Profile.js'
 import Navbar from '../Navbar/Navbar.js'
 import TicketList from './ticketList/TicketList'
 import React, { useEffect } from 'react'
-import {Routes,Route} from "react-router-dom";
+import { Routes, Route,Navigate } from "react-router-dom";
 import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchBusiness, updateBusinessId } from '../../slices/businessSlice'
@@ -36,7 +36,7 @@ function Business() {
       {!isAuthenticated
       ? <React.Fragment>
         Please Login.
-        <Route path='/signIn' element={<SignIn/>}/>
+        <Route path='/signIn' element={<SignIn />} />
       </React.Fragment>
       :<React.Fragment>
         <Route path='/logout' element={<Logout/>}/>
@@ -44,7 +44,7 @@ function Business() {
         <Route path='/profile' element={<Profile user={user} businessId={businessId}/>}/>
         <Route path='/signUp' element={<Signup />}/>
       </React.Fragment>}
-      <Route path='/about' element={<About/>}/>
+      <Route path='/about' element={<About />} />
     </Routes>
   </>
   )

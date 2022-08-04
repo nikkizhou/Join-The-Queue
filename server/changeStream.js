@@ -12,7 +12,7 @@ export default async function runChangeStream(database,mongoClient) {
     changeStream = ticketsCollection.watch();
     // set up a listener when change events are emitted
     changeStream.on("change", next => {
-      
+      socket.compress(true).emit('ticketsUpdatedInDb', changes)
     });
 
     await simulateAsyncPause();
@@ -23,10 +23,7 @@ export default async function runChangeStream(database,mongoClient) {
     });
     
     await simulateAsyncPause();
-
     await changeStream.close();
-    
-    
   } 
   finally {
     await mongoClient.close();

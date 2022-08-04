@@ -1,6 +1,5 @@
 import './Feedback.css'
 import React, { useEffect,useState } from 'react'
-import axios from 'axios'
 import { useSearchParams, useNavigate } from "react-router-dom";
 import ClockLoader from "react-spinners/ClockLoader";
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,72 +8,53 @@ import clock from '../home/stopwatch.png';
 import { getBusinessById } from '../../../slices/businessSlice'
 import { changeStatus, getTicketsForOneBiz } from '../../../slices/ticketsSlice'
 
-function Feedback() {
+
+function Feedback({ cusLocation }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   let [searchParams, setSearchParams] = useSearchParams();
   const ticketId = searchParams.get('ticketId');
   const resId =searchParams.get('businessId');
-
-  const { areLoading } = useSelector(store => store.ticketsReducer);
+  
+  const { areLoading, ticketsUpdateFlag } = useSelector(store => store.ticketsReducer);
   const tickets = useSelector(store => getTicketsForOneBiz(store, resId))
-  const restaurantInfo = useSelector(store => getBusinessById(store, resId))
   const ticket = tickets.find(t => t.ticketId == ticketId);
-  const currentTicketIndex = tickets.findIndex(ticket => ticket.ticketId == ticketId)
-  const ticketsInFrontOfMe = tickets.slice(0, currentTicketIndex)
-  const peopleWaiting = ticketsInFrontOfMe.filter(t => t.status == 'waiting').length
-  // console.log(ticket,'ticket in Feedback');
+  const restaurantInfo = useSelector(store => getBusinessById(store, resId))
+  const [peopleWaiting, setPeopleWaiting]=useState(0);
+
+  useEffect(() => {
+    console.log(tickets, 'tickets in Feedback useEffect');
+    const currentTicketIndex = tickets.findIndex(ticket => ticket.ticketId == ticketId)
+    const ticketsInFrontOfMe = tickets.slice(0, currentTicketIndex)
+    const peopleWaiting = ticketsInFrontOfMe.filter(t => t.status == 'waiting').length
+    setPeopleWaiting(peopleWaiting)
+  }, [JSON.stringify(tickets)])
+  
+ 
+  console.log(ticketsUpdateFlag,'ticketsUpdateFlag in Feedback');
+  console.log(tickets,'tickets in Feedback');
   // console.log(currentTicketIndex, 'currentTicketIndex in Feedback');
   // console.log(ticketsInFrontOfMe, 'ticketsInFrontOfMe');
   // console.log(peopleWaiting,'peopleWaiting');
- //
-  const [customerCoordinates, setCustomerCoordinates] = useState(null)
-  if (restaurantInfo) var { name, waitingTime, geometry: { location } } = restaurantInfo
-  const bizCoordinates = location && (location.lat + ',' + location.lng);
-
   const cancelTicket = async () => { dispatch(changeStatus({ id: ticketId, status: 'cancelled' })) }
-
-  const getCustomerCoordinates = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setCustomerCoordinates(position.coords.latitude + ',' + position.coords.longitude);
-        }, (error) => {
-          console.log(error);
-        }, { enableHighAccuracy: true, timeout: 5000, maximumAge: 10000 }
-      );
-    } else {
-      console.log("Geolocation is not supported by this browser.");
-    }
-  }
-
-    
-  useEffect (()=>{
-    getCustomerCoordinates();
-  }, [])
+ 
+  if (restaurantInfo)    var { name, waitingTime, geometry: { location } } = restaurantInfo
+  const bizCoordinates = location && (location.lat + ',' + location.lng);
+  const customerCoordinates = cusLocation && (cusLocation.lat + ',' + cusLocation.lng);
   
-
-  const showNext = peopleWaiting>0 ? 
+  const displayPeopleWaiting = peopleWaiting > 0 &&
     <div className="column">
       <div className="row">
         <img src={queue} className='queue-icon' alt='logo' />
         <h2 className='text large-text'>{peopleWaiting} </h2>
       </div>
       <p className='text grey-text no-margin no-padding'>groups in front</p>
-    </div> : null   
+    </div>    
 
-  
-  const override = {
-    display: "block",
-    position: "absolute",
-    top: "50%",
-    left: "45%",
-    margin: "0 auto",
-    borderColor: "red",
-  };
+  const override = {display: "block",position: "absolute",top: "50%", left: "45%",margin: "0 auto",borderColor: "red",};
 
-if (areLoading) return (<ClockLoader color={'#4A90E2'} loading={areLoading} size={100} cssOverride={override} /> )
-return (
+  if (areLoading) return (<ClockLoader color={'#4A90E2'} loading={areLoading} size={100} cssOverride={override} /> )
+  return (
   <div className='list__container'>
     {ticket.status == 'done' && <h1 className='finish-msg'> Seems like everything went smoothly! See you next time {ticket.name} </h1>}
     {ticket.status == 'cancelled' &&
@@ -96,7 +76,7 @@ return (
           <div className='list__container'>
             <h4 className="text queue-grey-text small-padding ">You're in the queue for<span className='text large-text'> {name}</span></h4>
             <div className="container">
-              <div className=''>{showNext}</div>
+              {displayPeopleWaiting}
               <p className="text queue-grey-text"><img src={clock} className='queue-icon' alt='logo' />
               <span className='text large-text'>{peopleWaiting &&waitingTime&&peopleWaiting * waitingTime}</span>mins</p>
             </div>
@@ -123,6 +103,7 @@ return (
       </div>
     }
   </div>
-)}
+  )
+}
 
 export default Feedback

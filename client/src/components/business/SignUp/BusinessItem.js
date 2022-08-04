@@ -9,8 +9,8 @@ function BusinessItem({ googleBizData, businessInput }) {
   //console.log('user in businessItem: ',user);
 
   const getBizIdFromDb = async () => {
-    const {waitingTime, imgLink} = businessInput
-    const businessDB = await axios.post('/api/business', { ...googleBizData, waitingTime, imgLink })
+    const {waitingTime, imgLink,description} = businessInput
+    const businessDB = await axios.post('/api/business', { ...googleBizData, waitingTime, imgLink,description })
       .catch(error => console.log(error))
     return businessDB.data.id;
   };
