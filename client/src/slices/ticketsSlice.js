@@ -43,18 +43,24 @@ export const ticketsSlice = createSlice({
     initialState,
     reducers: {
         ticketsAreLoading: (state, action) => { state.areLoading = action.payload },
-        updateTickets: (state) => { state.ticketsUpdateFlag = !state.ticketsUpdateFlag }
+        updateTickets: (state) => {
+            state.ticketsUpdateFlag = !state.ticketsUpdateFlag
+            console.log(state.ticketsUpdateFlag, 'Flag in ticketsSlice updateTickets!!!')
+        },
+        showFlag: (state) => { console.log(state.ticketsUpdateFlag, 'Flag in ticketsSlice!!') }
     },
     extraReducers: (builder) => {
         builder.addCase(fetchTickets.fulfilled, (state, action) => {
             state.allTickets = action.payload
             state.areLoading = false;
+            console.log('fetchTickets  in t is working');
         });
         builder.addCase(fetchTickets.rejected, (state,action) => {
             state.error = action.error;
         });
         builder.addCase(changeStatus.fulfilled, (state) => {
             state.ticketsUpdateFlag = !state.ticketsUpdateFlag
+            console.log(state.ticketsUpdateFlag, 'Flag in ticketsSlice changeStatus!!!')
         });
         builder.addCase(changeStatus.rejected, (state, action) => {
             state.error = action.error;
@@ -62,23 +68,25 @@ export const ticketsSlice = createSlice({
         builder.addCase(createTicket.fulfilled, (state, action) => {
             state.ticketsUpdateFlag = !state.ticketsUpdateFlag
             state.allTickets.push(action.payload) 
+            console.log(state.ticketsUpdateFlag, 'Flag in ticketsSlice createTicket!!!')
+            
         });
         builder.addCase(createTicket.rejected, (state, action) => {
             state.error = action.error;
         });
-
     },
 });
 
 console.log('ticketsSlice in ticketsSlice.js: ', ticketsSlice);
+
 //console.log('state.allTickets in ticketsSlice.js: ', state.allTickets);
 
-export const getTicketsForOneBiz = (store, id) =>
-    store.ticketsReducer.allTickets.filter(t => t.resId == id)
-
-export const getTicketById = (store, id) =>{
-    store.ticketsReducer.allTickets.find(t => t.ticketId == id);
+export const getTicketsForOneBiz = (store, id) =>{
+    //console.log(store.ticketsReducer.allTickets.filter(t => t.resId == id), 'tickets in getTicketsForOneBiz');
+    return store.ticketsReducer.allTickets.filter(t => t.resId == id)
 }
+
+
     
-export const { ticketsAreLoading, updateTickets } = ticketsSlice.actions;
+export const { ticketsAreLoading, updateTickets, showFlag } = ticketsSlice.actions;
 export default ticketsSlice.reducer;

@@ -8,15 +8,15 @@ import { getTicketsForOneBiz, changeStatus, updateTickets } from '../../../slice
 function TicketList() {
   const dispatch = useDispatch();
   let { businessId } = useParams();
-  const { ticketsUpdateFlag, areLoading } = useSelector((store) => store.ticketsReducer);
+  var { ticketsUpdateFlag, areLoading, showFlag } = useSelector((store) => store.ticketsReducer);
   let tickets = useSelector(store => getTicketsForOneBiz(store, businessId))
   //const [isLoading,setIsLoading] = useState(true)
   const [allStatus, setAllStatus] = useState({ 'waiting': null, 'done': null, 'cancelled': null })
   const { waiting, done, cancelled } = allStatus
 
   //const allStausArr = tickets.map(t => t.status)
-  console.log(ticketsUpdateFlag, 'flag in TicketList');
-  console.log(tickets, 'tickets outside');
+  //console.log(ticketsUpdateFlag, 'flag in TicketList');
+  //console.log(tickets, 'tickets outside');
   //console.log(ticketRef, 'ticketsRef outside');
   //console.log(allStausArr);
   //console.log(isLoading,'isLoading');
@@ -35,21 +35,22 @@ function TicketList() {
 
   useEffect(() => {
     updateStatus();
-  }, [JSON.stringify(tickets), ticketsUpdateFlag])
+    dispatch(showFlag)
+  }, [JSON.stringify(tickets)])
 
   const handleClick = async (event) => {
     const id = event.currentTarget.id
     const status = tickets.find(ticket => ticket.ticketId == id).status
     if (status === 'waiting') dispatch(changeStatus({id, status:'called'}))
     if (status === 'called') dispatch(changeStatus({ id, status: 'done' }))
-    //dispatch(updateTickets)
+    dispatch(updateTickets)
   }
 
   const handleCancel = async (event) => {
     const id = event.currentTarget.id
     const status= tickets.find(ticket => ticket.ticketId == id).status
     if (status == 'called') dispatch(changeStatus({ id, status: 'cancelled' }))
-    //dispatch(updateTickets)
+    dispatch(updateTickets)
   }
 
   const override = {

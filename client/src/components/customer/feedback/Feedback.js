@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import queue from '../home/queue.png'
 import clock from '../home/stopwatch.png';
 import { getBusinessById } from '../../../slices/businessSlice'
-import { changeStatus, getTicketsForOneBiz } from '../../../slices/ticketsSlice'
+import { changeStatus, getTicketsForOneBiz,fetchTickets } from '../../../slices/ticketsSlice'
 
 
 function Feedback({ cusLocation }) {
@@ -23,16 +23,18 @@ function Feedback({ cusLocation }) {
   const [peopleWaiting, setPeopleWaiting]=useState(0);
 
   useEffect(() => {
-    console.log(tickets, 'tickets in Feedback useEffect');
+    const fetchTicketsWrapper = async () => dispatch(fetchTickets());
+    fetchTicketsWrapper()
+    //console.log(tickets, 'tickets in Feedback useEffect');
     const currentTicketIndex = tickets.findIndex(ticket => ticket.ticketId == ticketId)
     const ticketsInFrontOfMe = tickets.slice(0, currentTicketIndex)
     const peopleWaiting = ticketsInFrontOfMe.filter(t => t.status == 'waiting').length
     setPeopleWaiting(peopleWaiting)
-  }, [JSON.stringify(tickets)])
+  }, [JSON.stringify(tickets)],ticketsUpdateFlag)
   
  
   console.log(ticketsUpdateFlag,'ticketsUpdateFlag in Feedback');
-  console.log(tickets,'tickets in Feedback');
+  //console.log(tickets,'tickets in Feedback');
   // console.log(currentTicketIndex, 'currentTicketIndex in Feedback');
   // console.log(ticketsInFrontOfMe, 'ticketsInFrontOfMe');
   // console.log(peopleWaiting,'peopleWaiting');
