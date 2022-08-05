@@ -15,7 +15,7 @@ function App() {
   useEffect(() => {
     const fetchTicketsWrapper = async () => dispatch(fetchTickets());
     const fetchBusinessWrapper = async () => dispatch(fetchBusiness());
-    setInterval(() => fetchTicketsWrapper(), 2000);
+    //setInterval(() => fetchTicketsWrapper(), 2000);
     // socket.on('ticketsUpdatedInDb', data => {
     //   fetchTicketsWrapper()
     //   console.log(data,'data');
