@@ -6,7 +6,8 @@ import {createTicket} from '../../../slices/ticketsSlice'
 function QueueForm({ restaurantInfo }) {
   const dispatch = useDispatch()
   const navigate = useNavigate();
-  if (restaurantInfo) var { id, geometry: { location } } =  restaurantInfo 
+  if (restaurantInfo) var { id, geometry: { location } } = restaurantInfo 
+  
   const [cusInfo, setCusInfo] = useState({name:'', number:''})
   const setNameValue = (e)=> setCusInfo({...cusInfo, name:e.target.value})
   const setNrValue = (e)=> setCusInfo({...cusInfo, number:e.target.value})

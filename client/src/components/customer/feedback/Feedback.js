@@ -8,37 +8,33 @@ import clock from '../home/stopwatch.png';
 import { getBusinessById } from '../../../slices/businessSlice'
 import { changeStatus, getTicketsForOneBiz } from '../../../slices/ticketsSlice'
 
-
 function Feedback({ cusLocation }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  let [searchParams, setSearchParams] = useSearchParams();
+  let [searchParams] = useSearchParams();
   const ticketId = searchParams.get('ticketId');
   const resId =searchParams.get('businessId');
   
-  const { areLoading, ticketsUpdateFlag } = useSelector(store => store.ticketsReducer);
+  const { areLoading } = useSelector(store => store.ticketsReducer);
   const tickets = useSelector(store => getTicketsForOneBiz(store, resId))
   const ticket = tickets.find(t => t.ticketId == ticketId);
   const restaurantInfo = useSelector(store => getBusinessById(store, resId))
   const [peopleWaiting, setPeopleWaiting]=useState(0);
 
   useEffect(() => {
-    console.log(tickets, 'tickets in Feedback useEffect');
     const currentTicketIndex = tickets.findIndex(ticket => ticket.ticketId == ticketId)
     const ticketsInFrontOfMe = tickets.slice(0, currentTicketIndex)
     const peopleWaiting = ticketsInFrontOfMe.filter(t => t.status == 'waiting').length
     setPeopleWaiting(peopleWaiting)
   }, [JSON.stringify(tickets)])
+
+  const cancelTicket = async () => {
+    dispatch(changeStatus({ id: ticketId, status: 'cancelled' }))
+  }
+ 
+  if (restaurantInfo)
+    var { name, waitingTime, geometry: { location } } = restaurantInfo
   
- 
-  console.log(ticketsUpdateFlag,'ticketsUpdateFlag in Feedback');
-  console.log(tickets,'tickets in Feedback');
-  // console.log(currentTicketIndex, 'currentTicketIndex in Feedback');
-  // console.log(ticketsInFrontOfMe, 'ticketsInFrontOfMe');
-  // console.log(peopleWaiting,'peopleWaiting');
-  const cancelTicket = async () => { dispatch(changeStatus({ id: ticketId, status: 'cancelled' })) }
- 
-  if (restaurantInfo)    var { name, waitingTime, geometry: { location } } = restaurantInfo
   const bizCoordinates = location && (location.lat + ',' + location.lng);
   const customerCoordinates = cusLocation && (cusLocation.lat + ',' + cusLocation.lng);
   
@@ -52,10 +48,10 @@ function Feedback({ cusLocation }) {
     </div>    
 
   const override = {display: "block",position: "absolute",top: "50%", left: "45%",margin: "0 auto",borderColor: "red",};
-
   if (areLoading) return (<ClockLoader color={'#4A90E2'} loading={areLoading} size={100} cssOverride={override} /> )
+  
   return (
-  <div className='list__container'>
+    <div className='list__container'>
     {ticket.status == 'done' && <h1 className='finish-msg'> Seems like everything went smoothly! See you next time {ticket.name} </h1>}
     {ticket.status == 'cancelled' &&
     <>

@@ -4,14 +4,16 @@ import { useSelector } from 'react-redux'
 import {useNavigate} from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";
 import { getBusinessById } from '../../../slices/businessSlice'
+import ClockLoader from "react-spinners/ClockLoader";
 
 const Profile = ({user, businessId}) => {
   const navigate = useNavigate();
   const {isAuthenticated, isLoading } = useAuth0();
   const biz = useSelector(store => getBusinessById(store, businessId))
-  //console.log(biz, 'biz in Profile');
 
-  if (isLoading) { return <div>Loading ...</div>}
+  const override = { display: "block", position: "absolute", top: "50%", left: "45%", margin: "0 auto", borderColor: "red", };
+  if (isLoading)
+    return <ClockLoader color={'#4A90E2'} loading={isLoading} size={100} cssOverride={override} />
   return (
     isAuthenticated &&  (
       <div className='profile-page'>

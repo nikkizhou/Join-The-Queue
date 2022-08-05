@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 function NavCusPart({isAuthenticated}) {
   return (
     <>
-      {!isAuthenticated ?
-      <Link to="/business/SignIn">Business</Link>
+      {!isAuthenticated
+      ?<Link to="/business/SignIn">Business</Link>
       :<Link to="/business/profile">Business</Link>
       } 
       <Link to="/customer/home">Home</Link>

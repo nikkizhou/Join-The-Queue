@@ -6,7 +6,6 @@ import { useAuth0 } from '@auth0/auth0-react';
 function BusinessItem({ googleBizData, businessInput }) {
   const { user } = useAuth0();
   const dispatch = useDispatch();
-  //console.log('user in businessItem: ',user);
 
   const getBizIdFromDb = async () => {
     const {waitingTime, imgLink,description} = businessInput
@@ -17,7 +16,6 @@ function BusinessItem({ googleBizData, businessInput }) {
 
   const fixBizId = async () => {
     const createdBusinessId = await getBizIdFromDb();
-    console.log('createdBusinessId', createdBusinessId);
     dispatch(updateBusinessId(createdBusinessId));
     await axios.put(`/api/user/${user.email}`, { businessId: createdBusinessId })
     alert('Your business is now registered in our system! ')

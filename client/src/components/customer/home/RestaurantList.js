@@ -1,14 +1,19 @@
 import './customerHome.css'
 import RestaurantItem from './RestaurantItem'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
+import ClockLoader from "react-spinners/ClockLoader";
 
 const RestaurantList = ({ search, cusLocation }) => {
-  const { allBusiness } = useSelector(store => store.businessReducer)
+  const { allBusiness,areLoading } = useSelector(store => store.businessReducer)
   
   const searchMatches = (restaurant) =>
     search === "" || restaurant.name?.toLowerCase().includes(search.toLowerCase())
 
+  const override = { display: "block", position: "absolute", top: "50%", left: "45%", margin: "0 auto", borderColor: "red", };
+  if (areLoading)
+    return <ClockLoader color={'#4A90E2'} loading={areLoading} size={100} cssOverride={override} />
+  
   return (
     <div >
       <ul className='list__container'>
