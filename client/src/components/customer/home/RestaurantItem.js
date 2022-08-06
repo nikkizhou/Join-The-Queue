@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 import { getTicketsForOneBiz } from '../../../slices/ticketsSlice'
 
 function RestaurantItem({ restaurantInfo, cusLocation }) {
-  const { name, id, formatted_address, waitingTime, imgLink,geometry:{location}} = restaurantInfo;
+  const { name, id, formatted_address, waitingTime, imgLink, geometry:{location}} = restaurantInfo;
   const tickets = useSelector(store => getTicketsForOneBiz(store, id))
   
   const distanceLoc = location && cusLocation && getDistance(location, cusLocation)
