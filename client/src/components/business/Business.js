@@ -18,7 +18,7 @@ function Business() {
   const { businessId } = useSelector((store) => store.businessReducer);
   
   const getExistedBizId = async () => {
-    const userFromDB = user && await axios.get(`http://localhost:5001/api/user/${user.email}`)
+    const userFromDB = user && await axios.get(`/api/user/${user.email}`)
     const bizId = userFromDB?.data.businessId;
     bizId && dispatch(updateBusinessId(bizId))
   }

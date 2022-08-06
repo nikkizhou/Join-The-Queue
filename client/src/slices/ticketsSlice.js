@@ -10,7 +10,7 @@ const initialState = {
 export const fetchTickets = createAsyncThunk(
     "fetchTickets",
     async () => {
-        const data = await axios.get(`http://localhost:5001/api/tickets`)
+        const data = await axios.get(`/api/tickets`)
             .then(data => data.data)
             .catch(err=>console.log(err));
         return data; 
@@ -29,7 +29,7 @@ export const changeStatus = createAsyncThunk(
 export const createTicket = createAsyncThunk(
     "createTicket",
     async (detail) => {
-        const data = await axios.post(`http://localhost:5001/api/tickets`, detail)
+        const data = await axios.post(`/api/tickets`, detail)
             .then(data => data.data)
             .catch(err => console.log(err));
         return data;

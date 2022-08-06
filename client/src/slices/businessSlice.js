@@ -10,7 +10,7 @@ const initialState = {
 export const fetchBusiness = createAsyncThunk(
   "fetchBusiness",
   async () => {
-    const data = await axios.get(`http://localhost:5001/api/business`)
+    const data = await axios.get(`/api/business`)
       .then(data => data.data)
       .catch(err => console.log(err));
     return data;
