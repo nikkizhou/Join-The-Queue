@@ -14,6 +14,7 @@ function App() {
   useEffect(() => {
     const fetchTicketsWrapper = async () => dispatch(fetchTickets());
     const fetchBusinessWrapper = async () => dispatch(fetchBusiness());
+    setInterval(() => fetchTicketsWrapper(), 2000);
     fetchTicketsWrapper()
     fetchBusinessWrapper();
   }, [ticketsUpdateFlag, JSON.stringify(tickets)])
