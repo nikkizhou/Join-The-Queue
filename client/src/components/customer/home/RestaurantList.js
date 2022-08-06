@@ -1,70 +1,35 @@
-import React, { useEffect } from 'react'
-import RestaurantItem from './RestaurantItem'
-import { useState } from 'react';
 import './customerHome.css'
+import RestaurantItem from './RestaurantItem'
+import React from 'react'
+import { useSelector } from 'react-redux'
+import ClockLoader from "react-spinners/ClockLoader";
 
-const RestaurantList = ({ restaurantList }) =>{
+const RestaurantList = ({ search, cusLocation }) => {
+  const { allBusiness,areLoading } = useSelector(store => store.businessReducer)
   
+  const searchMatches = (restaurant) =>
+    search === "" || restaurant.name?.toLowerCase().includes(search.toLowerCase())
 
-  const [search, setSearch] = useState("")
-  const [customerLocation, setcustomerLocation] = useState(null)
-
-console.log(restaurantList,'dddd');
-
-
-  const getcustomerLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        let pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-        
-         setcustomerLocation(pos)
-        
-      });
-    } else {
-      
-    }
-  }
-
-useEffect(()=> getcustomerLocation()
-,[])
-
-
-return (
-  <div >
-    <form  className="form">
-        <input
-          className="form-input"
-          type="text"
-          value={search}
-          placeholder = "Search for a restaurant..."
-          onChange={event => setSearch(event.target.value)}
-        />
-       
-      </form>
-
-    <ul className='list__container'>
-      {restaurantList.filter(res =>{
+  const override = { display: "block", position: "absolute", top: "50%", left: "45%", margin: "0 auto", borderColor: "red", };
+  if (areLoading)
+    return <ClockLoader color={'#4A90E2'} loading={areLoading} size={100} cssOverride={override} />
   
-       if(search ===""){
-       
-        return res
-       } else if(res.name?.toLowerCase().includes(search.toLowerCase())){
-        return res
-       }
-
-      }).map((restaurant, index) => (
-        
-        <RestaurantItem
-            key = {restaurant.id}
-            restaurantInfo = {restaurant}
-            customerLocation = {customerLocation}
-        />
-      ))}
-    </ul>
-  </div>
-  )};
+  return (
+    <div >
+      <ul className='list__container'>
+        {allBusiness
+          ?.filter(restaurant => searchMatches(restaurant) && restaurant)
+          .map((restaurant) => (
+            <RestaurantItem
+              key={restaurant.id}
+              restaurantInfo = {restaurant}
+              cusLocation={cusLocation}
+            />
+          ))
+        }
+      </ul>
+    </div>
+  )
+};
 
 export default RestaurantList;
