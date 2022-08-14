@@ -1,5 +1,10 @@
 # JoinTheQ
-Final project in SALT by Team Apollo
+Final project in SALT by Team Apollo:
+[Jakub](https://github.com/JakubRaczkowski)   
+[Shoaib](https://github.com/mshoaibtalha)   
+[Chris](https://github.com/chrisobrien88)
+[Nikki](https://github.com/nikkizhou)
+
 
 #Motivation
 Waiting in line is boring, frustrating, there’s rarely any comfy seats and there’s always that slight fear someone’s going to try to jump infront of you. It’s a bad start to any restaurant’s customer experience.
