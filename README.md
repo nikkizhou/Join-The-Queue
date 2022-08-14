@@ -1,8 +1,8 @@
 # JoinTheQ
-Final project in SALT by Team Apollo:
+Final project in SALT by Team Apollo: 
 [Jakub](https://github.com/JakubRaczkowski)   
 [Shoaib](https://github.com/mshoaibtalha)   
-[Chris](https://github.com/chrisobrien88)
+[Chris](https://github.com/chrisobrien88) 
 [Nikki](https://github.com/nikkizhou)
 
 
