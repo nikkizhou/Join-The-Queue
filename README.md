@@ -16,5 +16,7 @@ You’re starting to get a bit peckish and want to eat at your favourite local r
 You show your ticket on arrival and are immediately seated. No hassle. No queues. Happy days.
 
 # Tech Stack
-## MERN Stack:  MongoDb, Express, React, Node 
-## Extra: Google Map Api
+## MERN Stack:  
+MongoDb, Express, React, Node 
+## Extra: 
+Google Map Api
