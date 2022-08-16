@@ -17,6 +17,6 @@ You show your ticket on arrival and are immediately seated. No hassle. No queues
 
 # Tech Stack
 ## MERN Stack:  
-MongoDb, Express, React, Node 
+MongoDb, Express, Node, React 
 ## Extra: 
-Google Map Api
+Google Map Api,Redux, AuthO
