@@ -90,7 +90,7 @@ function Feedback({ cusLocation }) {
           height="200"
           frameBorder="0" style={{ border: 0 }}
           referrerPolicy="no-referrer-when-downgrade"
-          src={`https://www.google.com/maps/embed/v1/directions?key=AIzaSyCWJ0GsY0BynFt81-H82ok6RqIsZilr768&origin=${customerCoordinates}&destination=${bizCoordinates}&mode=walking`}>
+            src={`https://www.google.com/maps/embed/v1/directions?key=AIzaSyAZXVjaBl_ouAoGbuMHOxTstJL8TEGfMtg&origin=${customerCoordinates}&destination=${bizCoordinates}&mode=walking`}>
         </iframe>
 
         <div className='ticket__queue-info'>
