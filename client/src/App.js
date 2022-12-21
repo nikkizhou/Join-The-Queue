@@ -20,18 +20,16 @@ function App() {
   }, [ticketsUpdateFlag, JSON.stringify(tickets)])
 
   return (
-    <>
-      <div className="App">
-        <BrowserRouter>
-          <Routes>
-            <Route path="/customer/*" element={<Customer />}/>
-            <Route path="/business/*" element={<Business />} />
-            <Route path="/" element={<Navigate replace to='/customer/home' />}/>
-            <Route path="*" element={<NotFound />}/>
-          </Routes>
-        </BrowserRouter>
-      </div>
-    </>
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/customer/*" element={<Customer />}/>
+          <Route path="/business/*" element={<Business />} />
+          <Route path="/" element={<Navigate replace to='/customer/home' />}/>
+          <Route path="*" element={<NotFound />}/>
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 
