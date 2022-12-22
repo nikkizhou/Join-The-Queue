@@ -1,6 +1,7 @@
 {
-  "name": "client",
-  "version": "0.1.0",
+  "name": "join-the-queue",
+  "homepage": "https://join-the-queue-nikkizhou.vercel.app",
+  "version": "1.0.0,",
   "private": true,
   "dependencies": {
     "@auth0/auth0-react": "^1.10.2",
