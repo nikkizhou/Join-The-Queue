@@ -6,23 +6,12 @@ import Feedback from './feedback/Feedback';
 import Navbar from '../Navbar/Navbar.js'
 import About from '../About/About'
 import NotFound from '../NotFound';
+import { getcustomerLocation } from '../../utils';
 
 function Customer() {
   const [cusLocation, setcusLocation] = useState(null)
-  const getcustomerLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function (position) {
-        let pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-        setcusLocation(pos)
-      });
-    }
-  }
-
   useEffect(() => {
-    getcustomerLocation()
+    getcustomerLocation(setcusLocation)
   }, []);
   
   return (

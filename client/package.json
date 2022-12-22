@@ -1,6 +1,6 @@
 {
   "name": "join-the-queue",
-  "homepage": "https://join-the-que.onrender.com/customer/home",
+  "homepage": "https://join-the-que.onrender.com",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
