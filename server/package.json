@@ -6,7 +6,6 @@
   "type": "module",
   "scripts": {
     "start": "nodemon server.js",
-    "build": "cd client && npm i && npm run build && cp -r build/. ../server/static/.",
     "client": "npm start --prefix ../client",
     "server": "nodemon server.js",
     "clientinstall": "npm install --prefix client",
