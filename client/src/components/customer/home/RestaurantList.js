@@ -19,9 +19,9 @@ const RestaurantList = ({ search, cusLocation }) => {
       <ul className='list__container'>
         {allBusiness
           ?.filter(restaurant => searchMatches(restaurant) && restaurant)
-          .map((restaurant) => (
+          .map((restaurant,index) => (
             <RestaurantItem
-              key={restaurant.id}
+              key={index}
               restaurantInfo = {restaurant}
               cusLocation={cusLocation}
             />

@@ -21,7 +21,7 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter basename='/customer/home'>
+      <BrowserRouter >
         <Routes>
           <Route path="/customer/*" element={<Customer />}/>
           <Route path="/business/*" element={<Business />} />
