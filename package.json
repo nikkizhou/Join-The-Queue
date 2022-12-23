@@ -5,6 +5,8 @@
     "main": "server.js",
     "type": "module",
     "scripts": {
+      "build":"cd server && npm i",
+      "start":"cd server && nodemon server.js",
       "client": "npm start --prefix ./client",
       "server": "cd server && nodemon server.js",
       "clientinstall": "npm install --prefix client",
