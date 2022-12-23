@@ -8,11 +8,7 @@ import About from '../About/About'
 import NotFound from '../NotFound';
 import { getcustomerLocation } from '../../utils';
 
-function Customer() {
-  const [cusLocation, setcusLocation] = useState(null)
-  useEffect(() => {
-    getcustomerLocation(setcusLocation)
-  }, []);
+function Customer({cusLocation}) {
   
   return (
     <>

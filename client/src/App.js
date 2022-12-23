@@ -14,9 +14,7 @@ function App() {
   const { ticketsUpdateFlag, tickets } = useSelector((store) => store.ticketsReducer);
   
   const [cusLocation, setcusLocation] = useState(null)
-  useEffect(() => {
-    getcustomerLocation(setcusLocation)
-  }, []);
+  useEffect(() => {getcustomerLocation(setcusLocation)}, []);
   
   useEffect(() => {
     getcustomerLocation(setcusLocation)
@@ -31,7 +29,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/customer/*" element={<Customer  />}/>
+          <Route path="/customer/*" element={<Customer cusLocation={cusLocation}/>}/>
           <Route path="/business/*" element={<Business />} />
           <Route path="/" element={<Home cusLocation={cusLocation} />}/>
           <Route path="*" element={<NotFound />}/>

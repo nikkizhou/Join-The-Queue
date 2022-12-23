@@ -8,6 +8,7 @@
       "client": "npm start --prefix ./client",
       "server": "cd server && nodemon server.js",
       "dev": "concurrently \"npm run client\" \"npm run server\"",
+      "build": "npm i && cd ../client && npm i && npm run build",
       "render-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
     },
     "keywords": [],
