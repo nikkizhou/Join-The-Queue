@@ -5,11 +5,8 @@
     "main": "server.js",
     "type": "module",
     "scripts": {
-      "build":"cd server && npm i",
-      "start":"cd server && nodemon server.js",
       "client": "npm start --prefix ./client",
       "server": "cd server && nodemon server.js",
-      "clientinstall": "npm install --prefix client",
       "dev": "concurrently \"npm run client\" \"npm run server\"",
       "render-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
     },
