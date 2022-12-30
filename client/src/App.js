@@ -31,7 +31,7 @@ function App() {
         <Routes>
           <Route path="/customer/*" element={<Customer cusLocation={cusLocation}/>}/>
           <Route path="/business/*" element={<Business />} />
-          <Route path="/" element={<Home cusLocation={cusLocation} />}/>
+          <Route path="/" element={<Customer cusLocation={cusLocation} />}/>
           <Route path="*" element={<NotFound />}/>
         </Routes>
       </BrowserRouter>

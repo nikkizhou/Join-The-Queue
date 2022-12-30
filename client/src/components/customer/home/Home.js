@@ -4,6 +4,7 @@ import RestaurantList from './RestaurantList'
  
 function Home({ cusLocation }) {
   const [search, setSearch] = useState("")
+  
   return (
     <>
       <form className="form">
