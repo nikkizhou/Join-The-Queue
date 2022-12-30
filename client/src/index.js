@@ -12,8 +12,8 @@ const redirectTo = window.location.origin +'/business/profile'
 root.render(
     <Provider store={store}> 
       <Auth0Provider
-        domain='dev-1gc7w2aa.us.auth0.com'
-        clientId='TscMjmtUBaRhAjuKSIJgFHjoD1ySUp3V'
+        domain='dev-herjy007a0b58rin.us.auth0.com'
+        clientId='2kOEHq4Thm9AbJhNMMqEgaDXIrTLOGYx'
         redirectUri={redirectTo}>
         <App />
       </Auth0Provider>
